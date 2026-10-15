@@ -1,0 +1,8 @@
+.......................................                                  [100%]
+============================== warnings summary ===============================
+..\.validacion_nexoeventos\venv\Lib\site-packages\starlette\testclient.py:40
+  C:\Users\shalem rolon\Desktop\Universidad del Rosario\Ing Datos\Corte 2\parcial 2\.validacion_nexoeventos\venv\Lib\site-packages\starlette\testclient.py:40: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+39 passed, 1 warning in 1.79s

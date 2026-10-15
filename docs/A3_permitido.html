@@ -1,0 +1,36 @@
+<!doctype html><html lang="es"><meta charset="utf-8"><title>A3 permitido</title><style>body{font:16px Segoe UI,sans-serif;background:#f3f5f7;color:#17252e;margin:40px}main{max-width:1250px;margin:auto}pre{background:white;padding:22px;border:1px solid #ccd5da;border-radius:8px;white-space:pre-wrap;word-break:break-word;font:15px Consolas,monospace}h1{font-size:28px}h2{font-size:20px}.estado{font-size:20px;font-weight:600}small{color:#415462}</style><main><h1>A3 permitido · petición real a la API</h1><small>Registrada: 2026-10-06T20:49:35.229453-05:00. Cliente HTTP: scripts/evidencias.py.</small><p>Contratar café sin cantidad: se toma el aforo y se actualiza el total.</p><h2>Petición</h2><pre>{
+  &quot;metodo&quot;: &quot;POST&quot;,
+  &quot;ruta&quot;: &quot;/eventos/18/servicios&quot;,
+  &quot;X-Usuario&quot;: &quot;grupo_shalem_dayro_juan_jesus&quot;,
+  &quot;parametros&quot;: null,
+  &quot;cuerpo&quot;: {
+    &quot;servicio_id&quot;: 2
+  }
+}</pre><p class="estado">Respuesta HTTP 201</p><pre>{
+  &quot;id&quot;: 37,
+  &quot;evento_id&quot;: 18,
+  &quot;servicio_id&quot;: 2,
+  &quot;cantidad&quot;: &quot;50.00&quot;,
+  &quot;precio_congelado&quot;: &quot;6500.00&quot;
+}</pre><h2>Consulta posterior</h2><pre>{
+  &quot;evento_id&quot;: 18,
+  &quot;nombre&quot;: &quot;Prueba A3 permitido e56c62&quot;,
+  &quot;estado&quot;: &quot;Cotizado&quot;,
+  &quot;salon&quot;: &quot;Salón Heliconia&quot;,
+  &quot;horas&quot;: &quot;1.5000000000000000&quot;,
+  &quot;precio_hora&quot;: &quot;320000.00&quot;,
+  &quot;costo_salon&quot;: &quot;480000.00&quot;,
+  &quot;servicios&quot;: [
+    {
+      &quot;id&quot;: 37,
+      &quot;servicio_id&quot;: 2,
+      &quot;nombre&quot;: &quot;Estación de café&quot;,
+      &quot;unidad_cobro&quot;: &quot;Por persona&quot;,
+      &quot;cantidad&quot;: &quot;50.00&quot;,
+      &quot;precio_congelado&quot;: &quot;6500.00&quot;,
+      &quot;subtotal&quot;: &quot;325000.0000&quot;
+    }
+  ],
+  &quot;subtotal_servicios&quot;: &quot;325000.00&quot;,
+  &quot;total&quot;: &quot;805000.00&quot;
+}</pre></main></html>

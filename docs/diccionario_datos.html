@@ -1,0 +1,566 @@
+<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>diccionario_datos · NexoEventos</title><style>body{font:16px/1.6 Segoe UI,Arial,sans-serif;color:#17303d;background:#f4f6f8;margin:0}main{background:white;max-width:1200px;margin:32px auto;padding:38px}h1{font-size:30px}h2{margin-top:36px;border-bottom:1px solid #d0dce3}table{border-collapse:collapse;display:block;overflow:auto;margin:20px 0;font-size:14px}td,th{padding:9px 12px;border:1px solid #ccd8df;text-align:left}th{background:#edf3f6}pre{background:#edf3f6;padding:18px;overflow:auto;font-size:14px}img{max-width:100%;height:auto;border:1px solid #ccd8df}a{color:#126791}nav{display:flex;gap:18px;flex-wrap:wrap}code{font-family:Consolas,monospace}@media print{body{background:white}main{margin:0;padding:0}h2,h3{break-after:avoid}img{max-height:23cm;object-fit:contain}pre{white-space:pre-wrap;word-break:break-word}table{font-size:11px}}</style><main><nav><a href="../README.html">Ejecutar y usar</a><a href="decisiones.html">Decisiones</a><a href="reporte_evidencias.html">Evidencias</a><a href="diagrama_relacional.html">Diagrama</a><a href="diccionario_datos.html">Diccionario</a><a href="endpoints.html">Endpoints</a></nav><h1>Diccionario de datos</h1>
+<p>Origen: entidades de <code>app/models.py</code>. Dinero en COP; los campos NUMERIC son exactos. Las fechas con hora se almacenan en hora local de Bogotá, sin zona horaria. Los ids son enteros generados por PostgreSQL.</p>
+<h2>asistentes</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo SQL</th>
+<th>Acepta NULL</th>
+<th>Claves y valor inicial</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>INTEGER</code></td>
+<td>No</td>
+<td>PK, autoincremento</td>
+</tr>
+<tr>
+<td><code>documento</code></td>
+<td><code>VARCHAR(20)</code></td>
+<td>No</td>
+<td>UNIQUE</td>
+</tr>
+<tr>
+<td><code>nombre</code></td>
+<td><code>VARCHAR(150)</code></td>
+<td>No</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>correo</code></td>
+<td><code>VARCHAR(150)</code></td>
+<td>No</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>empresa</code></td>
+<td><code>VARCHAR(150)</code></td>
+<td>Sí</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Restricciones:</p>
+<ul>
+<li>UNIQUE: <code>documento</code>.</li>
+</ul>
+<h2>clientes</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo SQL</th>
+<th>Acepta NULL</th>
+<th>Claves y valor inicial</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>INTEGER</code></td>
+<td>No</td>
+<td>PK, autoincremento</td>
+</tr>
+<tr>
+<td><code>documento</code></td>
+<td><code>VARCHAR(20)</code></td>
+<td>No</td>
+<td>UNIQUE</td>
+</tr>
+<tr>
+<td><code>tipo_documento</code></td>
+<td><code>VARCHAR(10)</code></td>
+<td>No</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>nombre_razon_social</code></td>
+<td><code>VARCHAR(150)</code></td>
+<td>No</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>correo</code></td>
+<td><code>VARCHAR(150)</code></td>
+<td>No</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>telefono</code></td>
+<td><code>VARCHAR(20)</code></td>
+<td>No</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>fecha_registro</code></td>
+<td><code>TIMESTAMP WITHOUT TIME ZONE</code></td>
+<td>No</td>
+<td>DEFAULT CURRENT_TIMESTAMP</td>
+</tr>
+</tbody>
+</table>
+<p>Restricciones:</p>
+<ul>
+<li>UNIQUE: <code>documento</code>.</li>
+<li><code>check_tipo_documento</code>: <code>tipo_documento IN ('NIT', 'Cedula')</code>.</li>
+</ul>
+<h2>salones</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo SQL</th>
+<th>Acepta NULL</th>
+<th>Claves y valor inicial</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>INTEGER</code></td>
+<td>No</td>
+<td>PK, autoincremento</td>
+</tr>
+<tr>
+<td><code>nombre</code></td>
+<td><code>VARCHAR(100)</code></td>
+<td>No</td>
+<td>UNIQUE</td>
+</tr>
+<tr>
+<td><code>tamano</code></td>
+<td><code>VARCHAR(10)</code></td>
+<td>No</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>capacidad_maxima</code></td>
+<td><code>INTEGER</code></td>
+<td>No</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>precio_hora</code></td>
+<td><code>NUMERIC(12, 2)</code></td>
+<td>No</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>activo</code></td>
+<td><code>BOOLEAN</code></td>
+<td>No</td>
+<td>DEFAULT TRUE</td>
+</tr>
+</tbody>
+</table>
+<p>Restricciones:</p>
+<ul>
+<li>UNIQUE: <code>nombre</code>.</li>
+<li><code>check_capacidad_maxima</code>: <code>capacidad_maxima &gt; 0</code>.</li>
+<li><code>check_precio_hora</code>: <code>precio_hora &gt; 0</code>.</li>
+<li><code>check_tamano_salon</code>: <code>tamano IN ('Pequeño', 'Mediano', 'Grande')</code>.</li>
+</ul>
+<h2>servicios</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo SQL</th>
+<th>Acepta NULL</th>
+<th>Claves y valor inicial</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>INTEGER</code></td>
+<td>No</td>
+<td>PK, autoincremento</td>
+</tr>
+<tr>
+<td><code>nombre</code></td>
+<td><code>VARCHAR(150)</code></td>
+<td>No</td>
+<td>UNIQUE</td>
+</tr>
+<tr>
+<td><code>categoria</code></td>
+<td><code>VARCHAR(30)</code></td>
+<td>No</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>unidad_cobro</code></td>
+<td><code>VARCHAR(15)</code></td>
+<td>No</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>precio_unitario</code></td>
+<td><code>NUMERIC(12, 2)</code></td>
+<td>No</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Restricciones:</p>
+<ul>
+<li>UNIQUE: <code>nombre</code>.</li>
+<li><code>check_categoria_servicio</code>: <code>categoria IN ('Bebidas', 'Refrigerios', 'Audiovisuales')</code>.</li>
+<li><code>check_precio_unitario</code>: <code>precio_unitario &gt; 0</code>.</li>
+<li><code>check_unidad_cobro</code>: <code>unidad_cobro IN ('Por persona', 'Por hora', 'Por unidad')</code>.</li>
+</ul>
+<h2>staff</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo SQL</th>
+<th>Acepta NULL</th>
+<th>Claves y valor inicial</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>INTEGER</code></td>
+<td>No</td>
+<td>PK, autoincremento</td>
+</tr>
+<tr>
+<td><code>correo</code></td>
+<td><code>VARCHAR(150)</code></td>
+<td>No</td>
+<td>UNIQUE</td>
+</tr>
+<tr>
+<td><code>jefe_id</code></td>
+<td><code>INTEGER</code></td>
+<td>Sí</td>
+<td>FK → staff.id</td>
+</tr>
+<tr>
+<td><code>nombre</code></td>
+<td><code>VARCHAR(150)</code></td>
+<td>No</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>cargo</code></td>
+<td><code>VARCHAR(100)</code></td>
+<td>No</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>area</code></td>
+<td><code>VARCHAR(30)</code></td>
+<td>No</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>fecha_ingreso</code></td>
+<td><code>DATE</code></td>
+<td>No</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Restricciones:</p>
+<ul>
+<li>UNIQUE: <code>correo</code>.</li>
+<li><code>check_area_staff</code>: <code>area IN ('Dirección', 'Operaciones', 'Comercial', 'Logística', 'Alimentos y Bebidas', 'Audiovisuales')</code>.</li>
+<li><code>check_jefe_diferente</code>: <code>jefe_id &lt;&gt; id</code>.</li>
+</ul>
+<h2>eventos</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo SQL</th>
+<th>Acepta NULL</th>
+<th>Claves y valor inicial</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>INTEGER</code></td>
+<td>No</td>
+<td>PK, autoincremento</td>
+</tr>
+<tr>
+<td><code>cliente_id</code></td>
+<td><code>INTEGER</code></td>
+<td>No</td>
+<td>FK → clientes.id</td>
+</tr>
+<tr>
+<td><code>salon_id</code></td>
+<td><code>INTEGER</code></td>
+<td>No</td>
+<td>FK → salones.id</td>
+</tr>
+<tr>
+<td><code>coordinador_id</code></td>
+<td><code>INTEGER</code></td>
+<td>No</td>
+<td>FK → staff.id</td>
+</tr>
+<tr>
+<td><code>nombre</code></td>
+<td><code>VARCHAR(150)</code></td>
+<td>No</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>tipo</code></td>
+<td><code>VARCHAR(30)</code></td>
+<td>No</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>aforo_esperado</code></td>
+<td><code>INTEGER</code></td>
+<td>No</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>inicio</code></td>
+<td><code>TIMESTAMP WITHOUT TIME ZONE</code></td>
+<td>No</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>fin</code></td>
+<td><code>TIMESTAMP WITHOUT TIME ZONE</code></td>
+<td>No</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>estado</code></td>
+<td><code>VARCHAR(15)</code></td>
+<td>No</td>
+<td>DEFAULT 'Cotizado'</td>
+</tr>
+<tr>
+<td><code>valor_total</code></td>
+<td><code>NUMERIC(14, 2)</code></td>
+<td>No</td>
+<td>DEFAULT 0</td>
+</tr>
+<tr>
+<td><code>precio_salon_congelado</code></td>
+<td><code>NUMERIC(12, 2)</code></td>
+<td>No</td>
+<td>Trigger A3 copia la tarifa del salón</td>
+</tr>
+<tr>
+<td><code>tasa_asistencia</code></td>
+<td><code>NUMERIC(5, 2)</code></td>
+<td>Sí</td>
+<td>NULL sin inscritos; porcentaje al finalizar</td>
+</tr>
+</tbody>
+</table>
+<p>Restricciones:</p>
+<ul>
+<li><code>check_aforo_esperado</code>: <code>aforo_esperado &gt; 0</code>.</li>
+<li><code>check_estado_evento</code>: <code>estado IN ('Cotizado', 'Confirmado', 'Finalizado', 'Cancelado')</code>.</li>
+<li><code>check_fechas_evento</code>: <code>fin &gt; inicio</code>.</li>
+<li><code>check_tarifa_salon</code>: <code>precio_salon_congelado &gt; 0</code>.</li>
+<li><code>check_tasa_asistencia</code>: <code>tasa_asistencia IS NULL OR (tasa_asistencia &gt;= 0 AND tasa_asistencia &lt;= 100)</code>.</li>
+<li><code>check_tipo_evento</code>: <code>tipo IN ('Congreso', 'Conferencia', 'Feria', 'Seminario', 'Corporativo', 'Social')</code>.</li>
+<li><code>check_valor_total</code>: <code>valor_total &gt;= 0</code>.</li>
+</ul>
+<h2>auditoria</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo SQL</th>
+<th>Acepta NULL</th>
+<th>Claves y valor inicial</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>INTEGER</code></td>
+<td>No</td>
+<td>PK, autoincremento</td>
+</tr>
+<tr>
+<td><code>evento_id</code></td>
+<td><code>INTEGER</code></td>
+<td>No</td>
+<td>FK → eventos.id</td>
+</tr>
+<tr>
+<td><code>campo</code></td>
+<td><code>VARCHAR(30)</code></td>
+<td>No</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>valor_anterior</code></td>
+<td><code>TEXT</code></td>
+<td>Sí</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>valor_nuevo</code></td>
+<td><code>TEXT</code></td>
+<td>Sí</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>fecha</code></td>
+<td><code>TIMESTAMP WITHOUT TIME ZONE</code></td>
+<td>No</td>
+<td>DEFAULT CURRENT_TIMESTAMP</td>
+</tr>
+<tr>
+<td><code>usuario_app</code></td>
+<td><code>VARCHAR(150)</code></td>
+<td>No</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Restricciones:</p>
+<ul>
+<li><code>check_campo_auditoria</code>: <code>campo IN ('estado', 'salon_id', 'inicio', 'fin')</code>.</li>
+</ul>
+<h2>inscripciones</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo SQL</th>
+<th>Acepta NULL</th>
+<th>Claves y valor inicial</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>INTEGER</code></td>
+<td>No</td>
+<td>PK, autoincremento</td>
+</tr>
+<tr>
+<td><code>evento_id</code></td>
+<td><code>INTEGER</code></td>
+<td>No</td>
+<td>FK → eventos.id</td>
+</tr>
+<tr>
+<td><code>asistente_id</code></td>
+<td><code>INTEGER</code></td>
+<td>No</td>
+<td>FK → asistentes.id</td>
+</tr>
+<tr>
+<td><code>fecha_inscripcion</code></td>
+<td><code>TIMESTAMP WITHOUT TIME ZONE</code></td>
+<td>No</td>
+<td>DEFAULT CURRENT_TIMESTAMP</td>
+</tr>
+<tr>
+<td><code>hora_checkin</code></td>
+<td><code>TIMESTAMP WITHOUT TIME ZONE</code></td>
+<td>Sí</td>
+<td>NULL mientras no llegue; A2 valida ventana y unicidad</td>
+</tr>
+</tbody>
+</table>
+<p>Restricciones:</p>
+<ul>
+<li>UNIQUE: <code>evento_id</code>, <code>asistente_id</code>.</li>
+</ul>
+<h2>servicios_evento</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo SQL</th>
+<th>Acepta NULL</th>
+<th>Claves y valor inicial</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>INTEGER</code></td>
+<td>No</td>
+<td>PK, autoincremento</td>
+</tr>
+<tr>
+<td><code>evento_id</code></td>
+<td><code>INTEGER</code></td>
+<td>No</td>
+<td>FK → eventos.id</td>
+</tr>
+<tr>
+<td><code>servicio_id</code></td>
+<td><code>INTEGER</code></td>
+<td>No</td>
+<td>FK → servicios.id</td>
+</tr>
+<tr>
+<td><code>cantidad</code></td>
+<td><code>NUMERIC(10, 2)</code></td>
+<td>No</td>
+<td>Trigger A3 asigna aforo, techo de horas o 1 si se omite</td>
+</tr>
+<tr>
+<td><code>precio_congelado</code></td>
+<td><code>NUMERIC(12, 2)</code></td>
+<td>No</td>
+<td>Trigger A3 copia la tarifa del servicio</td>
+</tr>
+</tbody>
+</table>
+<p>Restricciones:</p>
+<ul>
+<li><code>check_cantidad_servicio</code>: <code>cantidad &gt; 0</code>.</li>
+<li><code>check_precio_congelado</code>: <code>precio_congelado &gt; 0</code>.</li>
+<li>UNIQUE: <code>evento_id</code>, <code>servicio_id</code>.</li>
+</ul>
+<h2>Reglas entre filas</h2>
+<table>
+<thead>
+<tr>
+<th>Regla</th>
+<th>Validación en PostgreSQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A1</td>
+<td>Salón activo, capacidad, una hora entre eventos no cancelados y aforo no menor que inscritos</td>
+</tr>
+<tr>
+<td>A2</td>
+<td>Evento abierto, cupo, inscripción única, llegada en ventana y una sola llegada</td>
+</tr>
+<tr>
+<td>A3</td>
+<td>Total automático; precio y cantidad del servicio; bloqueo de líneas de eventos cerrados</td>
+</tr>
+<tr>
+<td>A4</td>
+<td>Inicio Cotizado, transiciones, fecha de cierre, porcentaje y auditoría</td>
+</tr>
+<tr>
+<td>Staff</td>
+<td>Autorreferencia válida y ausencia de ciclos en la cadena de jefes</td>
+</tr>
+</tbody>
+</table>
+<p>Las llaves foráneas no tienen borrado en cascada. La API no publica rutas para borrar clientes, salones, asistentes ni eventos. El historial queda asociado a su evento.</p>
+<p>En las respuestas JSON, los importes y porcentajes decimales se representan como cadenas para conservar precisión. Esto no cambia el tipo NUMERIC de PostgreSQL.</p>
+</main></html>

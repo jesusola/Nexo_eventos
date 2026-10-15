@@ -1,0 +1,21 @@
+<!doctype html><html lang="es"><meta charset="utf-8"><title>A4 bloqueado</title><style>body{font:16px Segoe UI,sans-serif;background:#f3f5f7;color:#17252e;margin:40px}main{max-width:1250px;margin:auto}pre{background:white;padding:22px;border:1px solid #ccd5da;border-radius:8px;white-space:pre-wrap;word-break:break-word;font:15px Consolas,monospace}h1{font-size:28px}h2{font-size:20px}.estado{font-size:20px;font-weight:600}small{color:#415462}</style><main><h1>A4 bloqueado · petición real a la API</h1><small>Registrada: 2026-10-06T20:49:35.229453-05:00. Cliente HTTP: scripts/evidencias.py.</small><p>Finalizar un evento que todavía no termina.</p><h2>Petición</h2><pre>{
+  &quot;metodo&quot;: &quot;PATCH&quot;,
+  &quot;ruta&quot;: &quot;/eventos/21/estado&quot;,
+  &quot;X-Usuario&quot;: &quot;grupo_shalem_dayro_juan_jesus&quot;,
+  &quot;parametros&quot;: null,
+  &quot;cuerpo&quot;: {
+    &quot;estado&quot;: &quot;Finalizado&quot;
+  }
+}</pre><p class="estado">Respuesta HTTP 409</p><pre>{
+  &quot;detail&quot;: &quot;CIERRE: El evento todavía no ha terminado (2027-01-19 11:00:00).&quot;
+}</pre><h2>Consulta posterior</h2><pre>[
+  {
+    &quot;id&quot;: 23,
+    &quot;evento_id&quot;: 21,
+    &quot;campo&quot;: &quot;estado&quot;,
+    &quot;valor_anterior&quot;: &quot;Cotizado&quot;,
+    &quot;valor_nuevo&quot;: &quot;Confirmado&quot;,
+    &quot;usuario_app&quot;: &quot;grupo_shalem_dayro_juan_jesus&quot;,
+    &quot;fecha&quot;: &quot;2026-10-06T20:49:37.207981&quot;
+  }
+]</pre></main></html>

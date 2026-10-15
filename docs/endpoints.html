@@ -1,0 +1,899 @@
+<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>endpoints · NexoEventos</title><style>body{font:16px/1.6 Segoe UI,Arial,sans-serif;color:#17303d;background:#f4f6f8;margin:0}main{background:white;max-width:1200px;margin:32px auto;padding:38px}h1{font-size:30px}h2{margin-top:36px;border-bottom:1px solid #d0dce3}table{border-collapse:collapse;display:block;overflow:auto;margin:20px 0;font-size:14px}td,th{padding:9px 12px;border:1px solid #ccd8df;text-align:left}th{background:#edf3f6}pre{background:#edf3f6;padding:18px;overflow:auto;font-size:14px}img{max-width:100%;height:auto;border:1px solid #ccd8df}a{color:#126791}nav{display:flex;gap:18px;flex-wrap:wrap}code{font-family:Consolas,monospace}@media print{body{background:white}main{margin:0;padding:0}h2,h3{break-after:avoid}img{max-height:23cm;object-fit:contain}pre{white-space:pre-wrap;word-break:break-word}table{font-size:11px}}</style><main><nav><a href="../README.html">Ejecutar y usar</a><a href="decisiones.html">Decisiones</a><a href="reporte_evidencias.html">Evidencias</a><a href="diagrama_relacional.html">Diagrama</a><a href="diccionario_datos.html">Diccionario</a><a href="endpoints.html">Endpoints</a></nav><h1>Endpoints y ejemplos</h1>
+<p>Los ejemplos siguientes se registraron con la API encendida en una base de demostración. Los ids y las fechas cambian si se carga o ejecuta de nuevo. Antes de probar una mutación, consulta los catálogos e ids de tu propia base.</p>
+<p>Base habitual: <code>http://localhost:8000</code>. Documentación interactiva: <code>/docs</code>. Todas las consultas SQL que reciben valores usan parámetros. Encabezado de auditoría: <code>X-Usuario: grupo_shalem_dayro_juan_jesus</code>.</p>
+<p>Las colecciones grandes se muestran con su primer elemento para mantener legible este manual; la respuesta completa está en <code>ejemplos_endpoints.json</code>. Dinero y porcentajes usan cadenas decimales.</p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Ruta</th>
+<th>Operación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/clientes</code></td>
+<td>Crear Cliente</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/clientes</code></td>
+<td>Listar Clientes</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/clientes/{cliente_id}/eventos</code></td>
+<td>Eventos Cliente</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/clientes/{cliente_id}</code></td>
+<td>Obtener Cliente</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/salones</code></td>
+<td>Listar Salones</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/salones/disponibles</code></td>
+<td>Salones Disponibles</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/salones/{salon_id}</code></td>
+<td>Obtener Salon</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td><code>/salones/{salon_id}/activo</code></td>
+<td>Cambiar Estado Salon</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/servicios</code></td>
+<td>Listar Servicios</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/servicios/{servicio_id}</code></td>
+<td>Obtener Servicio</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/staff</code></td>
+<td>Listar Staff</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/staff</code></td>
+<td>Crear Staff</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/staff/{staff_id}</code></td>
+<td>Obtener Staff</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/asistentes</code></td>
+<td>Crear Asistente</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/asistentes</code></td>
+<td>Listar Asistentes</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/asistentes/{asistente_id}</code></td>
+<td>Obtener Asistente</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/eventos</code></td>
+<td>Crear</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/eventos</code></td>
+<td>Listar</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/eventos/{evento_id}</code></td>
+<td>Detalle</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td><code>/eventos/{evento_id}</code></td>
+<td>Reprogramar</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td><code>/eventos/{evento_id}/estado</code></td>
+<td>Cambiar Estado</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/eventos/{evento_id}/servicios</code></td>
+<td>Contratar</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/eventos/{evento_id}/servicios</code></td>
+<td>Listar Servicios</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td><code>/eventos/{evento_id}/servicios/{linea_id}</code></td>
+<td>Modificar Servicio</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td><code>/eventos/{evento_id}/servicios/{linea_id}</code></td>
+<td>Quitar Servicio</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/eventos/{evento_id}/cotizacion</code></td>
+<td>Cotizacion</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/eventos/{evento_id}/auditoria</code></td>
+<td>Auditoria</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/eventos/{evento_id}/inscripciones</code></td>
+<td>Inscribir</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/eventos/{evento_id}/inscripciones</code></td>
+<td>Listar Inscripciones</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/eventos/{evento_id}/checkin</code></td>
+<td>Registrar Checkin</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/reportes/organigrama</code></td>
+<td>Organigrama</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/reportes/escalamiento/{staff_id}</code></td>
+<td>Escalamiento</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/reportes/ranking-clientes</code></td>
+<td>Ranking</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/reportes/ocupacion-salones</code></td>
+<td>Ocupacion</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/</code></td>
+<td>Inicio</td>
+</tr>
+</tbody>
+</table>
+<h2>POST /clientes</h2>
+<p>Petición:</p>
+<pre><code class="language-http">POST /clientes
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Cuerpo JSON:</p>
+<pre><code class="language-json">{
+  &quot;documento&quot;: &quot;demo0eaf9461&quot;,
+  &quot;tipo_documento&quot;: &quot;NIT&quot;,
+  &quot;nombre_razon_social&quot;: &quot;Cliente de documentación&quot;,
+  &quot;correo&quot;: &quot;documentacion@example.com&quot;,
+  &quot;telefono&quot;: &quot;3001234567&quot;
+}
+</code></pre>
+<p>Respuesta HTTP 201:</p>
+<pre><code class="language-json">{
+  &quot;documento&quot;: &quot;demo0eaf9461&quot;,
+  &quot;tipo_documento&quot;: &quot;NIT&quot;,
+  &quot;nombre_razon_social&quot;: &quot;Cliente de documentación&quot;,
+  &quot;correo&quot;: &quot;documentacion@example.com&quot;,
+  &quot;telefono&quot;: &quot;3001234567&quot;,
+  &quot;id&quot;: 9,
+  &quot;fecha_registro&quot;: &quot;2026-10-06T20:50:06.715016&quot;
+}
+</code></pre>
+<h2>GET /clientes</h2>
+<p>Petición:</p>
+<pre><code class="language-http">GET /clientes
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Respuesta HTTP 200:</p>
+<pre><code class="language-json">[
+  {
+    &quot;documento&quot;: &quot;900111222&quot;,
+    &quot;tipo_documento&quot;: &quot;NIT&quot;,
+    &quot;nombre_razon_social&quot;: &quot;Tech Corp S.A.&quot;,
+    &quot;correo&quot;: &quot;contacto@techcorp.com&quot;,
+    &quot;telefono&quot;: &quot;3001111111&quot;,
+    &quot;id&quot;: 1,
+    &quot;fecha_registro&quot;: &quot;2026-01-15T00:00:00&quot;
+  }
+]
+</code></pre>
+<h2>GET /clientes/{cliente_id}/eventos</h2>
+<p>Petición:</p>
+<pre><code class="language-http">GET /clientes/1/eventos
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Respuesta HTTP 200:</p>
+<pre><code class="language-json">[
+  {
+    &quot;id&quot;: 20,
+    &quot;cliente_id&quot;: 1,
+    &quot;salon_id&quot;: 2,
+    &quot;coordinador_id&quot;: 1,
+    &quot;nombre&quot;: &quot;Prueba A4 permitido 95792b&quot;,
+    &quot;tipo&quot;: &quot;Seminario&quot;,
+    &quot;aforo_esperado&quot;: 50,
+    &quot;inicio&quot;: &quot;2026-06-27T09:00:00&quot;,
+    &quot;fin&quot;: &quot;2026-06-27T11:00:00&quot;,
+    &quot;estado&quot;: &quot;Finalizado&quot;,
+    &quot;valor_total&quot;: &quot;640000.00&quot;,
+    &quot;precio_salon_congelado&quot;: &quot;320000.00&quot;,
+    &quot;tasa_asistencia&quot;: &quot;75.00&quot;
+  }
+]
+</code></pre>
+<h2>GET /clientes/{cliente_id}</h2>
+<p>Petición:</p>
+<pre><code class="language-http">GET /clientes/1
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Respuesta HTTP 200:</p>
+<pre><code class="language-json">{
+  &quot;documento&quot;: &quot;900111222&quot;,
+  &quot;tipo_documento&quot;: &quot;NIT&quot;,
+  &quot;nombre_razon_social&quot;: &quot;Tech Corp S.A.&quot;,
+  &quot;correo&quot;: &quot;contacto@techcorp.com&quot;,
+  &quot;telefono&quot;: &quot;3001111111&quot;,
+  &quot;id&quot;: 1,
+  &quot;fecha_registro&quot;: &quot;2026-01-15T00:00:00&quot;
+}
+</code></pre>
+<h2>GET /salones</h2>
+<p>Petición:</p>
+<pre><code class="language-http">GET /salones
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Respuesta HTTP 200:</p>
+<pre><code class="language-json">[
+  {
+    &quot;id&quot;: 1,
+    &quot;nombre&quot;: &quot;Salón Orquídea&quot;,
+    &quot;tamano&quot;: &quot;Pequeño&quot;,
+    &quot;capacidad_maxima&quot;: 40,
+    &quot;precio_hora&quot;: &quot;250000.00&quot;,
+    &quot;activo&quot;: true
+  }
+]
+</code></pre>
+<h2>GET /salones/disponibles</h2>
+<p>A5: salones habilitados, con capacidad y libres en la franja,
+ordenados de menor a mayor con su costo estimado.</p>
+<p>Petición:</p>
+<pre><code class="language-http">GET /salones/disponibles
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Parámetros de consulta:</p>
+<pre><code class="language-json">{
+  &quot;inicio&quot;: &quot;2027-01-20T09:00:00&quot;,
+  &quot;fin&quot;: &quot;2027-01-20T11:00:00&quot;,
+  &quot;aforo&quot;: 50
+}
+</code></pre>
+<p>Respuesta HTTP 200:</p>
+<pre><code class="language-json">[
+  {
+    &quot;salon_id&quot;: 3,
+    &quot;nombre&quot;: &quot;Salón Guayacán&quot;,
+    &quot;tamano&quot;: &quot;Mediano&quot;,
+    &quot;capacidad&quot;: 150,
+    &quot;precio_hora&quot;: &quot;650000.00&quot;,
+    &quot;costo_estimado&quot;: &quot;1300000.00&quot;
+  }
+]
+</code></pre>
+<h2>GET /salones/{salon_id}</h2>
+<p>Petición:</p>
+<pre><code class="language-http">GET /salones/1
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Respuesta HTTP 200:</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: 1,
+  &quot;nombre&quot;: &quot;Salón Orquídea&quot;,
+  &quot;tamano&quot;: &quot;Pequeño&quot;,
+  &quot;capacidad_maxima&quot;: 40,
+  &quot;precio_hora&quot;: &quot;250000.00&quot;,
+  &quot;activo&quot;: true
+}
+</code></pre>
+<h2>PATCH /salones/{salon_id}/activo</h2>
+<p>Petición:</p>
+<pre><code class="language-http">PATCH /salones/1/activo
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Parámetros de consulta:</p>
+<pre><code class="language-json">{
+  &quot;activo&quot;: &quot;true&quot;
+}
+</code></pre>
+<p>Respuesta HTTP 200:</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: 1,
+  &quot;nombre&quot;: &quot;Salón Orquídea&quot;,
+  &quot;tamano&quot;: &quot;Pequeño&quot;,
+  &quot;capacidad_maxima&quot;: 40,
+  &quot;precio_hora&quot;: &quot;250000.00&quot;,
+  &quot;activo&quot;: true
+}
+</code></pre>
+<h2>GET /servicios</h2>
+<p>Petición:</p>
+<pre><code class="language-http">GET /servicios
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Respuesta HTTP 200:</p>
+<pre><code class="language-json">[
+  {
+    &quot;id&quot;: 8,
+    &quot;nombre&quot;: &quot;Multimedia (proyector + pantalla)&quot;,
+    &quot;categoria&quot;: &quot;Audiovisuales&quot;,
+    &quot;unidad_cobro&quot;: &quot;Por hora&quot;,
+    &quot;precio_unitario&quot;: &quot;90000.00&quot;
+  }
+]
+</code></pre>
+<h2>GET /servicios/{servicio_id}</h2>
+<p>Petición:</p>
+<pre><code class="language-http">GET /servicios/2
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Respuesta HTTP 200:</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: 2,
+  &quot;nombre&quot;: &quot;Estación de café&quot;,
+  &quot;categoria&quot;: &quot;Bebidas&quot;,
+  &quot;unidad_cobro&quot;: &quot;Por persona&quot;,
+  &quot;precio_unitario&quot;: &quot;6500.00&quot;
+}
+</code></pre>
+<h2>GET /staff</h2>
+<p>Petición:</p>
+<pre><code class="language-http">GET /staff
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Respuesta HTTP 200:</p>
+<pre><code class="language-json">[
+  {
+    &quot;nombre&quot;: &quot;Elena Suárez&quot;,
+    &quot;cargo&quot;: &quot;Directora General&quot;,
+    &quot;area&quot;: &quot;Dirección&quot;,
+    &quot;correo&quot;: &quot;esuarez@nexo.com&quot;,
+    &quot;fecha_ingreso&quot;: &quot;2020-01-15&quot;,
+    &quot;jefe_id&quot;: null,
+    &quot;id&quot;: 1
+  }
+]
+</code></pre>
+<h2>POST /staff</h2>
+<p>Petición:</p>
+<pre><code class="language-http">POST /staff
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Cuerpo JSON:</p>
+<pre><code class="language-json">{
+  &quot;nombre&quot;: &quot;Apoyo de documentación&quot;,
+  &quot;cargo&quot;: &quot;Auxiliar&quot;,
+  &quot;area&quot;: &quot;Logística&quot;,
+  &quot;correo&quot;: &quot;apoyo0eaf9461@example.com&quot;,
+  &quot;fecha_ingreso&quot;: &quot;2026-10-01&quot;,
+  &quot;jefe_id&quot;: 4
+}
+</code></pre>
+<p>Respuesta HTTP 201:</p>
+<pre><code class="language-json">{
+  &quot;nombre&quot;: &quot;Apoyo de documentación&quot;,
+  &quot;cargo&quot;: &quot;Auxiliar&quot;,
+  &quot;area&quot;: &quot;Logística&quot;,
+  &quot;correo&quot;: &quot;apoyo0eaf9461@example.com&quot;,
+  &quot;fecha_ingreso&quot;: &quot;2026-10-01&quot;,
+  &quot;jefe_id&quot;: 4,
+  &quot;id&quot;: 16
+}
+</code></pre>
+<h2>GET /staff/{staff_id}</h2>
+<p>Petición:</p>
+<pre><code class="language-http">GET /staff/12
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Respuesta HTTP 200:</p>
+<pre><code class="language-json">{
+  &quot;nombre&quot;: &quot;Diego Paz&quot;,
+  &quot;cargo&quot;: &quot;Técnico de Sonido&quot;,
+  &quot;area&quot;: &quot;Audiovisuales&quot;,
+  &quot;correo&quot;: &quot;dpaz@nexo.com&quot;,
+  &quot;fecha_ingreso&quot;: &quot;2022-09-10&quot;,
+  &quot;jefe_id&quot;: 6,
+  &quot;id&quot;: 12
+}
+</code></pre>
+<h2>POST /asistentes</h2>
+<p>Petición:</p>
+<pre><code class="language-http">POST /asistentes
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Cuerpo JSON:</p>
+<pre><code class="language-json">{
+  &quot;documento&quot;: &quot;doc0eaf9461&quot;,
+  &quot;nombre&quot;: &quot;Asistente de documentación&quot;,
+  &quot;correo&quot;: &quot;asistente@example.com&quot;,
+  &quot;empresa&quot;: null
+}
+</code></pre>
+<p>Respuesta HTTP 201:</p>
+<pre><code class="language-json">{
+  &quot;documento&quot;: &quot;doc0eaf9461&quot;,
+  &quot;nombre&quot;: &quot;Asistente de documentación&quot;,
+  &quot;correo&quot;: &quot;asistente@example.com&quot;,
+  &quot;empresa&quot;: null,
+  &quot;id&quot;: 61
+}
+</code></pre>
+<h2>GET /asistentes</h2>
+<p>Petición:</p>
+<pre><code class="language-http">GET /asistentes
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Respuesta HTTP 200:</p>
+<pre><code class="language-json">[
+  {
+    &quot;documento&quot;: &quot;100000001&quot;,
+    &quot;nombre&quot;: &quot;Asistente 1&quot;,
+    &quot;correo&quot;: &quot;asistente1@correo.com&quot;,
+    &quot;empresa&quot;: &quot;Innova Market&quot;,
+    &quot;id&quot;: 1
+  }
+]
+</code></pre>
+<h2>GET /asistentes/{asistente_id}</h2>
+<p>Petición:</p>
+<pre><code class="language-http">GET /asistentes/61
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Respuesta HTTP 200:</p>
+<pre><code class="language-json">{
+  &quot;documento&quot;: &quot;doc0eaf9461&quot;,
+  &quot;nombre&quot;: &quot;Asistente de documentación&quot;,
+  &quot;correo&quot;: &quot;asistente@example.com&quot;,
+  &quot;empresa&quot;: null,
+  &quot;id&quot;: 61
+}
+</code></pre>
+<h2>POST /eventos</h2>
+<p>Petición:</p>
+<pre><code class="language-http">POST /eventos
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Cuerpo JSON:</p>
+<pre><code class="language-json">{
+  &quot;cliente_id&quot;: 1,
+  &quot;salon_id&quot;: 2,
+  &quot;coordinador_id&quot;: 1,
+  &quot;nombre&quot;: &quot;Prueba A1 permitido 2fd41e&quot;,
+  &quot;tipo&quot;: &quot;Seminario&quot;,
+  &quot;aforo_esperado&quot;: 50,
+  &quot;inicio&quot;: &quot;2027-01-20T09:00:00&quot;,
+  &quot;fin&quot;: &quot;2027-01-20T11:00:00&quot;
+}
+</code></pre>
+<p>Respuesta HTTP 201:</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: 22,
+  &quot;cliente_id&quot;: 1,
+  &quot;salon_id&quot;: 2,
+  &quot;coordinador_id&quot;: 1,
+  &quot;nombre&quot;: &quot;Prueba A1 permitido 2fd41e&quot;,
+  &quot;tipo&quot;: &quot;Seminario&quot;,
+  &quot;aforo_esperado&quot;: 50,
+  &quot;inicio&quot;: &quot;2027-01-20T09:00:00&quot;,
+  &quot;fin&quot;: &quot;2027-01-20T11:00:00&quot;,
+  &quot;estado&quot;: &quot;Cotizado&quot;,
+  &quot;valor_total&quot;: &quot;640000.00&quot;,
+  &quot;precio_salon_congelado&quot;: &quot;320000.00&quot;,
+  &quot;tasa_asistencia&quot;: null
+}
+</code></pre>
+<h2>GET /eventos</h2>
+<p>Petición:</p>
+<pre><code class="language-http">GET /eventos
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Respuesta HTTP 200:</p>
+<pre><code class="language-json">[
+  {
+    &quot;id&quot;: 20,
+    &quot;cliente_id&quot;: 1,
+    &quot;salon_id&quot;: 2,
+    &quot;coordinador_id&quot;: 1,
+    &quot;nombre&quot;: &quot;Prueba A4 permitido 95792b&quot;,
+    &quot;tipo&quot;: &quot;Seminario&quot;,
+    &quot;aforo_esperado&quot;: 50,
+    &quot;inicio&quot;: &quot;2026-06-27T09:00:00&quot;,
+    &quot;fin&quot;: &quot;2026-06-27T11:00:00&quot;,
+    &quot;estado&quot;: &quot;Finalizado&quot;,
+    &quot;valor_total&quot;: &quot;640000.00&quot;,
+    &quot;precio_salon_congelado&quot;: &quot;320000.00&quot;,
+    &quot;tasa_asistencia&quot;: &quot;75.00&quot;
+  }
+]
+</code></pre>
+<h2>GET /eventos/{evento_id}</h2>
+<p>Petición:</p>
+<pre><code class="language-http">GET /eventos/22
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Respuesta HTTP 200:</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: 22,
+  &quot;cliente_id&quot;: 1,
+  &quot;salon_id&quot;: 2,
+  &quot;coordinador_id&quot;: 1,
+  &quot;nombre&quot;: &quot;Prueba A1 permitido 2fd41e&quot;,
+  &quot;tipo&quot;: &quot;Seminario&quot;,
+  &quot;aforo_esperado&quot;: 40,
+  &quot;inicio&quot;: &quot;2027-01-20T09:00:00&quot;,
+  &quot;fin&quot;: &quot;2027-01-20T11:30:00&quot;,
+  &quot;estado&quot;: &quot;Confirmado&quot;,
+  &quot;valor_total&quot;: &quot;800000.00&quot;,
+  &quot;precio_salon_congelado&quot;: &quot;320000.00&quot;,
+  &quot;tasa_asistencia&quot;: null,
+  &quot;servicios&quot;: [],
+  &quot;inscritos&quot;: 1,
+  &quot;llegaron&quot;: 1
+}
+</code></pre>
+<h2>PATCH /eventos/{evento_id}</h2>
+<p>Petición:</p>
+<pre><code class="language-http">PATCH /eventos/22
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Cuerpo JSON:</p>
+<pre><code class="language-json">{
+  &quot;fin&quot;: &quot;2027-01-20T11:30:00&quot;,
+  &quot;aforo_esperado&quot;: 40
+}
+</code></pre>
+<p>Respuesta HTTP 200:</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: 22,
+  &quot;cliente_id&quot;: 1,
+  &quot;salon_id&quot;: 2,
+  &quot;coordinador_id&quot;: 1,
+  &quot;nombre&quot;: &quot;Prueba A1 permitido 2fd41e&quot;,
+  &quot;tipo&quot;: &quot;Seminario&quot;,
+  &quot;aforo_esperado&quot;: 40,
+  &quot;inicio&quot;: &quot;2027-01-20T09:00:00&quot;,
+  &quot;fin&quot;: &quot;2027-01-20T11:30:00&quot;,
+  &quot;estado&quot;: &quot;Cotizado&quot;,
+  &quot;valor_total&quot;: &quot;800000.00&quot;,
+  &quot;precio_salon_congelado&quot;: &quot;320000.00&quot;,
+  &quot;tasa_asistencia&quot;: null
+}
+</code></pre>
+<h2>PATCH /eventos/{evento_id}/estado</h2>
+<p>Petición:</p>
+<pre><code class="language-http">PATCH /eventos/22/estado
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Cuerpo JSON:</p>
+<pre><code class="language-json">{
+  &quot;estado&quot;: &quot;Confirmado&quot;
+}
+</code></pre>
+<p>Respuesta HTTP 200:</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: 22,
+  &quot;cliente_id&quot;: 1,
+  &quot;salon_id&quot;: 2,
+  &quot;coordinador_id&quot;: 1,
+  &quot;nombre&quot;: &quot;Prueba A1 permitido 2fd41e&quot;,
+  &quot;tipo&quot;: &quot;Seminario&quot;,
+  &quot;aforo_esperado&quot;: 40,
+  &quot;inicio&quot;: &quot;2027-01-20T09:00:00&quot;,
+  &quot;fin&quot;: &quot;2027-01-20T11:30:00&quot;,
+  &quot;estado&quot;: &quot;Confirmado&quot;,
+  &quot;valor_total&quot;: &quot;800000.00&quot;,
+  &quot;precio_salon_congelado&quot;: &quot;320000.00&quot;,
+  &quot;tasa_asistencia&quot;: null
+}
+</code></pre>
+<h2>POST /eventos/{evento_id}/servicios</h2>
+<p>Petición:</p>
+<pre><code class="language-http">POST /eventos/22/servicios
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Cuerpo JSON:</p>
+<pre><code class="language-json">{
+  &quot;servicio_id&quot;: 2
+}
+</code></pre>
+<p>Respuesta HTTP 201:</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: 39,
+  &quot;evento_id&quot;: 22,
+  &quot;servicio_id&quot;: 2,
+  &quot;cantidad&quot;: &quot;50.00&quot;,
+  &quot;precio_congelado&quot;: &quot;6500.00&quot;
+}
+</code></pre>
+<h2>GET /eventos/{evento_id}/servicios</h2>
+<p>Petición:</p>
+<pre><code class="language-http">GET /eventos/22/servicios
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Respuesta HTTP 200:</p>
+<pre><code class="language-json">[
+  {
+    &quot;id&quot;: 39,
+    &quot;evento_id&quot;: 22,
+    &quot;servicio_id&quot;: 2,
+    &quot;cantidad&quot;: &quot;25.00&quot;,
+    &quot;precio_congelado&quot;: &quot;6500.00&quot;
+  }
+]
+</code></pre>
+<h2>PUT /eventos/{evento_id}/servicios/{linea_id}</h2>
+<p>Petición:</p>
+<pre><code class="language-http">PUT /eventos/22/servicios/39
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Cuerpo JSON:</p>
+<pre><code class="language-json">{
+  &quot;cantidad&quot;: &quot;25&quot;
+}
+</code></pre>
+<p>Respuesta HTTP 200:</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: 39,
+  &quot;evento_id&quot;: 22,
+  &quot;servicio_id&quot;: 2,
+  &quot;cantidad&quot;: &quot;25.00&quot;,
+  &quot;precio_congelado&quot;: &quot;6500.00&quot;
+}
+</code></pre>
+<h2>DELETE /eventos/{evento_id}/servicios/{linea_id}</h2>
+<p>Petición:</p>
+<pre><code class="language-http">DELETE /eventos/22/servicios/39
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Respuesta HTTP 204:</p>
+<pre><code class="language-json">(sin cuerpo)
+</code></pre>
+<h2>GET /eventos/{evento_id}/cotizacion</h2>
+<p>Petición:</p>
+<pre><code class="language-http">GET /eventos/22/cotizacion
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Respuesta HTTP 200:</p>
+<pre><code class="language-json">{
+  &quot;evento_id&quot;: 22,
+  &quot;nombre&quot;: &quot;Prueba A1 permitido 2fd41e&quot;,
+  &quot;estado&quot;: &quot;Cotizado&quot;,
+  &quot;salon&quot;: &quot;Salón Heliconia&quot;,
+  &quot;horas&quot;: &quot;2.0000000000000000&quot;,
+  &quot;precio_hora&quot;: &quot;320000.00&quot;,
+  &quot;costo_salon&quot;: &quot;640000.00&quot;,
+  &quot;servicios&quot;: [
+    {
+      &quot;id&quot;: 39,
+      &quot;servicio_id&quot;: 2,
+      &quot;nombre&quot;: &quot;Estación de café&quot;,
+      &quot;unidad_cobro&quot;: &quot;Por persona&quot;,
+      &quot;cantidad&quot;: &quot;25.00&quot;,
+      &quot;precio_congelado&quot;: &quot;6500.00&quot;,
+      &quot;subtotal&quot;: &quot;162500.0000&quot;
+    }
+  ],
+  &quot;subtotal_servicios&quot;: &quot;162500.00&quot;,
+  &quot;total&quot;: &quot;802500.00&quot;
+}
+</code></pre>
+<h2>GET /eventos/{evento_id}/auditoria</h2>
+<p>Petición:</p>
+<pre><code class="language-http">GET /eventos/22/auditoria
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Respuesta HTTP 200:</p>
+<pre><code class="language-json">[
+  {
+    &quot;id&quot;: 24,
+    &quot;evento_id&quot;: 22,
+    &quot;campo&quot;: &quot;fin&quot;,
+    &quot;valor_anterior&quot;: &quot;2027-01-20T11:00:00&quot;,
+    &quot;valor_nuevo&quot;: &quot;2027-01-20T11:30:00&quot;,
+    &quot;usuario_app&quot;: &quot;grupo_shalem_dayro_juan_jesus&quot;,
+    &quot;fecha&quot;: &quot;2026-10-06T20:50:06.896027&quot;
+  }
+]
+</code></pre>
+<h2>POST /eventos/{evento_id}/inscripciones</h2>
+<p>Petición:</p>
+<pre><code class="language-http">POST /eventos/22/inscripciones
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Cuerpo JSON:</p>
+<pre><code class="language-json">{
+  &quot;asistente_id&quot;: 61
+}
+</code></pre>
+<p>Respuesta HTTP 201:</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: 278,
+  &quot;evento_id&quot;: 22,
+  &quot;asistente_id&quot;: 61,
+  &quot;fecha_inscripcion&quot;: &quot;2026-10-06T20:50:06.819360&quot;,
+  &quot;hora_checkin&quot;: null
+}
+</code></pre>
+<h2>GET /eventos/{evento_id}/inscripciones</h2>
+<p>Petición:</p>
+<pre><code class="language-http">GET /eventos/22/inscripciones
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Respuesta HTTP 200:</p>
+<pre><code class="language-json">[
+  {
+    &quot;id&quot;: 278,
+    &quot;evento_id&quot;: 22,
+    &quot;asistente_id&quot;: 61,
+    &quot;fecha_inscripcion&quot;: &quot;2026-10-06T20:50:06.819360&quot;,
+    &quot;hora_checkin&quot;: &quot;2027-01-20T09:00:00&quot;
+  }
+]
+</code></pre>
+<h2>POST /eventos/{evento_id}/checkin</h2>
+<p>Registra la asistencia real de un asistente (por su documento).
+Usa la hora indicada o el instante actual. A2 valida la ventana y el
+'una sola vez'.</p>
+<p>Petición:</p>
+<pre><code class="language-http">POST /eventos/22/checkin
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Cuerpo JSON:</p>
+<pre><code class="language-json">{
+  &quot;documento&quot;: &quot;doc0eaf9461&quot;,
+  &quot;hora_checkin&quot;: &quot;2027-01-20T09:00:00&quot;
+}
+</code></pre>
+<p>Respuesta HTTP 200:</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: 278,
+  &quot;evento_id&quot;: 22,
+  &quot;asistente_id&quot;: 61,
+  &quot;fecha_inscripcion&quot;: &quot;2026-10-06T20:50:06.819360&quot;,
+  &quot;hora_checkin&quot;: &quot;2027-01-20T09:00:00&quot;
+}
+</code></pre>
+<h2>GET /reportes/organigrama</h2>
+<p>Lista toda la organización o los subordinados de un empleado.</p>
+<p>Petición:</p>
+<pre><code class="language-http">GET /reportes/organigrama
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Respuesta HTTP 200:</p>
+<pre><code class="language-json">[
+  {
+    &quot;id&quot;: 1,
+    &quot;nombre&quot;: &quot;Elena Suárez&quot;,
+    &quot;cargo&quot;: &quot;Directora General&quot;,
+    &quot;area&quot;: &quot;Dirección&quot;,
+    &quot;jefe_id&quot;: null,
+    &quot;nivel&quot;: 1,
+    &quot;ruta_mando&quot;: &quot;Elena Suárez&quot;,
+    &quot;ruta_ids&quot;: [
+      1
+    ],
+    &quot;a_cargo_directos&quot;: 2,
+    &quot;total_a_cargo&quot;: 15
+  }
+]
+</code></pre>
+<h2>GET /reportes/escalamiento/{staff_id}</h2>
+<p>Devuelve los jefes desde el inmediato hasta la dirección.</p>
+<p>Petición:</p>
+<pre><code class="language-http">GET /reportes/escalamiento/12
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Respuesta HTTP 200:</p>
+<pre><code class="language-json">[
+  {
+    &quot;orden&quot;: 1,
+    &quot;id&quot;: 6,
+    &quot;nombre&quot;: &quot;Luis Toro&quot;,
+    &quot;cargo&quot;: &quot;Jefe Audiovisual&quot;,
+    &quot;area&quot;: &quot;Audiovisuales&quot;
+  }
+]
+</code></pre>
+<h2>GET /reportes/ranking-clientes</h2>
+<p>Facturación, ranking y Pareto de eventos no cancelados.</p>
+<p>Petición:</p>
+<pre><code class="language-http">GET /reportes/ranking-clientes
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Respuesta HTTP 200:</p>
+<pre><code class="language-json">[
+  {
+    &quot;cliente_id&quot;: 2,
+    &quot;nombre&quot;: &quot;Innova Market&quot;,
+    &quot;eventos_no_cancelados&quot;: 2,
+    &quot;facturacion&quot;: &quot;106410000.00&quot;,
+    &quot;ranking&quot;: 1,
+    &quot;participacion_pct&quot;: &quot;59.46&quot;,
+    &quot;acumulado_pct&quot;: &quot;59.46&quot;,
+    &quot;segmento_pareto&quot;: &quot;A (80%)&quot;
+  }
+]
+</code></pre>
+<h2>GET /reportes/ocupacion-salones</h2>
+<p>Eventos por salón, días libres y horas reservadas acumuladas.</p>
+<p>Petición:</p>
+<pre><code class="language-http">GET /reportes/ocupacion-salones
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Respuesta HTTP 200:</p>
+<pre><code class="language-json">[
+  {
+    &quot;salon_id&quot;: 1,
+    &quot;salon&quot;: &quot;Salón Orquídea&quot;,
+    &quot;evento_id&quot;: 3,
+    &quot;evento&quot;: &quot;Club de Lectura Páramo&quot;,
+    &quot;estado&quot;: &quot;Finalizado&quot;,
+    &quot;inicio&quot;: &quot;2026-09-20T15:00:00&quot;,
+    &quot;fin&quot;: &quot;2026-09-21T01:00:00&quot;,
+    &quot;num_evento_salon&quot;: 1,
+    &quot;evento_anterior_id&quot;: null,
+    &quot;evento_anterior&quot;: null,
+    &quot;dias_libres&quot;: null,
+    &quot;horas_reservadas&quot;: &quot;10.00&quot;,
+    &quot;horas_acumuladas&quot;: &quot;10.00&quot;
+  }
+]
+</code></pre>
+<h2>GET /</h2>
+<p>Petición:</p>
+<pre><code class="language-http">GET /
+X-Usuario: grupo_shalem_dayro_juan_jesus
+</code></pre>
+<p>Respuesta HTTP 200:</p>
+<pre><code class="language-json">{
+  &quot;servicio&quot;: &quot;NexoEventos&quot;,
+  &quot;docs&quot;: &quot;/docs&quot;
+}
+</code></pre>
+<h2>Filtros y errores</h2>
+<p><code>GET /clientes?q=Tech</code> y <code>GET /asistentes?q=100000001</code> buscan por nombre o documento. <code>GET /eventos?estado=Confirmado&amp;cliente_id=1</code> combina filtros. B1 admite <code>staff_id</code> opcional. A5 necesita <code>inicio</code>, <code>fin</code> y <code>aforo</code> positivo.</p>
+<p>201: creación; 200: consulta o modificación; 204: servicio eliminado; 404: recurso inexistente; 409: regla de PostgreSQL, cupo o duplicado; 422: campos inválidos. Los ejemplos permitidos y bloqueados se documentan en <code>reporte_evidencias.md</code>.</p>
+</main></html>

@@ -1,0 +1,667 @@
+<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>reporte_evidencias · NexoEventos</title><style>body{font:16px/1.6 Segoe UI,Arial,sans-serif;color:#17303d;background:#f4f6f8;margin:0}main{background:white;max-width:1200px;margin:32px auto;padding:38px}h1{font-size:30px}h2{margin-top:36px;border-bottom:1px solid #d0dce3}table{border-collapse:collapse;display:block;overflow:auto;margin:20px 0;font-size:14px}td,th{padding:9px 12px;border:1px solid #ccd8df;text-align:left}th{background:#edf3f6}pre{background:#edf3f6;padding:18px;overflow:auto;font-size:14px}img{max-width:100%;height:auto;border:1px solid #ccd8df}a{color:#126791}nav{display:flex;gap:18px;flex-wrap:wrap}code{font-family:Consolas,monospace}@media print{body{background:white}main{margin:0;padding:0}h2,h3{break-after:avoid}img{max-height:23cm;object-fit:contain}pre{white-space:pre-wrap;word-break:break-word}table{font-size:11px}}</style><main><nav><a href="../README.html">Ejecutar y usar</a><a href="decisiones.html">Decisiones</a><a href="reporte_evidencias.html">Evidencias</a><a href="diagrama_relacional.html">Diagrama</a><a href="diccionario_datos.html">Diccionario</a><a href="endpoints.html">Endpoints</a></nav><h1>Reporte de evidencias: entrega 1</h1>
+<p>Grupo: Shalem, Dayro, Juan y Jesús.</p>
+<p>Verificación registrada: 2026-10-06T20:49:35.229453-05:00. PostgreSQL 17, Python 3.12, FastAPI y Streamlit.</p>
+<p>Los casos y las pantallas provienen de ejecuciones reales. Las peticiones de la API se guardaron con un cliente HTTP en Python y se presentan en el visor incluido, equivalente a revisar el intercambio en Swagger. Las capturas de Streamlit se tomaron al ejecutar las mismas situaciones desde la interfaz. Cada ejecución prepara otro evento, por lo que sus ids y nombres de prueba pueden diferir.</p>
+<p>Las comparaciones B1–B4 y sus pantallas usan la carga inicial, antes de añadir los casos A o los ejemplos de endpoints. Las cuentas se realizaron por separado con las fórmulas explicadas abajo; <code>scripts/evidencias.py</code> las volvió a calcular sobre los registros base y comprobó cada fila contra las vistas y funciones SQL. Los datos completos están en <code>verificacion.json</code>.</p>
+<h2>Datos iniciales</h2>
+<table>
+<thead>
+<tr>
+<th>Recurso</th>
+<th>Cantidad verificada</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clientes</td>
+<td>8</td>
+</tr>
+<tr>
+<td>staff</td>
+<td>15</td>
+</tr>
+<tr>
+<td>eventos</td>
+<td>12</td>
+</tr>
+<tr>
+<td>asistentes</td>
+<td>60</td>
+</tr>
+<tr>
+<td>salones</td>
+<td>6</td>
+</tr>
+<tr>
+<td>servicios</td>
+<td>9</td>
+</tr>
+</tbody>
+</table>
+<p>La carga tiene cuatro niveles del staff, doce eventos con servicios, eventos pasados y futuros y los cuatro estados. Hay 270 inscripciones y 122 llegadas en la carga inicial; un evento tiene cupo completo y otro termina después de medianoche. Los seis eventos finalizados tienen tasas 84 %, 71,11 %, 90 %, 50 %, 0 % y NULL. Se cargaron sin desactivar triggers.</p>
+<h2>A1–A5: permitidos y bloqueados</h2>
+<table>
+<thead>
+<tr>
+<th>Caso</th>
+<th>HTTP observado</th>
+<th>Qué demuestra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A1 permitido</td>
+<td>201</td>
+<td>Reserva en salón activo, libre y con capacidad.</td>
+</tr>
+<tr>
+<td>A1 bloqueado</td>
+<td>409</td>
+<td>Media hora entre eventos no alcanza la hora de montaje.</td>
+</tr>
+<tr>
+<td>A2 permitido</td>
+<td>201</td>
+<td>Inscripción cuando queda cupo.</td>
+</tr>
+<tr>
+<td>A2 bloqueado</td>
+<td>409</td>
+<td>Segunda inscripción con aforo contratado de uno.</td>
+</tr>
+<tr>
+<td>A3 permitido</td>
+<td>201</td>
+<td>Cantidad por defecto y total con salón y servicios.</td>
+</tr>
+<tr>
+<td>A3 bloqueado</td>
+<td>409</td>
+<td>No se agregan servicios a eventos finalizados.</td>
+</tr>
+<tr>
+<td>A4 permitido</td>
+<td>200</td>
+<td>Cierre pasado, tasa 75 % y auditoría del operador.</td>
+</tr>
+<tr>
+<td>A4 bloqueado</td>
+<td>409</td>
+<td>Se impide finalizar antes de terminar.</td>
+</tr>
+<tr>
+<td>A5 permitido</td>
+<td>200</td>
+<td>Opciones activas, libres, suficientes y ordenadas.</td>
+</tr>
+<tr>
+<td>A5 sin opciones</td>
+<td>200</td>
+<td>Aforo 2.000: ninguna opción compatible.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>A5 es una consulta.</strong> La situación “bloqueada” se demuestra porque la función no ofrece salones que incumplen el aforo; devuelve <code>[]</code> con HTTP 200. No corresponde fabricar un error 409 para una consulta válida. El frontend informa que no hay opciones.</p>
+<h3>A1 permitido</h3>
+<p>El evento nace Cotizado. Para 50 personas en Heliconia durante dos horas, el total inicial es 2 × $320.000 = $640.000.</p>
+<p>Petición: <code>POST /eventos</code>. HTTP observado: <strong>201</strong>.</p>
+<p><a href="A1_permitido.html">Petición y respuesta completas</a>.</p>
+<p><img src="capturas/api_A1_permitido.png" alt="API: A1 permitido" /></p>
+<p><img src="capturas/streamlit_A1_permitido.png" alt="Streamlit: A1 permitido" /></p>
+<h3>A1 bloqueado</h3>
+<p>El intento empieza treinta minutos después del evento preparado. PostgreSQL devuelve el nombre, id y horario del evento en conflicto; la nueva reserva no se guarda.</p>
+<p>Petición: <code>POST /eventos</code>. HTTP observado: <strong>409</strong>.</p>
+<p><a href="A1_bloqueado.html">Petición y respuesta completas</a>.</p>
+<p><img src="capturas/api_A1_bloqueado.png" alt="API: A1 bloqueado" /></p>
+<p><img src="capturas/streamlit_A1_bloqueado.png" alt="Streamlit: A1 bloqueado" /></p>
+<h3>A2 permitido</h3>
+<p>La fila de inscripción se crea con hora_checkin vacía. El aforo lo verifica el trigger, no una resta hecha por Streamlit.</p>
+<p>Petición: <code>POST /eventos/16/inscripciones</code>. HTTP observado: <strong>201</strong>.</p>
+<p><a href="A2_permitido.html">Petición y respuesta completas</a>.</p>
+<p><img src="capturas/api_A2_permitido.png" alt="API: A2 permitido" /></p>
+<p><img src="capturas/streamlit_A2_permitido.png" alt="Streamlit: A2 permitido" /></p>
+<h3>A2 bloqueado</h3>
+<p>El caso prepara un evento de aforo uno e inscribe a una persona. Al intentar inscribir una segunda, el trigger responde CUPO y mantiene una sola inscripción.</p>
+<p>Petición: <code>POST /eventos/17/inscripciones</code>. HTTP observado: <strong>409</strong>.</p>
+<p><a href="A2_bloqueado.html">Petición y respuesta completas</a>.</p>
+<p><img src="capturas/api_A2_bloqueado.png" alt="API: A2 bloqueado" /></p>
+<p><img src="capturas/streamlit_A2_bloqueado.png" alt="Streamlit: A2 bloqueado" /></p>
+<h3>A3 permitido</h3>
+<p>Se omite la cantidad de café. PostgreSQL toma el aforo de 50: café = 50 × $6.500 = $325.000. Salón = 1,5 × $320.000 = $480.000. Total = $805.000. La cantidad y el precio contratado quedan almacenados.</p>
+<p>Petición: <code>POST /eventos/18/servicios</code>. HTTP observado: <strong>201</strong>.</p>
+<p><a href="A3_permitido.html">Petición y respuesta completas</a>.</p>
+<p><img src="capturas/api_A3_permitido.png" alt="API: A3 permitido" /></p>
+<p><img src="capturas/streamlit_A3_permitido.png" alt="Streamlit: A3 permitido" /></p>
+<h3>A3 bloqueado</h3>
+<p>El evento pasado se confirma y se finaliza antes de contratar el servicio. El trigger rechaza la línea porque el evento ya está cerrado.</p>
+<p>Petición: <code>POST /eventos/19/servicios</code>. HTTP observado: <strong>409</strong>.</p>
+<p><a href="A3_bloqueado.html">Petición y respuesta completas</a>.</p>
+<p><img src="capturas/api_A3_bloqueado.png" alt="API: A3 bloqueado" /></p>
+<p><img src="capturas/streamlit_A3_bloqueado.png" alt="Streamlit: A3 bloqueado" /></p>
+<h3>A4 permitido</h3>
+<p>Se preparan cuatro inscripciones y tres llegadas válidas en un evento pasado. Al finalizar: 3 / 4 × 100 = 75,00 %. La consulta posterior de auditoría conserva el operador enviado en X-Usuario.</p>
+<p>Petición: <code>PATCH /eventos/20/estado</code>. HTTP observado: <strong>200</strong>.</p>
+<p><a href="A4_permitido.html">Petición y respuesta completas</a>.</p>
+<p><img src="capturas/api_A4_permitido.png" alt="API: A4 permitido" /></p>
+<p><img src="capturas/streamlit_A4_permitido.png" alt="Streamlit: A4 permitido" /></p>
+<h3>A4 bloqueado</h3>
+<p>El evento está Confirmado, pero su fin es futuro. El trigger rechaza el cambio y el estado no pasa a Finalizado.</p>
+<p>Petición: <code>PATCH /eventos/21/estado</code>. HTTP observado: <strong>409</strong>.</p>
+<p><a href="A4_bloqueado.html">Petición y respuesta completas</a>.</p>
+<p><img src="capturas/api_A4_bloqueado.png" alt="API: A4 bloqueado" /></p>
+<p><img src="capturas/streamlit_A4_bloqueado.png" alt="Streamlit: A4 bloqueado" /></p>
+<h3>A5 permitido</h3>
+<p>La franja de 1,5 horas para 50 personas excluye Orquídea (capacidad 40). Heliconia aparece primero con costo estimado $480.000; luego los salones de mayor capacidad.</p>
+<p>Petición: <code>GET /salones/disponibles</code>. HTTP observado: <strong>200</strong>.</p>
+<p><a href="A5_permitido.html">Petición y respuesta completas</a>.</p>
+<p><img src="capturas/api_A5_permitido.png" alt="API: A5 permitido" /></p>
+<p><img src="capturas/streamlit_A5_permitido.png" alt="Streamlit: A5 permitido" /></p>
+<h3>A5 sin opciones</h3>
+<p>El mayor salón admite 1.000 personas. Un aforo de 2.000 deja la lista vacía; la aplicación no ofrece un salón inválido.</p>
+<p>Petición: <code>GET /salones/disponibles</code>. HTTP observado: <strong>200</strong>.</p>
+<p><a href="A5_sin_opciones.html">Petición y respuesta completas</a>.</p>
+<p><img src="capturas/api_A5_sin_opciones.png" alt="API: A5 sin opciones" /></p>
+<p><img src="capturas/streamlit_A5_sin_opciones.png" alt="Streamlit: A5 sin opciones" /></p>
+<h2>B1: organigrama</h2>
+<p>A mano, se sigue el jefe_id de cada persona hasta la raíz. El número de ids de esa ruta da el nivel. Para contar personas a cargo se suman los hijos directos y todos los descendientes; no se incluye al propio empleado.</p>
+<p>Elena tiene dos gerentes, cuatro jefaturas y ocho auxiliares o técnicos: 2 + 4 + 8 = 14. Roberto tiene tres jefaturas con dos personas cada una: 3 + 6 = 9. Diana tiene una jefatura y sus dos asesores: 1 + 2 = 3. Cada jefatura tiene dos subordinados y cada persona del último nivel tiene cero.</p>
+<table>
+<thead>
+<tr>
+<th>Empleado</th>
+<th>Nivel manual / SQL</th>
+<th>Directos manual / SQL</th>
+<th>Total manual / SQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Elena Suárez</td>
+<td>1 / 1</td>
+<td>2 / 2</td>
+<td>14 / 14</td>
+</tr>
+<tr>
+<td>Roberto Gómez</td>
+<td>2 / 2</td>
+<td>3 / 3</td>
+<td>9 / 9</td>
+</tr>
+<tr>
+<td>Mario Luna</td>
+<td>3 / 3</td>
+<td>2 / 2</td>
+<td>2 / 2</td>
+</tr>
+<tr>
+<td>Pedro Díaz</td>
+<td>4 / 4</td>
+<td>0 / 0</td>
+<td>0 / 0</td>
+</tr>
+<tr>
+<td>Sara Peña</td>
+<td>4 / 4</td>
+<td>0 / 0</td>
+<td>0 / 0</td>
+</tr>
+<tr>
+<td>Carmen Ruiz</td>
+<td>3 / 3</td>
+<td>2 / 2</td>
+<td>2 / 2</td>
+</tr>
+<tr>
+<td>Juan Melo</td>
+<td>4 / 4</td>
+<td>0 / 0</td>
+<td>0 / 0</td>
+</tr>
+<tr>
+<td>Rosa Gil</td>
+<td>4 / 4</td>
+<td>0 / 0</td>
+<td>0 / 0</td>
+</tr>
+<tr>
+<td>Luis Toro</td>
+<td>3 / 3</td>
+<td>2 / 2</td>
+<td>2 / 2</td>
+</tr>
+<tr>
+<td>Diego Paz</td>
+<td>4 / 4</td>
+<td>0 / 0</td>
+<td>0 / 0</td>
+</tr>
+<tr>
+<td>Hugo Rey</td>
+<td>4 / 4</td>
+<td>0 / 0</td>
+<td>0 / 0</td>
+</tr>
+<tr>
+<td>Diana Castro</td>
+<td>2 / 2</td>
+<td>1 / 1</td>
+<td>3 / 3</td>
+</tr>
+<tr>
+<td>Ana Vega</td>
+<td>3 / 3</td>
+<td>2 / 2</td>
+<td>2 / 2</td>
+</tr>
+<tr>
+<td>Mía Cruz</td>
+<td>4 / 4</td>
+<td>0 / 0</td>
+<td>0 / 0</td>
+</tr>
+<tr>
+<td>Leo Ríos</td>
+<td>4 / 4</td>
+<td>0 / 0</td>
+<td>0 / 0</td>
+</tr>
+</tbody>
+</table>
+<p>Ejemplo de ruta: Elena Suárez &gt; Roberto Gómez &gt; Luis Toro &gt; Diego Paz. La consulta de la rama de Roberto entrega sus nueve descendientes. Se compararon la organización completa y las quince ramas, incluyendo ramas vacías.</p>
+<p><img src="capturas/streamlit_B1.png" alt="B1 en Streamlit" /></p>
+<h2>B2: cadena de escalamiento</h2>
+<p>A mano, se empieza por el jefe inmediato y se sigue hasta el empleado sin jefe. Diego Paz (12) depende de Luis Toro (6), luego Roberto Gómez (2) y finalmente Elena Suárez (1). La lista es [6, 2, 1]; Diego no se incluye. Para Elena, el resultado es vacío.</p>
+<table>
+<thead>
+<tr>
+<th>Empleado</th>
+<th>Ids de jefes a mano</th>
+<th>Ids de jefes SQL</th>
+<th>Coincide</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Elena Suárez</td>
+<td>[]</td>
+<td>[]</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>Roberto Gómez</td>
+<td>[1]</td>
+<td>[1]</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>Diana Castro</td>
+<td>[1]</td>
+<td>[1]</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>Mario Luna</td>
+<td>[2, 1]</td>
+<td>[2, 1]</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>Carmen Ruiz</td>
+<td>[2, 1]</td>
+<td>[2, 1]</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>Luis Toro</td>
+<td>[2, 1]</td>
+<td>[2, 1]</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>Ana Vega</td>
+<td>[3, 1]</td>
+<td>[3, 1]</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>Pedro Díaz</td>
+<td>[4, 2, 1]</td>
+<td>[4, 2, 1]</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>Sara Peña</td>
+<td>[4, 2, 1]</td>
+<td>[4, 2, 1]</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>Juan Melo</td>
+<td>[5, 2, 1]</td>
+<td>[5, 2, 1]</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>Rosa Gil</td>
+<td>[5, 2, 1]</td>
+<td>[5, 2, 1]</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>Diego Paz</td>
+<td>[6, 2, 1]</td>
+<td>[6, 2, 1]</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>Hugo Rey</td>
+<td>[6, 2, 1]</td>
+<td>[6, 2, 1]</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>Mía Cruz</td>
+<td>[7, 3, 1]</td>
+<td>[7, 3, 1]</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>Leo Ríos</td>
+<td>[7, 3, 1]</td>
+<td>[7, 3, 1]</td>
+<td>Sí</td>
+</tr>
+</tbody>
+</table>
+<p>También se comprobó que orden toma los valores 1, 2, 3… en ese mismo orden.</p>
+<p><img src="capturas/streamlit_B2.png" alt="B2 en Streamlit" /></p>
+<h2>B3: ranking y Pareto</h2>
+<p>Primero se excluyen los dos eventos Cancelado. Para cada evento se calcula (fin − inicio) en horas × precio_salon_congelado, y se suma cantidad × precio_congelado de sus líneas. Las diez cuentas de la carga inicial son:</p>
+<table>
+<thead>
+<tr>
+<th>Evento</th>
+<th>Horas</th>
+<th>Salón COP</th>
+<th>Servicios COP</th>
+<th>Total COP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jornada Científica Solvida</td>
+<td>4.0</td>
+<td>2600000.000</td>
+<td>2540000.0000</td>
+<td>5140000.00</td>
+</tr>
+<tr>
+<td>Capacitación en Ciberseguridad</td>
+<td>5.0</td>
+<td>4000000.000</td>
+<td>4350000.0000</td>
+<td>8350000.00</td>
+</tr>
+<tr>
+<td>Club de Lectura Páramo</td>
+<td>10.0</td>
+<td>2500000.000</td>
+<td>370000.0000</td>
+<td>2870000.00</td>
+</tr>
+<tr>
+<td>Feria de Innovación Nexo</td>
+<td>9.0</td>
+<td>16200000.000</td>
+<td>20310000.0000</td>
+<td>36510000.00</td>
+</tr>
+<tr>
+<td>Simposio de Educación</td>
+<td>3.0</td>
+<td>960000.000</td>
+<td>1837500.0000</td>
+<td>2797500.00</td>
+</tr>
+<tr>
+<td>Encuentro Interno Nexo</td>
+<td>2.0</td>
+<td>500000.000</td>
+<td>450000.0000</td>
+<td>950000.00</td>
+</tr>
+<tr>
+<td>Congreso Nacional de Salud</td>
+<td>9.0</td>
+<td>16200000.000</td>
+<td>19700000.0000</td>
+<td>35900000.00</td>
+</tr>
+<tr>
+<td>Seminario Corporativo Q4</td>
+<td>4.0</td>
+<td>3200000.000</td>
+<td>4635000.0000</td>
+<td>7835000.00</td>
+</tr>
+<tr>
+<td>Taller de Economía Circular</td>
+<td>3.0</td>
+<td>1950000.000</td>
+<td>685000.0000</td>
+<td>2635000.00</td>
+</tr>
+<tr>
+<td>Feria Navideña</td>
+<td>10.0</td>
+<td>25000000.000</td>
+<td>44900000.0000</td>
+<td>69900000.00</td>
+</tr>
+</tbody>
+</table>
+<p>Se agrupan esos totales por cliente: Innova = $36.510.000 + $69.900.000 = $106.410.000; Salud = $8.350.000 + $35.900.000 = $44.250.000; Tech = $5.140.000 + $950.000 + $7.835.000 = $13.925.000; Lucía = $2.870.000 + $2.635.000 = $5.505.000; Fundación = $2.797.500.</p>
+<p>Total general manual y SQL: <strong>$172887500.00</strong>. Participación = facturación del cliente / total × 100. Acumulado = suma de los clientes hasta esa fila / total × 100. El ranking es 1 más el número de clientes con facturación mayor.</p>
+<p>Por ejemplo, Innova representa 106.410.000 / 172.887.500 × 100 = 61,55 %. Con Salud, el acumulado es 150.660.000 / 172.887.500 × 100 = 87,14 %. Ambos forman el segmento A porque Salud es quien cruza el 80 %; los siguientes quedan en B. Los tres clientes sin ingreso empatan en rango 6 y siguen presentes.</p>
+<table>
+<thead>
+<tr>
+<th>Cliente</th>
+<th>Eventos</th>
+<th>Facturación manual / SQL</th>
+<th>Rango manual / SQL</th>
+<th>Participación manual / SQL</th>
+<th>Acumulado manual / SQL</th>
+<th>Pareto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Innova Market</td>
+<td>2</td>
+<td>106410000.00 / 106410000.00</td>
+<td>1 / 1</td>
+<td>61.55 / 61.55</td>
+<td>61.55 / 61.55</td>
+<td>A (80%)</td>
+</tr>
+<tr>
+<td>Salud Vital EPS</td>
+<td>2</td>
+<td>44250000.00 / 44250000.00</td>
+<td>2 / 2</td>
+<td>25.59 / 25.59</td>
+<td>87.14 / 87.14</td>
+<td>A (80%)</td>
+</tr>
+<tr>
+<td>Tech Corp S.A.</td>
+<td>3</td>
+<td>13925000.00 / 13925000.00</td>
+<td>3 / 3</td>
+<td>8.05 / 8.05</td>
+<td>95.20 / 95.20</td>
+<td>B (resto)</td>
+</tr>
+<tr>
+<td>Lucía Fernández</td>
+<td>2</td>
+<td>5505000.00 / 5505000.00</td>
+<td>4 / 4</td>
+<td>3.18 / 3.18</td>
+<td>98.38 / 98.38</td>
+<td>B (resto)</td>
+</tr>
+<tr>
+<td>Fundación Educar</td>
+<td>1</td>
+<td>2797500.00 / 2797500.00</td>
+<td>5 / 5</td>
+<td>1.62 / 1.62</td>
+<td>100.00 / 100.00</td>
+<td>B (resto)</td>
+</tr>
+<tr>
+<td>Carlos Mendoza</td>
+<td>0</td>
+<td>0 / 0</td>
+<td>6 / 6</td>
+<td>0.00 / 0.00</td>
+<td>100.00 / 100.00</td>
+<td>B (resto)</td>
+</tr>
+<tr>
+<td>Andrés Vargas</td>
+<td>0</td>
+<td>0 / 0</td>
+<td>6 / 6</td>
+<td>0.00 / 0.00</td>
+<td>100.00 / 100.00</td>
+<td>B (resto)</td>
+</tr>
+<tr>
+<td>Marta Rojas</td>
+<td>0</td>
+<td>0 / 0</td>
+<td>6 / 6</td>
+<td>0.00 / 0.00</td>
+<td>100.00 / 100.00</td>
+<td>B (resto)</td>
+</tr>
+</tbody>
+</table>
+<p><img src="capturas/streamlit_B3.png" alt="B3 en Streamlit" /></p>
+<h2>B4: ocupación y tiempos muertos</h2>
+<p>Se separan los eventos no cancelados por salón y se ordenan por inicio e id. El primer evento es número uno y no tiene anterior ni días libres. Para cada siguiente evento: días libres = (inicio actual − fin anterior) / 24 horas. Las horas acumuladas son la suma de las duraciones hasta esa fila.</p>
+<p>En Orquídea, Club de Lectura ocupa diez horas, desde las 15:00 hasta la 01:00 del día siguiente. Encuentro Interno ocupa dos horas: acumulado = 10 + 2 = 12. Entre el final del Club y el inicio del Encuentro hay nueve días y trece horas: 9 + 13 / 24 = 9,54 días. En Guayacán, la Jornada ocupa cuatro horas y el Taller tres: acumulado 7; el tiempo libre es 85 días y dos horas = 85,08 días.</p>
+<table>
+<thead>
+<tr>
+<th>Salón</th>
+<th>Evento</th>
+<th>N.º manual / SQL</th>
+<th>Anterior</th>
+<th>Días libres manual / SQL</th>
+<th>Horas acumuladas manual / SQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Salón Orquídea</td>
+<td>Club de Lectura Páramo</td>
+<td>1 / 1</td>
+<td>—</td>
+<td>None / None</td>
+<td>10.00 / 10.00</td>
+</tr>
+<tr>
+<td>Salón Orquídea</td>
+<td>Encuentro Interno Nexo</td>
+<td>2 / 2</td>
+<td>Club de Lectura Páramo</td>
+<td>9.54 / 9.54</td>
+<td>12.00 / 12.00</td>
+</tr>
+<tr>
+<td>Salón Heliconia</td>
+<td>Simposio de Educación</td>
+<td>1 / 1</td>
+<td>—</td>
+<td>None / None</td>
+<td>3.00 / 3.00</td>
+</tr>
+<tr>
+<td>Salón Guayacán</td>
+<td>Jornada Científica Solvida</td>
+<td>1 / 1</td>
+<td>—</td>
+<td>None / None</td>
+<td>4.00 / 4.00</td>
+</tr>
+<tr>
+<td>Salón Guayacán</td>
+<td>Taller de Economía Circular</td>
+<td>2 / 2</td>
+<td>Jornada Científica Solvida</td>
+<td>85.08 / 85.08</td>
+<td>7.00 / 7.00</td>
+</tr>
+<tr>
+<td>Salón Ceiba</td>
+<td>Capacitación en Ciberseguridad</td>
+<td>1 / 1</td>
+<td>—</td>
+<td>None / None</td>
+<td>5.00 / 5.00</td>
+</tr>
+<tr>
+<td>Salón Ceiba</td>
+<td>Seminario Corporativo Q4</td>
+<td>2 / 2</td>
+<td>Capacitación en Ciberseguridad</td>
+<td>65.79 / 65.79</td>
+<td>9.00 / 9.00</td>
+</tr>
+<tr>
+<td>Gran Salón Cóndor</td>
+<td>Feria de Innovación Nexo</td>
+<td>1 / 1</td>
+<td>—</td>
+<td>None / None</td>
+<td>9.00 / 9.00</td>
+</tr>
+<tr>
+<td>Gran Salón Cóndor</td>
+<td>Congreso Nacional de Salud</td>
+<td>2 / 2</td>
+<td>Feria de Innovación Nexo</td>
+<td>53.58 / 53.58</td>
+<td>18.00 / 18.00</td>
+</tr>
+<tr>
+<td>Auditorio Principal</td>
+<td>Feria Navideña</td>
+<td>1 / 1</td>
+<td>—</td>
+<td>None / None</td>
+<td>10.00 / 10.00</td>
+</tr>
+</tbody>
+</table>
+<p>Las diez filas coinciden. Se incluyen los eventos Cotizado; el tiempo libre mide el intervalo completo entre eventos, incluida la hora reservada para montaje y aseo.</p>
+<p><img src="capturas/streamlit_B4.png" alt="B4 en Streamlit" /></p>
+<h2>Pruebas adicionales</h2>
+<p>Se ejecutó <code>python -m pytest -q</code> contra una base separada con PostgreSQL 17: <strong>39 pruebas aprobadas</strong>. Cubren los límites de 59, 60 y 61 minutos; salones inactivos; capacidad; cupos; cambio de aforo; check-in en los extremos y fuera de ventana; doble llegada; precio congelado; cantidades por hora; alta, modificación y retiro de servicios; reprogramación; eventos de medianoche; tasas NULL, 0 y 75; auditoría; ciclos del staff; validaciones HTTP; SQL directo, competencia por el último cupo y dos reservas simultáneas en el mismo salón. También se comprobó que las dependencias instaladas son compatibles.</p>
+<p>El aviso de deprecación de AnyIO emitido por TestClient no afecta los resultados. Los casos A se repitieron desde Streamlit: la interfaz siguió funcionando después de los rechazos. El gráfico de B3 y las pantallas de B1–B4 se revisaron en el navegador.</p>
+<h2>Reproducir las evidencias</h2>
+<p>Usa una base nueva de demostración y cárgala con <code>init_db.py --con-datos</code>. Enciende API y Streamlit. Instala <code>requirements-dev.txt</code> para las herramientas de captura. Las reglas y los ejemplos agregan datos, así que respeta este orden para mantener los reportes iniciales:</p>
+<pre><code class="language-powershell">.\.venv\Scripts\python.exe -m scripts.capturar --modo reportes
+.\.venv\Scripts\python.exe -m scripts.evidencias --api http://localhost:8000
+.\.venv\Scripts\python.exe -m scripts.documentar --api http://localhost:8000
+.\.venv\Scripts\python.exe -m scripts.capturar --modo reglas
+.\.venv\Scripts\python.exe -m scripts.reporte
+</code></pre>
+<p>Si Playwright no tiene Chromium instalado, ejecuta <code>python -m playwright install chromium</code>. También puedes pasar <code>--navegador</code> con la ruta de un Chromium compatible. Los scripts de documentación leen NEXO_DB_URL del entorno o .env para importar las entidades; las peticiones de ejemplo se hacen por HTTP.</p>
+<h2>Pendientes del grupo</h2>
+<p>Renombrar el ZIP con los apellidos completos. Recorrer los módulos en los computadores del grupo y practicar las cuentas anteriores. Consultar el numeral 5.3, mencionado en la rúbrica pero ausente en P2. Para la entrega del 19 de octubre, revisar el frontend y preparar la sustentación de 15 minutos.</p>
+</main></html>

@@ -1,0 +1,2529 @@
+[
+  {
+    "metodo": "POST",
+    "plantilla": "/eventos",
+    "ruta": "/eventos",
+    "parametros": null,
+    "cuerpo": {
+      "cliente_id": 1,
+      "salon_id": 2,
+      "coordinador_id": 1,
+      "nombre": "Prueba A1 permitido 2fd41e",
+      "tipo": "Seminario",
+      "aforo_esperado": 50,
+      "inicio": "2027-01-20T09:00:00",
+      "fin": "2027-01-20T11:00:00"
+    },
+    "status": 201,
+    "respuesta": {
+      "id": 22,
+      "cliente_id": 1,
+      "salon_id": 2,
+      "coordinador_id": 1,
+      "nombre": "Prueba A1 permitido 2fd41e",
+      "tipo": "Seminario",
+      "aforo_esperado": 50,
+      "inicio": "2027-01-20T09:00:00",
+      "fin": "2027-01-20T11:00:00",
+      "estado": "Cotizado",
+      "valor_total": "640000.00",
+      "precio_salon_congelado": "320000.00",
+      "tasa_asistencia": null
+    }
+  },
+  {
+    "metodo": "POST",
+    "plantilla": "/clientes",
+    "ruta": "/clientes",
+    "parametros": null,
+    "cuerpo": {
+      "documento": "demo0eaf9461",
+      "tipo_documento": "NIT",
+      "nombre_razon_social": "Cliente de documentación",
+      "correo": "documentacion@example.com",
+      "telefono": "3001234567"
+    },
+    "status": 201,
+    "respuesta": {
+      "documento": "demo0eaf9461",
+      "tipo_documento": "NIT",
+      "nombre_razon_social": "Cliente de documentación",
+      "correo": "documentacion@example.com",
+      "telefono": "3001234567",
+      "id": 9,
+      "fecha_registro": "2026-10-06T20:50:06.715016"
+    }
+  },
+  {
+    "metodo": "POST",
+    "plantilla": "/staff",
+    "ruta": "/staff",
+    "parametros": null,
+    "cuerpo": {
+      "nombre": "Apoyo de documentación",
+      "cargo": "Auxiliar",
+      "area": "Logística",
+      "correo": "apoyo0eaf9461@example.com",
+      "fecha_ingreso": "2026-10-01",
+      "jefe_id": 4
+    },
+    "status": 201,
+    "respuesta": {
+      "nombre": "Apoyo de documentación",
+      "cargo": "Auxiliar",
+      "area": "Logística",
+      "correo": "apoyo0eaf9461@example.com",
+      "fecha_ingreso": "2026-10-01",
+      "jefe_id": 4,
+      "id": 16
+    }
+  },
+  {
+    "metodo": "POST",
+    "plantilla": "/asistentes",
+    "ruta": "/asistentes",
+    "parametros": null,
+    "cuerpo": {
+      "documento": "doc0eaf9461",
+      "nombre": "Asistente de documentación",
+      "correo": "asistente@example.com",
+      "empresa": null
+    },
+    "status": 201,
+    "respuesta": {
+      "documento": "doc0eaf9461",
+      "nombre": "Asistente de documentación",
+      "correo": "asistente@example.com",
+      "empresa": null,
+      "id": 61
+    }
+  },
+  {
+    "metodo": "POST",
+    "plantilla": "/eventos/{evento_id}/inscripciones",
+    "ruta": "/eventos/22/inscripciones",
+    "parametros": null,
+    "cuerpo": {
+      "asistente_id": 61
+    },
+    "status": 201,
+    "respuesta": {
+      "id": 278,
+      "evento_id": 22,
+      "asistente_id": 61,
+      "fecha_inscripcion": "2026-10-06T20:50:06.819360",
+      "hora_checkin": null
+    }
+  },
+  {
+    "metodo": "POST",
+    "plantilla": "/eventos/{evento_id}/checkin",
+    "ruta": "/eventos/22/checkin",
+    "parametros": null,
+    "cuerpo": {
+      "documento": "doc0eaf9461",
+      "hora_checkin": "2027-01-20T09:00:00"
+    },
+    "status": 200,
+    "respuesta": {
+      "id": 278,
+      "evento_id": 22,
+      "asistente_id": 61,
+      "fecha_inscripcion": "2026-10-06T20:50:06.819360",
+      "hora_checkin": "2027-01-20T09:00:00"
+    }
+  },
+  {
+    "metodo": "GET",
+    "plantilla": "/servicios",
+    "ruta": "/servicios",
+    "parametros": null,
+    "cuerpo": null,
+    "status": 200,
+    "respuesta": [
+      {
+        "id": 8,
+        "nombre": "Multimedia (proyector + pantalla)",
+        "categoria": "Audiovisuales",
+        "unidad_cobro": "Por hora",
+        "precio_unitario": "90000.00"
+      },
+      {
+        "id": 6,
+        "nombre": "Sonido básico (2 micrófonos + parlantes)",
+        "categoria": "Audiovisuales",
+        "unidad_cobro": "Por hora",
+        "precio_unitario": "120000.00"
+      },
+      {
+        "id": 7,
+        "nombre": "Sonido profesional (consola + 6 micrófonos)",
+        "categoria": "Audiovisuales",
+        "unidad_cobro": "Por hora",
+        "precio_unitario": "350000.00"
+      },
+      {
+        "id": 9,
+        "nombre": "Streaming y grabación",
+        "categoria": "Audiovisuales",
+        "unidad_cobro": "Por hora",
+        "precio_unitario": "450000.00"
+      },
+      {
+        "id": 1,
+        "nombre": "Estación de agua",
+        "categoria": "Bebidas",
+        "unidad_cobro": "Por persona",
+        "precio_unitario": "3000.00"
+      },
+      {
+        "id": 2,
+        "nombre": "Estación de café",
+        "categoria": "Bebidas",
+        "unidad_cobro": "Por persona",
+        "precio_unitario": "6500.00"
+      },
+      {
+        "id": 5,
+        "nombre": "Refrigerio alto",
+        "categoria": "Refrigerios",
+        "unidad_cobro": "Por persona",
+        "precio_unitario": "38000.00"
+      },
+      {
+        "id": 3,
+        "nombre": "Refrigerio económico",
+        "categoria": "Refrigerios",
+        "unidad_cobro": "Por persona",
+        "precio_unitario": "12000.00"
+      },
+      {
+        "id": 4,
+        "nombre": "Refrigerio medio",
+        "categoria": "Refrigerios",
+        "unidad_cobro": "Por persona",
+        "precio_unitario": "22000.00"
+      }
+    ]
+  },
+  {
+    "metodo": "POST",
+    "plantilla": "/eventos/{evento_id}/servicios",
+    "ruta": "/eventos/22/servicios",
+    "parametros": null,
+    "cuerpo": {
+      "servicio_id": 2
+    },
+    "status": 201,
+    "respuesta": {
+      "id": 39,
+      "evento_id": 22,
+      "servicio_id": 2,
+      "cantidad": "50.00",
+      "precio_congelado": "6500.00"
+    }
+  },
+  {
+    "metodo": "PUT",
+    "plantilla": "/eventos/{evento_id}/servicios/{linea_id}",
+    "ruta": "/eventos/22/servicios/39",
+    "parametros": null,
+    "cuerpo": {
+      "cantidad": "25"
+    },
+    "status": 200,
+    "respuesta": {
+      "id": 39,
+      "evento_id": 22,
+      "servicio_id": 2,
+      "cantidad": "25.00",
+      "precio_congelado": "6500.00"
+    }
+  },
+  {
+    "metodo": "GET",
+    "plantilla": "/eventos/{evento_id}/servicios",
+    "ruta": "/eventos/22/servicios",
+    "parametros": null,
+    "cuerpo": null,
+    "status": 200,
+    "respuesta": [
+      {
+        "id": 39,
+        "evento_id": 22,
+        "servicio_id": 2,
+        "cantidad": "25.00",
+        "precio_congelado": "6500.00"
+      }
+    ]
+  },
+  {
+    "metodo": "GET",
+    "plantilla": "/eventos/{evento_id}/cotizacion",
+    "ruta": "/eventos/22/cotizacion",
+    "parametros": null,
+    "cuerpo": null,
+    "status": 200,
+    "respuesta": {
+      "evento_id": 22,
+      "nombre": "Prueba A1 permitido 2fd41e",
+      "estado": "Cotizado",
+      "salon": "Salón Heliconia",
+      "horas": "2.0000000000000000",
+      "precio_hora": "320000.00",
+      "costo_salon": "640000.00",
+      "servicios": [
+        {
+          "id": 39,
+          "servicio_id": 2,
+          "nombre": "Estación de café",
+          "unidad_cobro": "Por persona",
+          "cantidad": "25.00",
+          "precio_congelado": "6500.00",
+          "subtotal": "162500.0000"
+        }
+      ],
+      "subtotal_servicios": "162500.00",
+      "total": "802500.00"
+    }
+  },
+  {
+    "metodo": "DELETE",
+    "plantilla": "/eventos/{evento_id}/servicios/{linea_id}",
+    "ruta": "/eventos/22/servicios/39",
+    "parametros": null,
+    "cuerpo": null,
+    "status": 204,
+    "respuesta": null
+  },
+  {
+    "metodo": "PATCH",
+    "plantilla": "/eventos/{evento_id}",
+    "ruta": "/eventos/22",
+    "parametros": null,
+    "cuerpo": {
+      "fin": "2027-01-20T11:30:00",
+      "aforo_esperado": 40
+    },
+    "status": 200,
+    "respuesta": {
+      "id": 22,
+      "cliente_id": 1,
+      "salon_id": 2,
+      "coordinador_id": 1,
+      "nombre": "Prueba A1 permitido 2fd41e",
+      "tipo": "Seminario",
+      "aforo_esperado": 40,
+      "inicio": "2027-01-20T09:00:00",
+      "fin": "2027-01-20T11:30:00",
+      "estado": "Cotizado",
+      "valor_total": "800000.00",
+      "precio_salon_congelado": "320000.00",
+      "tasa_asistencia": null
+    }
+  },
+  {
+    "metodo": "PATCH",
+    "plantilla": "/eventos/{evento_id}/estado",
+    "ruta": "/eventos/22/estado",
+    "parametros": null,
+    "cuerpo": {
+      "estado": "Confirmado"
+    },
+    "status": 200,
+    "respuesta": {
+      "id": 22,
+      "cliente_id": 1,
+      "salon_id": 2,
+      "coordinador_id": 1,
+      "nombre": "Prueba A1 permitido 2fd41e",
+      "tipo": "Seminario",
+      "aforo_esperado": 40,
+      "inicio": "2027-01-20T09:00:00",
+      "fin": "2027-01-20T11:30:00",
+      "estado": "Confirmado",
+      "valor_total": "800000.00",
+      "precio_salon_congelado": "320000.00",
+      "tasa_asistencia": null
+    }
+  },
+  {
+    "metodo": "PATCH",
+    "plantilla": "/salones/{salon_id}/activo",
+    "ruta": "/salones/1/activo",
+    "parametros": {
+      "activo": "true"
+    },
+    "cuerpo": null,
+    "status": 200,
+    "respuesta": {
+      "id": 1,
+      "nombre": "Salón Orquídea",
+      "tamano": "Pequeño",
+      "capacidad_maxima": 40,
+      "precio_hora": "250000.00",
+      "activo": true
+    }
+  },
+  {
+    "metodo": "GET",
+    "plantilla": "/clientes",
+    "ruta": "/clientes",
+    "parametros": null,
+    "cuerpo": null,
+    "status": 200,
+    "respuesta": [
+      {
+        "documento": "900111222",
+        "tipo_documento": "NIT",
+        "nombre_razon_social": "Tech Corp S.A.",
+        "correo": "contacto@techcorp.com",
+        "telefono": "3001111111",
+        "id": 1,
+        "fecha_registro": "2026-01-15T00:00:00"
+      },
+      {
+        "documento": "900333444",
+        "tipo_documento": "NIT",
+        "nombre_razon_social": "Innova Market",
+        "correo": "eventos@innovamarket.com",
+        "telefono": "3002222222",
+        "id": 2,
+        "fecha_registro": "2026-01-20T00:00:00"
+      },
+      {
+        "documento": "900555666",
+        "tipo_documento": "NIT",
+        "nombre_razon_social": "Fundación Educar",
+        "correo": "info@educar.org",
+        "telefono": "3003333333",
+        "id": 3,
+        "fecha_registro": "2026-02-01T00:00:00"
+      },
+      {
+        "documento": "900777888",
+        "tipo_documento": "NIT",
+        "nombre_razon_social": "Salud Vital EPS",
+        "correo": "logistica@saludvital.com",
+        "telefono": "3004444444",
+        "id": 4,
+        "fecha_registro": "2026-02-10T00:00:00"
+      },
+      {
+        "documento": "1010101010",
+        "tipo_documento": "Cedula",
+        "nombre_razon_social": "Carlos Mendoza",
+        "correo": "carlos.m@email.com",
+        "telefono": "3101111111",
+        "id": 5,
+        "fecha_registro": "2026-02-18T00:00:00"
+      },
+      {
+        "documento": "2020202020",
+        "tipo_documento": "Cedula",
+        "nombre_razon_social": "Lucía Fernández",
+        "correo": "lucia.f@email.com",
+        "telefono": "3102222222",
+        "id": 6,
+        "fecha_registro": "2026-03-01T00:00:00"
+      },
+      {
+        "documento": "3030303030",
+        "tipo_documento": "Cedula",
+        "nombre_razon_social": "Andrés Vargas",
+        "correo": "andres.v@email.com",
+        "telefono": "3103333333",
+        "id": 7,
+        "fecha_registro": "2026-03-12T00:00:00"
+      },
+      {
+        "documento": "4040404040",
+        "tipo_documento": "Cedula",
+        "nombre_razon_social": "Marta Rojas",
+        "correo": "marta.r@email.com",
+        "telefono": "3104444444",
+        "id": 8,
+        "fecha_registro": "2026-03-20T00:00:00"
+      },
+      {
+        "documento": "demo0eaf9461",
+        "tipo_documento": "NIT",
+        "nombre_razon_social": "Cliente de documentación",
+        "correo": "documentacion@example.com",
+        "telefono": "3001234567",
+        "id": 9,
+        "fecha_registro": "2026-10-06T20:50:06.715016"
+      }
+    ]
+  },
+  {
+    "metodo": "GET",
+    "plantilla": "/clientes/{cliente_id}/eventos",
+    "ruta": "/clientes/1/eventos",
+    "parametros": null,
+    "cuerpo": null,
+    "status": 200,
+    "respuesta": [
+      {
+        "id": 20,
+        "cliente_id": 1,
+        "salon_id": 2,
+        "coordinador_id": 1,
+        "nombre": "Prueba A4 permitido 95792b",
+        "tipo": "Seminario",
+        "aforo_esperado": 50,
+        "inicio": "2026-06-27T09:00:00",
+        "fin": "2026-06-27T11:00:00",
+        "estado": "Finalizado",
+        "valor_total": "640000.00",
+        "precio_salon_congelado": "320000.00",
+        "tasa_asistencia": "75.00"
+      },
+      {
+        "id": 19,
+        "cliente_id": 1,
+        "salon_id": 2,
+        "coordinador_id": 1,
+        "nombre": "Prueba A3 bloqueado ca86eb",
+        "tipo": "Seminario",
+        "aforo_esperado": 50,
+        "inicio": "2026-06-28T09:00:00",
+        "fin": "2026-06-28T11:00:00",
+        "estado": "Finalizado",
+        "valor_total": "640000.00",
+        "precio_salon_congelado": "320000.00",
+        "tasa_asistencia": null
+      },
+      {
+        "id": 1,
+        "cliente_id": 1,
+        "salon_id": 3,
+        "coordinador_id": 7,
+        "nombre": "Jornada Científica Solvida",
+        "tipo": "Congreso",
+        "aforo_esperado": 120,
+        "inicio": "2026-09-08T08:00:00",
+        "fin": "2026-09-08T12:00:00",
+        "estado": "Finalizado",
+        "valor_total": "5140000.00",
+        "precio_salon_congelado": "650000.00",
+        "tasa_asistencia": "84.00"
+      },
+      {
+        "id": 6,
+        "cliente_id": 1,
+        "salon_id": 1,
+        "coordinador_id": 1,
+        "nombre": "Encuentro Interno Nexo",
+        "tipo": "Corporativo",
+        "aforo_esperado": 30,
+        "inicio": "2026-09-30T14:00:00",
+        "fin": "2026-09-30T16:00:00",
+        "estado": "Finalizado",
+        "valor_total": "950000.00",
+        "precio_salon_congelado": "250000.00",
+        "tasa_asistencia": null
+      },
+      {
+        "id": 10,
+        "cliente_id": 1,
+        "salon_id": 4,
+        "coordinador_id": 14,
+        "nombre": "Seminario Corporativo Q4",
+        "tipo": "Seminario",
+        "aforo_esperado": 150,
+        "inicio": "2026-11-20T09:00:00",
+        "fin": "2026-11-20T13:00:00",
+        "estado": "Confirmado",
+        "valor_total": "7835000.00",
+        "precio_salon_congelado": "800000.00",
+        "tasa_asistencia": null
+      },
+      {
+        "id": 13,
+        "cliente_id": 1,
+        "salon_id": 2,
+        "coordinador_id": 1,
+        "nombre": "Prueba A1 permitido 3c023b",
+        "tipo": "Seminario",
+        "aforo_esperado": 50,
+        "inicio": "2027-01-14T09:00:00",
+        "fin": "2027-01-14T11:00:00",
+        "estado": "Cotizado",
+        "valor_total": "640000.00",
+        "precio_salon_congelado": "320000.00",
+        "tasa_asistencia": null
+      },
+      {
+        "id": 14,
+        "cliente_id": 1,
+        "salon_id": 2,
+        "coordinador_id": 1,
+        "nombre": "Prueba A1 bloqueado 300f95",
+        "tipo": "Seminario",
+        "aforo_esperado": 50,
+        "inicio": "2027-01-15T09:00:00",
+        "fin": "2027-01-15T11:00:00",
+        "estado": "Cotizado",
+        "valor_total": "640000.00",
+        "precio_salon_congelado": "320000.00",
+        "tasa_asistencia": null
+      },
+      {
+        "id": 16,
+        "cliente_id": 1,
+        "salon_id": 2,
+        "coordinador_id": 1,
+        "nombre": "Prueba A2 permitido e43c59",
+        "tipo": "Seminario",
+        "aforo_esperado": 50,
+        "inicio": "2027-01-16T09:00:00",
+        "fin": "2027-01-16T11:00:00",
+        "estado": "Cotizado",
+        "valor_total": "640000.00",
+        "precio_salon_congelado": "320000.00",
+        "tasa_asistencia": null
+      },
+      {
+        "id": 17,
+        "cliente_id": 1,
+        "salon_id": 2,
+        "coordinador_id": 1,
+        "nombre": "Prueba A2 bloqueado 9d4fc9",
+        "tipo": "Seminario",
+        "aforo_esperado": 1,
+        "inicio": "2027-01-17T09:00:00",
+        "fin": "2027-01-17T11:00:00",
+        "estado": "Cotizado",
+        "valor_total": "640000.00",
+        "precio_salon_congelado": "320000.00",
+        "tasa_asistencia": null
+      },
+      {
+        "id": 18,
+        "cliente_id": 1,
+        "salon_id": 2,
+        "coordinador_id": 1,
+        "nombre": "Prueba A3 permitido e56c62",
+        "tipo": "Seminario",
+        "aforo_esperado": 50,
+        "inicio": "2027-01-18T09:00:00",
+        "fin": "2027-01-18T10:30:00",
+        "estado": "Cotizado",
+        "valor_total": "805000.00",
+        "precio_salon_congelado": "320000.00",
+        "tasa_asistencia": null
+      },
+      {
+        "id": 21,
+        "cliente_id": 1,
+        "salon_id": 2,
+        "coordinador_id": 1,
+        "nombre": "Prueba A4 bloqueado 9096e4",
+        "tipo": "Seminario",
+        "aforo_esperado": 50,
+        "inicio": "2027-01-19T09:00:00",
+        "fin": "2027-01-19T11:00:00",
+        "estado": "Confirmado",
+        "valor_total": "640000.00",
+        "precio_salon_congelado": "320000.00",
+        "tasa_asistencia": null
+      },
+      {
+        "id": 22,
+        "cliente_id": 1,
+        "salon_id": 2,
+        "coordinador_id": 1,
+        "nombre": "Prueba A1 permitido 2fd41e",
+        "tipo": "Seminario",
+        "aforo_esperado": 40,
+        "inicio": "2027-01-20T09:00:00",
+        "fin": "2027-01-20T11:30:00",
+        "estado": "Confirmado",
+        "valor_total": "800000.00",
+        "precio_salon_congelado": "320000.00",
+        "tasa_asistencia": null
+      }
+    ]
+  },
+  {
+    "metodo": "GET",
+    "plantilla": "/clientes/{cliente_id}",
+    "ruta": "/clientes/1",
+    "parametros": null,
+    "cuerpo": null,
+    "status": 200,
+    "respuesta": {
+      "documento": "900111222",
+      "tipo_documento": "NIT",
+      "nombre_razon_social": "Tech Corp S.A.",
+      "correo": "contacto@techcorp.com",
+      "telefono": "3001111111",
+      "id": 1,
+      "fecha_registro": "2026-01-15T00:00:00"
+    }
+  },
+  {
+    "metodo": "GET",
+    "plantilla": "/salones",
+    "ruta": "/salones",
+    "parametros": null,
+    "cuerpo": null,
+    "status": 200,
+    "respuesta": [
+      {
+        "id": 1,
+        "nombre": "Salón Orquídea",
+        "tamano": "Pequeño",
+        "capacidad_maxima": 40,
+        "precio_hora": "250000.00",
+        "activo": true
+      },
+      {
+        "id": 2,
+        "nombre": "Salón Heliconia",
+        "tamano": "Pequeño",
+        "capacidad_maxima": 60,
+        "precio_hora": "320000.00",
+        "activo": true
+      },
+      {
+        "id": 3,
+        "nombre": "Salón Guayacán",
+        "tamano": "Mediano",
+        "capacidad_maxima": 150,
+        "precio_hora": "650000.00",
+        "activo": true
+      },
+      {
+        "id": 4,
+        "nombre": "Salón Ceiba",
+        "tamano": "Mediano",
+        "capacidad_maxima": 200,
+        "precio_hora": "800000.00",
+        "activo": true
+      },
+      {
+        "id": 5,
+        "nombre": "Gran Salón Cóndor",
+        "tamano": "Grande",
+        "capacidad_maxima": 600,
+        "precio_hora": "1800000.00",
+        "activo": true
+      },
+      {
+        "id": 6,
+        "nombre": "Auditorio Principal",
+        "tamano": "Grande",
+        "capacidad_maxima": 1000,
+        "precio_hora": "2500000.00",
+        "activo": true
+      }
+    ]
+  },
+  {
+    "metodo": "GET",
+    "plantilla": "/salones/disponibles",
+    "ruta": "/salones/disponibles",
+    "parametros": {
+      "inicio": "2027-01-20T09:00:00",
+      "fin": "2027-01-20T11:00:00",
+      "aforo": 50
+    },
+    "cuerpo": null,
+    "status": 200,
+    "respuesta": [
+      {
+        "salon_id": 3,
+        "nombre": "Salón Guayacán",
+        "tamano": "Mediano",
+        "capacidad": 150,
+        "precio_hora": "650000.00",
+        "costo_estimado": "1300000.00"
+      },
+      {
+        "salon_id": 4,
+        "nombre": "Salón Ceiba",
+        "tamano": "Mediano",
+        "capacidad": 200,
+        "precio_hora": "800000.00",
+        "costo_estimado": "1600000.00"
+      },
+      {
+        "salon_id": 5,
+        "nombre": "Gran Salón Cóndor",
+        "tamano": "Grande",
+        "capacidad": 600,
+        "precio_hora": "1800000.00",
+        "costo_estimado": "3600000.00"
+      },
+      {
+        "salon_id": 6,
+        "nombre": "Auditorio Principal",
+        "tamano": "Grande",
+        "capacidad": 1000,
+        "precio_hora": "2500000.00",
+        "costo_estimado": "5000000.00"
+      }
+    ]
+  },
+  {
+    "metodo": "GET",
+    "plantilla": "/salones/{salon_id}",
+    "ruta": "/salones/1",
+    "parametros": null,
+    "cuerpo": null,
+    "status": 200,
+    "respuesta": {
+      "id": 1,
+      "nombre": "Salón Orquídea",
+      "tamano": "Pequeño",
+      "capacidad_maxima": 40,
+      "precio_hora": "250000.00",
+      "activo": true
+    }
+  },
+  {
+    "metodo": "GET",
+    "plantilla": "/servicios/{servicio_id}",
+    "ruta": "/servicios/2",
+    "parametros": null,
+    "cuerpo": null,
+    "status": 200,
+    "respuesta": {
+      "id": 2,
+      "nombre": "Estación de café",
+      "categoria": "Bebidas",
+      "unidad_cobro": "Por persona",
+      "precio_unitario": "6500.00"
+    }
+  },
+  {
+    "metodo": "GET",
+    "plantilla": "/staff",
+    "ruta": "/staff",
+    "parametros": null,
+    "cuerpo": null,
+    "status": 200,
+    "respuesta": [
+      {
+        "nombre": "Elena Suárez",
+        "cargo": "Directora General",
+        "area": "Dirección",
+        "correo": "esuarez@nexo.com",
+        "fecha_ingreso": "2020-01-15",
+        "jefe_id": null,
+        "id": 1
+      },
+      {
+        "nombre": "Roberto Gómez",
+        "cargo": "Gerente de Operaciones",
+        "area": "Operaciones",
+        "correo": "rgomez@nexo.com",
+        "fecha_ingreso": "2020-02-01",
+        "jefe_id": 1,
+        "id": 2
+      },
+      {
+        "nombre": "Diana Castro",
+        "cargo": "Gerente Comercial",
+        "area": "Comercial",
+        "correo": "dcastro@nexo.com",
+        "fecha_ingreso": "2020-03-10",
+        "jefe_id": 1,
+        "id": 3
+      },
+      {
+        "nombre": "Mario Luna",
+        "cargo": "Jefe de Logística",
+        "area": "Logística",
+        "correo": "mluna@nexo.com",
+        "fecha_ingreso": "2021-01-20",
+        "jefe_id": 2,
+        "id": 4
+      },
+      {
+        "nombre": "Carmen Ruiz",
+        "cargo": "Jefa de Alimentos",
+        "area": "Alimentos y Bebidas",
+        "correo": "cruiz@nexo.com",
+        "fecha_ingreso": "2021-05-11",
+        "jefe_id": 2,
+        "id": 5
+      },
+      {
+        "nombre": "Luis Toro",
+        "cargo": "Jefe Audiovisual",
+        "area": "Audiovisuales",
+        "correo": "ltoro@nexo.com",
+        "fecha_ingreso": "2022-08-01",
+        "jefe_id": 2,
+        "id": 6
+      },
+      {
+        "nombre": "Ana Vega",
+        "cargo": "Jefa de Ventas",
+        "area": "Comercial",
+        "correo": "avega@nexo.com",
+        "fecha_ingreso": "2021-11-15",
+        "jefe_id": 3,
+        "id": 7
+      },
+      {
+        "nombre": "Pedro Díaz",
+        "cargo": "Auxiliar de Montaje",
+        "area": "Logística",
+        "correo": "pdiaz@nexo.com",
+        "fecha_ingreso": "2023-01-10",
+        "jefe_id": 4,
+        "id": 8
+      },
+      {
+        "nombre": "Sara Peña",
+        "cargo": "Auxiliar de Limpieza",
+        "area": "Logística",
+        "correo": "spena@nexo.com",
+        "fecha_ingreso": "2023-02-15",
+        "jefe_id": 4,
+        "id": 9
+      },
+      {
+        "nombre": "Juan Melo",
+        "cargo": "Cocinero",
+        "area": "Alimentos y Bebidas",
+        "correo": "jmelo@nexo.com",
+        "fecha_ingreso": "2022-03-20",
+        "jefe_id": 5,
+        "id": 10
+      },
+      {
+        "nombre": "Rosa Gil",
+        "cargo": "Mesera",
+        "area": "Alimentos y Bebidas",
+        "correo": "rgil@nexo.com",
+        "fecha_ingreso": "2023-07-05",
+        "jefe_id": 5,
+        "id": 11
+      },
+      {
+        "nombre": "Diego Paz",
+        "cargo": "Técnico de Sonido",
+        "area": "Audiovisuales",
+        "correo": "dpaz@nexo.com",
+        "fecha_ingreso": "2022-09-10",
+        "jefe_id": 6,
+        "id": 12
+      },
+      {
+        "nombre": "Hugo Rey",
+        "cargo": "Técnico de Video",
+        "area": "Audiovisuales",
+        "correo": "hrey@nexo.com",
+        "fecha_ingreso": "2023-10-01",
+        "jefe_id": 6,
+        "id": 13
+      },
+      {
+        "nombre": "Mía Cruz",
+        "cargo": "Asesora Comercial",
+        "area": "Comercial",
+        "correo": "mcruz@nexo.com",
+        "fecha_ingreso": "2022-01-15",
+        "jefe_id": 7,
+        "id": 14
+      },
+      {
+        "nombre": "Leo Ríos",
+        "cargo": "Asesor Comercial",
+        "area": "Comercial",
+        "correo": "lrios@nexo.com",
+        "fecha_ingreso": "2023-05-20",
+        "jefe_id": 7,
+        "id": 15
+      },
+      {
+        "nombre": "Apoyo de documentación",
+        "cargo": "Auxiliar",
+        "area": "Logística",
+        "correo": "apoyo0eaf9461@example.com",
+        "fecha_ingreso": "2026-10-01",
+        "jefe_id": 4,
+        "id": 16
+      }
+    ]
+  },
+  {
+    "metodo": "GET",
+    "plantilla": "/staff/{staff_id}",
+    "ruta": "/staff/12",
+    "parametros": null,
+    "cuerpo": null,
+    "status": 200,
+    "respuesta": {
+      "nombre": "Diego Paz",
+      "cargo": "Técnico de Sonido",
+      "area": "Audiovisuales",
+      "correo": "dpaz@nexo.com",
+      "fecha_ingreso": "2022-09-10",
+      "jefe_id": 6,
+      "id": 12
+    }
+  },
+  {
+    "metodo": "GET",
+    "plantilla": "/asistentes",
+    "ruta": "/asistentes",
+    "parametros": null,
+    "cuerpo": null,
+    "status": 200,
+    "respuesta": [
+      {
+        "documento": "100000001",
+        "nombre": "Asistente 1",
+        "correo": "asistente1@correo.com",
+        "empresa": "Innova Market",
+        "id": 1
+      },
+      {
+        "documento": "100000002",
+        "nombre": "Asistente 2",
+        "correo": "asistente2@correo.com",
+        "empresa": "Independiente",
+        "id": 2
+      },
+      {
+        "documento": "100000003",
+        "nombre": "Asistente 3",
+        "correo": "asistente3@correo.com",
+        "empresa": "Salud Vital EPS",
+        "id": 3
+      },
+      {
+        "documento": "100000004",
+        "nombre": "Asistente 4",
+        "correo": "asistente4@correo.com",
+        "empresa": "Tech Corp S.A.",
+        "id": 4
+      },
+      {
+        "documento": "100000005",
+        "nombre": "Asistente 5",
+        "correo": "asistente5@correo.com",
+        "empresa": "Innova Market",
+        "id": 5
+      },
+      {
+        "documento": "100000006",
+        "nombre": "Asistente 6",
+        "correo": "asistente6@correo.com",
+        "empresa": "Independiente",
+        "id": 6
+      },
+      {
+        "documento": "100000007",
+        "nombre": "Asistente 7",
+        "correo": "asistente7@correo.com",
+        "empresa": "Salud Vital EPS",
+        "id": 7
+      },
+      {
+        "documento": "100000008",
+        "nombre": "Asistente 8",
+        "correo": "asistente8@correo.com",
+        "empresa": "Tech Corp S.A.",
+        "id": 8
+      },
+      {
+        "documento": "100000009",
+        "nombre": "Asistente 9",
+        "correo": "asistente9@correo.com",
+        "empresa": "Innova Market",
+        "id": 9
+      },
+      {
+        "documento": "100000010",
+        "nombre": "Asistente 10",
+        "correo": "asistente10@correo.com",
+        "empresa": "Independiente",
+        "id": 10
+      },
+      {
+        "documento": "100000011",
+        "nombre": "Asistente 11",
+        "correo": "asistente11@correo.com",
+        "empresa": "Salud Vital EPS",
+        "id": 11
+      },
+      {
+        "documento": "100000012",
+        "nombre": "Asistente 12",
+        "correo": "asistente12@correo.com",
+        "empresa": "Tech Corp S.A.",
+        "id": 12
+      },
+      {
+        "documento": "100000013",
+        "nombre": "Asistente 13",
+        "correo": "asistente13@correo.com",
+        "empresa": "Innova Market",
+        "id": 13
+      },
+      {
+        "documento": "100000014",
+        "nombre": "Asistente 14",
+        "correo": "asistente14@correo.com",
+        "empresa": "Independiente",
+        "id": 14
+      },
+      {
+        "documento": "100000015",
+        "nombre": "Asistente 15",
+        "correo": "asistente15@correo.com",
+        "empresa": "Salud Vital EPS",
+        "id": 15
+      },
+      {
+        "documento": "100000016",
+        "nombre": "Asistente 16",
+        "correo": "asistente16@correo.com",
+        "empresa": "Tech Corp S.A.",
+        "id": 16
+      },
+      {
+        "documento": "100000017",
+        "nombre": "Asistente 17",
+        "correo": "asistente17@correo.com",
+        "empresa": "Innova Market",
+        "id": 17
+      },
+      {
+        "documento": "100000018",
+        "nombre": "Asistente 18",
+        "correo": "asistente18@correo.com",
+        "empresa": "Independiente",
+        "id": 18
+      },
+      {
+        "documento": "100000019",
+        "nombre": "Asistente 19",
+        "correo": "asistente19@correo.com",
+        "empresa": "Salud Vital EPS",
+        "id": 19
+      },
+      {
+        "documento": "100000020",
+        "nombre": "Asistente 20",
+        "correo": "asistente20@correo.com",
+        "empresa": "Tech Corp S.A.",
+        "id": 20
+      },
+      {
+        "documento": "100000021",
+        "nombre": "Asistente 21",
+        "correo": "asistente21@correo.com",
+        "empresa": "Innova Market",
+        "id": 21
+      },
+      {
+        "documento": "100000022",
+        "nombre": "Asistente 22",
+        "correo": "asistente22@correo.com",
+        "empresa": "Independiente",
+        "id": 22
+      },
+      {
+        "documento": "100000023",
+        "nombre": "Asistente 23",
+        "correo": "asistente23@correo.com",
+        "empresa": "Salud Vital EPS",
+        "id": 23
+      },
+      {
+        "documento": "100000024",
+        "nombre": "Asistente 24",
+        "correo": "asistente24@correo.com",
+        "empresa": "Tech Corp S.A.",
+        "id": 24
+      },
+      {
+        "documento": "100000025",
+        "nombre": "Asistente 25",
+        "correo": "asistente25@correo.com",
+        "empresa": "Innova Market",
+        "id": 25
+      },
+      {
+        "documento": "100000026",
+        "nombre": "Asistente 26",
+        "correo": "asistente26@correo.com",
+        "empresa": "Independiente",
+        "id": 26
+      },
+      {
+        "documento": "100000027",
+        "nombre": "Asistente 27",
+        "correo": "asistente27@correo.com",
+        "empresa": "Salud Vital EPS",
+        "id": 27
+      },
+      {
+        "documento": "100000028",
+        "nombre": "Asistente 28",
+        "correo": "asistente28@correo.com",
+        "empresa": "Tech Corp S.A.",
+        "id": 28
+      },
+      {
+        "documento": "100000029",
+        "nombre": "Asistente 29",
+        "correo": "asistente29@correo.com",
+        "empresa": "Innova Market",
+        "id": 29
+      },
+      {
+        "documento": "100000030",
+        "nombre": "Asistente 30",
+        "correo": "asistente30@correo.com",
+        "empresa": "Independiente",
+        "id": 30
+      },
+      {
+        "documento": "100000031",
+        "nombre": "Asistente 31",
+        "correo": "asistente31@correo.com",
+        "empresa": "Salud Vital EPS",
+        "id": 31
+      },
+      {
+        "documento": "100000032",
+        "nombre": "Asistente 32",
+        "correo": "asistente32@correo.com",
+        "empresa": "Tech Corp S.A.",
+        "id": 32
+      },
+      {
+        "documento": "100000033",
+        "nombre": "Asistente 33",
+        "correo": "asistente33@correo.com",
+        "empresa": "Innova Market",
+        "id": 33
+      },
+      {
+        "documento": "100000034",
+        "nombre": "Asistente 34",
+        "correo": "asistente34@correo.com",
+        "empresa": "Independiente",
+        "id": 34
+      },
+      {
+        "documento": "100000035",
+        "nombre": "Asistente 35",
+        "correo": "asistente35@correo.com",
+        "empresa": "Salud Vital EPS",
+        "id": 35
+      },
+      {
+        "documento": "100000036",
+        "nombre": "Asistente 36",
+        "correo": "asistente36@correo.com",
+        "empresa": "Tech Corp S.A.",
+        "id": 36
+      },
+      {
+        "documento": "100000037",
+        "nombre": "Asistente 37",
+        "correo": "asistente37@correo.com",
+        "empresa": "Innova Market",
+        "id": 37
+      },
+      {
+        "documento": "100000038",
+        "nombre": "Asistente 38",
+        "correo": "asistente38@correo.com",
+        "empresa": "Independiente",
+        "id": 38
+      },
+      {
+        "documento": "100000039",
+        "nombre": "Asistente 39",
+        "correo": "asistente39@correo.com",
+        "empresa": "Salud Vital EPS",
+        "id": 39
+      },
+      {
+        "documento": "100000040",
+        "nombre": "Asistente 40",
+        "correo": "asistente40@correo.com",
+        "empresa": "Tech Corp S.A.",
+        "id": 40
+      },
+      {
+        "documento": "100000041",
+        "nombre": "Asistente 41",
+        "correo": "asistente41@correo.com",
+        "empresa": "Innova Market",
+        "id": 41
+      },
+      {
+        "documento": "100000042",
+        "nombre": "Asistente 42",
+        "correo": "asistente42@correo.com",
+        "empresa": "Independiente",
+        "id": 42
+      },
+      {
+        "documento": "100000043",
+        "nombre": "Asistente 43",
+        "correo": "asistente43@correo.com",
+        "empresa": "Salud Vital EPS",
+        "id": 43
+      },
+      {
+        "documento": "100000044",
+        "nombre": "Asistente 44",
+        "correo": "asistente44@correo.com",
+        "empresa": "Tech Corp S.A.",
+        "id": 44
+      },
+      {
+        "documento": "100000045",
+        "nombre": "Asistente 45",
+        "correo": "asistente45@correo.com",
+        "empresa": "Innova Market",
+        "id": 45
+      },
+      {
+        "documento": "100000046",
+        "nombre": "Asistente 46",
+        "correo": "asistente46@correo.com",
+        "empresa": "Independiente",
+        "id": 46
+      },
+      {
+        "documento": "100000047",
+        "nombre": "Asistente 47",
+        "correo": "asistente47@correo.com",
+        "empresa": "Salud Vital EPS",
+        "id": 47
+      },
+      {
+        "documento": "100000048",
+        "nombre": "Asistente 48",
+        "correo": "asistente48@correo.com",
+        "empresa": "Tech Corp S.A.",
+        "id": 48
+      },
+      {
+        "documento": "100000049",
+        "nombre": "Asistente 49",
+        "correo": "asistente49@correo.com",
+        "empresa": "Innova Market",
+        "id": 49
+      },
+      {
+        "documento": "100000050",
+        "nombre": "Asistente 50",
+        "correo": "asistente50@correo.com",
+        "empresa": "Independiente",
+        "id": 50
+      },
+      {
+        "documento": "100000051",
+        "nombre": "Asistente 51",
+        "correo": "asistente51@correo.com",
+        "empresa": "Salud Vital EPS",
+        "id": 51
+      },
+      {
+        "documento": "100000052",
+        "nombre": "Asistente 52",
+        "correo": "asistente52@correo.com",
+        "empresa": "Tech Corp S.A.",
+        "id": 52
+      },
+      {
+        "documento": "100000053",
+        "nombre": "Asistente 53",
+        "correo": "asistente53@correo.com",
+        "empresa": "Innova Market",
+        "id": 53
+      },
+      {
+        "documento": "100000054",
+        "nombre": "Asistente 54",
+        "correo": "asistente54@correo.com",
+        "empresa": "Independiente",
+        "id": 54
+      },
+      {
+        "documento": "100000055",
+        "nombre": "Asistente 55",
+        "correo": "asistente55@correo.com",
+        "empresa": "Salud Vital EPS",
+        "id": 55
+      },
+      {
+        "documento": "100000056",
+        "nombre": "Asistente 56",
+        "correo": "asistente56@correo.com",
+        "empresa": "Tech Corp S.A.",
+        "id": 56
+      },
+      {
+        "documento": "100000057",
+        "nombre": "Asistente 57",
+        "correo": "asistente57@correo.com",
+        "empresa": "Innova Market",
+        "id": 57
+      },
+      {
+        "documento": "100000058",
+        "nombre": "Asistente 58",
+        "correo": "asistente58@correo.com",
+        "empresa": "Independiente",
+        "id": 58
+      },
+      {
+        "documento": "100000059",
+        "nombre": "Asistente 59",
+        "correo": "asistente59@correo.com",
+        "empresa": "Salud Vital EPS",
+        "id": 59
+      },
+      {
+        "documento": "100000060",
+        "nombre": "Asistente 60",
+        "correo": "asistente60@correo.com",
+        "empresa": "Tech Corp S.A.",
+        "id": 60
+      },
+      {
+        "documento": "doc0eaf9461",
+        "nombre": "Asistente de documentación",
+        "correo": "asistente@example.com",
+        "empresa": null,
+        "id": 61
+      }
+    ]
+  },
+  {
+    "metodo": "GET",
+    "plantilla": "/asistentes/{asistente_id}",
+    "ruta": "/asistentes/61",
+    "parametros": null,
+    "cuerpo": null,
+    "status": 200,
+    "respuesta": {
+      "documento": "doc0eaf9461",
+      "nombre": "Asistente de documentación",
+      "correo": "asistente@example.com",
+      "empresa": null,
+      "id": 61
+    }
+  },
+  {
+    "metodo": "GET",
+    "plantilla": "/eventos",
+    "ruta": "/eventos",
+    "parametros": null,
+    "cuerpo": null,
+    "status": 200,
+    "respuesta": [
+      {
+        "id": 20,
+        "cliente_id": 1,
+        "salon_id": 2,
+        "coordinador_id": 1,
+        "nombre": "Prueba A4 permitido 95792b",
+        "tipo": "Seminario",
+        "aforo_esperado": 50,
+        "inicio": "2026-06-27T09:00:00",
+        "fin": "2026-06-27T11:00:00",
+        "estado": "Finalizado",
+        "valor_total": "640000.00",
+        "precio_salon_congelado": "320000.00",
+        "tasa_asistencia": "75.00"
+      },
+      {
+        "id": 19,
+        "cliente_id": 1,
+        "salon_id": 2,
+        "coordinador_id": 1,
+        "nombre": "Prueba A3 bloqueado ca86eb",
+        "tipo": "Seminario",
+        "aforo_esperado": 50,
+        "inicio": "2026-06-28T09:00:00",
+        "fin": "2026-06-28T11:00:00",
+        "estado": "Finalizado",
+        "valor_total": "640000.00",
+        "precio_salon_congelado": "320000.00",
+        "tasa_asistencia": null
+      },
+      {
+        "id": 1,
+        "cliente_id": 1,
+        "salon_id": 3,
+        "coordinador_id": 7,
+        "nombre": "Jornada Científica Solvida",
+        "tipo": "Congreso",
+        "aforo_esperado": 120,
+        "inicio": "2026-09-08T08:00:00",
+        "fin": "2026-09-08T12:00:00",
+        "estado": "Finalizado",
+        "valor_total": "5140000.00",
+        "precio_salon_congelado": "650000.00",
+        "tasa_asistencia": "84.00"
+      },
+      {
+        "id": 7,
+        "cliente_id": 5,
+        "salon_id": 6,
+        "coordinador_id": 3,
+        "nombre": "Gala Benéfica",
+        "tipo": "Social",
+        "aforo_esperado": 800,
+        "inicio": "2026-09-12T19:00:00",
+        "fin": "2026-09-12T23:00:00",
+        "estado": "Cancelado",
+        "valor_total": "41800000.00",
+        "precio_salon_congelado": "2500000.00",
+        "tasa_asistencia": null
+      },
+      {
+        "id": 2,
+        "cliente_id": 4,
+        "salon_id": 4,
+        "coordinador_id": 2,
+        "nombre": "Capacitación en Ciberseguridad",
+        "tipo": "Seminario",
+        "aforo_esperado": 60,
+        "inicio": "2026-09-15T09:00:00",
+        "fin": "2026-09-15T14:00:00",
+        "estado": "Finalizado",
+        "valor_total": "8350000.00",
+        "precio_salon_congelado": "800000.00",
+        "tasa_asistencia": "71.11"
+      },
+      {
+        "id": 3,
+        "cliente_id": 6,
+        "salon_id": 1,
+        "coordinador_id": 14,
+        "nombre": "Club de Lectura Páramo",
+        "tipo": "Social",
+        "aforo_esperado": 20,
+        "inicio": "2026-09-20T15:00:00",
+        "fin": "2026-09-21T01:00:00",
+        "estado": "Finalizado",
+        "valor_total": "2870000.00",
+        "precio_salon_congelado": "250000.00",
+        "tasa_asistencia": "90.00"
+      },
+      {
+        "id": 4,
+        "cliente_id": 2,
+        "salon_id": 5,
+        "coordinador_id": 3,
+        "nombre": "Feria de Innovación Nexo",
+        "tipo": "Feria",
+        "aforo_esperado": 300,
+        "inicio": "2026-09-25T09:00:00",
+        "fin": "2026-09-25T18:00:00",
+        "estado": "Finalizado",
+        "valor_total": "36510000.00",
+        "precio_salon_congelado": "1800000.00",
+        "tasa_asistencia": "50.00"
+      },
+      {
+        "id": 5,
+        "cliente_id": 3,
+        "salon_id": 2,
+        "coordinador_id": 15,
+        "nombre": "Simposio de Educación",
+        "tipo": "Seminario",
+        "aforo_esperado": 55,
+        "inicio": "2026-09-28T08:00:00",
+        "fin": "2026-09-28T11:00:00",
+        "estado": "Finalizado",
+        "valor_total": "2797500.00",
+        "precio_salon_congelado": "320000.00",
+        "tasa_asistencia": "0.00"
+      },
+      {
+        "id": 6,
+        "cliente_id": 1,
+        "salon_id": 1,
+        "coordinador_id": 1,
+        "nombre": "Encuentro Interno Nexo",
+        "tipo": "Corporativo",
+        "aforo_esperado": 30,
+        "inicio": "2026-09-30T14:00:00",
+        "fin": "2026-09-30T16:00:00",
+        "estado": "Finalizado",
+        "valor_total": "950000.00",
+        "precio_salon_congelado": "250000.00",
+        "tasa_asistencia": null
+      },
+      {
+        "id": 8,
+        "cliente_id": 7,
+        "salon_id": 4,
+        "coordinador_id": 7,
+        "nombre": "Conferencia Pospuesta",
+        "tipo": "Conferencia",
+        "aforo_esperado": 100,
+        "inicio": "2026-11-05T09:00:00",
+        "fin": "2026-11-05T12:00:00",
+        "estado": "Cancelado",
+        "valor_total": "3410000.00",
+        "precio_salon_congelado": "800000.00",
+        "tasa_asistencia": null
+      },
+      {
+        "id": 9,
+        "cliente_id": 4,
+        "salon_id": 5,
+        "coordinador_id": 2,
+        "nombre": "Congreso Nacional de Salud",
+        "tipo": "Congreso",
+        "aforo_esperado": 500,
+        "inicio": "2026-11-18T08:00:00",
+        "fin": "2026-11-18T17:00:00",
+        "estado": "Confirmado",
+        "valor_total": "35900000.00",
+        "precio_salon_congelado": "1800000.00",
+        "tasa_asistencia": null
+      },
+      {
+        "id": 10,
+        "cliente_id": 1,
+        "salon_id": 4,
+        "coordinador_id": 14,
+        "nombre": "Seminario Corporativo Q4",
+        "tipo": "Seminario",
+        "aforo_esperado": 150,
+        "inicio": "2026-11-20T09:00:00",
+        "fin": "2026-11-20T13:00:00",
+        "estado": "Confirmado",
+        "valor_total": "7835000.00",
+        "precio_salon_congelado": "800000.00",
+        "tasa_asistencia": null
+      },
+      {
+        "id": 11,
+        "cliente_id": 6,
+        "salon_id": 3,
+        "coordinador_id": 15,
+        "nombre": "Taller de Economía Circular",
+        "tipo": "Seminario",
+        "aforo_esperado": 50,
+        "inicio": "2026-12-02T14:00:00",
+        "fin": "2026-12-02T17:00:00",
+        "estado": "Cotizado",
+        "valor_total": "2635000.00",
+        "precio_salon_congelado": "650000.00",
+        "tasa_asistencia": null
+      },
+      {
+        "id": 12,
+        "cliente_id": 2,
+        "salon_id": 6,
+        "coordinador_id": 3,
+        "nombre": "Feria Navideña",
+        "tipo": "Feria",
+        "aforo_esperado": 900,
+        "inicio": "2026-12-15T10:00:00",
+        "fin": "2026-12-15T20:00:00",
+        "estado": "Cotizado",
+        "valor_total": "69900000.00",
+        "precio_salon_congelado": "2500000.00",
+        "tasa_asistencia": null
+      },
+      {
+        "id": 13,
+        "cliente_id": 1,
+        "salon_id": 2,
+        "coordinador_id": 1,
+        "nombre": "Prueba A1 permitido 3c023b",
+        "tipo": "Seminario",
+        "aforo_esperado": 50,
+        "inicio": "2027-01-14T09:00:00",
+        "fin": "2027-01-14T11:00:00",
+        "estado": "Cotizado",
+        "valor_total": "640000.00",
+        "precio_salon_congelado": "320000.00",
+        "tasa_asistencia": null
+      },
+      {
+        "id": 14,
+        "cliente_id": 1,
+        "salon_id": 2,
+        "coordinador_id": 1,
+        "nombre": "Prueba A1 bloqueado 300f95",
+        "tipo": "Seminario",
+        "aforo_esperado": 50,
+        "inicio": "2027-01-15T09:00:00",
+        "fin": "2027-01-15T11:00:00",
+        "estado": "Cotizado",
+        "valor_total": "640000.00",
+        "precio_salon_congelado": "320000.00",
+        "tasa_asistencia": null
+      },
+      {
+        "id": 16,
+        "cliente_id": 1,
+        "salon_id": 2,
+        "coordinador_id": 1,
+        "nombre": "Prueba A2 permitido e43c59",
+        "tipo": "Seminario",
+        "aforo_esperado": 50,
+        "inicio": "2027-01-16T09:00:00",
+        "fin": "2027-01-16T11:00:00",
+        "estado": "Cotizado",
+        "valor_total": "640000.00",
+        "precio_salon_congelado": "320000.00",
+        "tasa_asistencia": null
+      },
+      {
+        "id": 17,
+        "cliente_id": 1,
+        "salon_id": 2,
+        "coordinador_id": 1,
+        "nombre": "Prueba A2 bloqueado 9d4fc9",
+        "tipo": "Seminario",
+        "aforo_esperado": 1,
+        "inicio": "2027-01-17T09:00:00",
+        "fin": "2027-01-17T11:00:00",
+        "estado": "Cotizado",
+        "valor_total": "640000.00",
+        "precio_salon_congelado": "320000.00",
+        "tasa_asistencia": null
+      },
+      {
+        "id": 18,
+        "cliente_id": 1,
+        "salon_id": 2,
+        "coordinador_id": 1,
+        "nombre": "Prueba A3 permitido e56c62",
+        "tipo": "Seminario",
+        "aforo_esperado": 50,
+        "inicio": "2027-01-18T09:00:00",
+        "fin": "2027-01-18T10:30:00",
+        "estado": "Cotizado",
+        "valor_total": "805000.00",
+        "precio_salon_congelado": "320000.00",
+        "tasa_asistencia": null
+      },
+      {
+        "id": 21,
+        "cliente_id": 1,
+        "salon_id": 2,
+        "coordinador_id": 1,
+        "nombre": "Prueba A4 bloqueado 9096e4",
+        "tipo": "Seminario",
+        "aforo_esperado": 50,
+        "inicio": "2027-01-19T09:00:00",
+        "fin": "2027-01-19T11:00:00",
+        "estado": "Confirmado",
+        "valor_total": "640000.00",
+        "precio_salon_congelado": "320000.00",
+        "tasa_asistencia": null
+      },
+      {
+        "id": 22,
+        "cliente_id": 1,
+        "salon_id": 2,
+        "coordinador_id": 1,
+        "nombre": "Prueba A1 permitido 2fd41e",
+        "tipo": "Seminario",
+        "aforo_esperado": 40,
+        "inicio": "2027-01-20T09:00:00",
+        "fin": "2027-01-20T11:30:00",
+        "estado": "Confirmado",
+        "valor_total": "800000.00",
+        "precio_salon_congelado": "320000.00",
+        "tasa_asistencia": null
+      }
+    ]
+  },
+  {
+    "metodo": "GET",
+    "plantilla": "/eventos/{evento_id}",
+    "ruta": "/eventos/22",
+    "parametros": null,
+    "cuerpo": null,
+    "status": 200,
+    "respuesta": {
+      "id": 22,
+      "cliente_id": 1,
+      "salon_id": 2,
+      "coordinador_id": 1,
+      "nombre": "Prueba A1 permitido 2fd41e",
+      "tipo": "Seminario",
+      "aforo_esperado": 40,
+      "inicio": "2027-01-20T09:00:00",
+      "fin": "2027-01-20T11:30:00",
+      "estado": "Confirmado",
+      "valor_total": "800000.00",
+      "precio_salon_congelado": "320000.00",
+      "tasa_asistencia": null,
+      "servicios": [],
+      "inscritos": 1,
+      "llegaron": 1
+    }
+  },
+  {
+    "metodo": "GET",
+    "plantilla": "/eventos/{evento_id}/auditoria",
+    "ruta": "/eventos/22/auditoria",
+    "parametros": null,
+    "cuerpo": null,
+    "status": 200,
+    "respuesta": [
+      {
+        "id": 24,
+        "evento_id": 22,
+        "campo": "fin",
+        "valor_anterior": "2027-01-20T11:00:00",
+        "valor_nuevo": "2027-01-20T11:30:00",
+        "usuario_app": "grupo_shalem_dayro_juan_jesus",
+        "fecha": "2026-10-06T20:50:06.896027"
+      },
+      {
+        "id": 25,
+        "evento_id": 22,
+        "campo": "estado",
+        "valor_anterior": "Cotizado",
+        "valor_nuevo": "Confirmado",
+        "usuario_app": "grupo_shalem_dayro_juan_jesus",
+        "fecha": "2026-10-06T20:50:06.906153"
+      }
+    ]
+  },
+  {
+    "metodo": "GET",
+    "plantilla": "/eventos/{evento_id}/inscripciones",
+    "ruta": "/eventos/22/inscripciones",
+    "parametros": null,
+    "cuerpo": null,
+    "status": 200,
+    "respuesta": [
+      {
+        "id": 278,
+        "evento_id": 22,
+        "asistente_id": 61,
+        "fecha_inscripcion": "2026-10-06T20:50:06.819360",
+        "hora_checkin": "2027-01-20T09:00:00"
+      }
+    ]
+  },
+  {
+    "metodo": "GET",
+    "plantilla": "/reportes/organigrama",
+    "ruta": "/reportes/organigrama",
+    "parametros": null,
+    "cuerpo": null,
+    "status": 200,
+    "respuesta": [
+      {
+        "id": 1,
+        "nombre": "Elena Suárez",
+        "cargo": "Directora General",
+        "area": "Dirección",
+        "jefe_id": null,
+        "nivel": 1,
+        "ruta_mando": "Elena Suárez",
+        "ruta_ids": [
+          1
+        ],
+        "a_cargo_directos": 2,
+        "total_a_cargo": 15
+      },
+      {
+        "id": 2,
+        "nombre": "Roberto Gómez",
+        "cargo": "Gerente de Operaciones",
+        "area": "Operaciones",
+        "jefe_id": 1,
+        "nivel": 2,
+        "ruta_mando": "Elena Suárez > Roberto Gómez",
+        "ruta_ids": [
+          1,
+          2
+        ],
+        "a_cargo_directos": 3,
+        "total_a_cargo": 10
+      },
+      {
+        "id": 4,
+        "nombre": "Mario Luna",
+        "cargo": "Jefe de Logística",
+        "area": "Logística",
+        "jefe_id": 2,
+        "nivel": 3,
+        "ruta_mando": "Elena Suárez > Roberto Gómez > Mario Luna",
+        "ruta_ids": [
+          1,
+          2,
+          4
+        ],
+        "a_cargo_directos": 3,
+        "total_a_cargo": 3
+      },
+      {
+        "id": 8,
+        "nombre": "Pedro Díaz",
+        "cargo": "Auxiliar de Montaje",
+        "area": "Logística",
+        "jefe_id": 4,
+        "nivel": 4,
+        "ruta_mando": "Elena Suárez > Roberto Gómez > Mario Luna > Pedro Díaz",
+        "ruta_ids": [
+          1,
+          2,
+          4,
+          8
+        ],
+        "a_cargo_directos": 0,
+        "total_a_cargo": 0
+      },
+      {
+        "id": 9,
+        "nombre": "Sara Peña",
+        "cargo": "Auxiliar de Limpieza",
+        "area": "Logística",
+        "jefe_id": 4,
+        "nivel": 4,
+        "ruta_mando": "Elena Suárez > Roberto Gómez > Mario Luna > Sara Peña",
+        "ruta_ids": [
+          1,
+          2,
+          4,
+          9
+        ],
+        "a_cargo_directos": 0,
+        "total_a_cargo": 0
+      },
+      {
+        "id": 16,
+        "nombre": "Apoyo de documentación",
+        "cargo": "Auxiliar",
+        "area": "Logística",
+        "jefe_id": 4,
+        "nivel": 4,
+        "ruta_mando": "Elena Suárez > Roberto Gómez > Mario Luna > Apoyo de documentación",
+        "ruta_ids": [
+          1,
+          2,
+          4,
+          16
+        ],
+        "a_cargo_directos": 0,
+        "total_a_cargo": 0
+      },
+      {
+        "id": 5,
+        "nombre": "Carmen Ruiz",
+        "cargo": "Jefa de Alimentos",
+        "area": "Alimentos y Bebidas",
+        "jefe_id": 2,
+        "nivel": 3,
+        "ruta_mando": "Elena Suárez > Roberto Gómez > Carmen Ruiz",
+        "ruta_ids": [
+          1,
+          2,
+          5
+        ],
+        "a_cargo_directos": 2,
+        "total_a_cargo": 2
+      },
+      {
+        "id": 10,
+        "nombre": "Juan Melo",
+        "cargo": "Cocinero",
+        "area": "Alimentos y Bebidas",
+        "jefe_id": 5,
+        "nivel": 4,
+        "ruta_mando": "Elena Suárez > Roberto Gómez > Carmen Ruiz > Juan Melo",
+        "ruta_ids": [
+          1,
+          2,
+          5,
+          10
+        ],
+        "a_cargo_directos": 0,
+        "total_a_cargo": 0
+      },
+      {
+        "id": 11,
+        "nombre": "Rosa Gil",
+        "cargo": "Mesera",
+        "area": "Alimentos y Bebidas",
+        "jefe_id": 5,
+        "nivel": 4,
+        "ruta_mando": "Elena Suárez > Roberto Gómez > Carmen Ruiz > Rosa Gil",
+        "ruta_ids": [
+          1,
+          2,
+          5,
+          11
+        ],
+        "a_cargo_directos": 0,
+        "total_a_cargo": 0
+      },
+      {
+        "id": 6,
+        "nombre": "Luis Toro",
+        "cargo": "Jefe Audiovisual",
+        "area": "Audiovisuales",
+        "jefe_id": 2,
+        "nivel": 3,
+        "ruta_mando": "Elena Suárez > Roberto Gómez > Luis Toro",
+        "ruta_ids": [
+          1,
+          2,
+          6
+        ],
+        "a_cargo_directos": 2,
+        "total_a_cargo": 2
+      },
+      {
+        "id": 12,
+        "nombre": "Diego Paz",
+        "cargo": "Técnico de Sonido",
+        "area": "Audiovisuales",
+        "jefe_id": 6,
+        "nivel": 4,
+        "ruta_mando": "Elena Suárez > Roberto Gómez > Luis Toro > Diego Paz",
+        "ruta_ids": [
+          1,
+          2,
+          6,
+          12
+        ],
+        "a_cargo_directos": 0,
+        "total_a_cargo": 0
+      },
+      {
+        "id": 13,
+        "nombre": "Hugo Rey",
+        "cargo": "Técnico de Video",
+        "area": "Audiovisuales",
+        "jefe_id": 6,
+        "nivel": 4,
+        "ruta_mando": "Elena Suárez > Roberto Gómez > Luis Toro > Hugo Rey",
+        "ruta_ids": [
+          1,
+          2,
+          6,
+          13
+        ],
+        "a_cargo_directos": 0,
+        "total_a_cargo": 0
+      },
+      {
+        "id": 3,
+        "nombre": "Diana Castro",
+        "cargo": "Gerente Comercial",
+        "area": "Comercial",
+        "jefe_id": 1,
+        "nivel": 2,
+        "ruta_mando": "Elena Suárez > Diana Castro",
+        "ruta_ids": [
+          1,
+          3
+        ],
+        "a_cargo_directos": 1,
+        "total_a_cargo": 3
+      },
+      {
+        "id": 7,
+        "nombre": "Ana Vega",
+        "cargo": "Jefa de Ventas",
+        "area": "Comercial",
+        "jefe_id": 3,
+        "nivel": 3,
+        "ruta_mando": "Elena Suárez > Diana Castro > Ana Vega",
+        "ruta_ids": [
+          1,
+          3,
+          7
+        ],
+        "a_cargo_directos": 2,
+        "total_a_cargo": 2
+      },
+      {
+        "id": 14,
+        "nombre": "Mía Cruz",
+        "cargo": "Asesora Comercial",
+        "area": "Comercial",
+        "jefe_id": 7,
+        "nivel": 4,
+        "ruta_mando": "Elena Suárez > Diana Castro > Ana Vega > Mía Cruz",
+        "ruta_ids": [
+          1,
+          3,
+          7,
+          14
+        ],
+        "a_cargo_directos": 0,
+        "total_a_cargo": 0
+      },
+      {
+        "id": 15,
+        "nombre": "Leo Ríos",
+        "cargo": "Asesor Comercial",
+        "area": "Comercial",
+        "jefe_id": 7,
+        "nivel": 4,
+        "ruta_mando": "Elena Suárez > Diana Castro > Ana Vega > Leo Ríos",
+        "ruta_ids": [
+          1,
+          3,
+          7,
+          15
+        ],
+        "a_cargo_directos": 0,
+        "total_a_cargo": 0
+      }
+    ]
+  },
+  {
+    "metodo": "GET",
+    "plantilla": "/reportes/escalamiento/{staff_id}",
+    "ruta": "/reportes/escalamiento/12",
+    "parametros": null,
+    "cuerpo": null,
+    "status": 200,
+    "respuesta": [
+      {
+        "orden": 1,
+        "id": 6,
+        "nombre": "Luis Toro",
+        "cargo": "Jefe Audiovisual",
+        "area": "Audiovisuales"
+      },
+      {
+        "orden": 2,
+        "id": 2,
+        "nombre": "Roberto Gómez",
+        "cargo": "Gerente de Operaciones",
+        "area": "Operaciones"
+      },
+      {
+        "orden": 3,
+        "id": 1,
+        "nombre": "Elena Suárez",
+        "cargo": "Directora General",
+        "area": "Dirección"
+      }
+    ]
+  },
+  {
+    "metodo": "GET",
+    "plantilla": "/reportes/ranking-clientes",
+    "ruta": "/reportes/ranking-clientes",
+    "parametros": null,
+    "cuerpo": null,
+    "status": 200,
+    "respuesta": [
+      {
+        "cliente_id": 2,
+        "nombre": "Innova Market",
+        "eventos_no_cancelados": 2,
+        "facturacion": "106410000.00",
+        "ranking": 1,
+        "participacion_pct": "59.46",
+        "acumulado_pct": "59.46",
+        "segmento_pareto": "A (80%)"
+      },
+      {
+        "cliente_id": 4,
+        "nombre": "Salud Vital EPS",
+        "eventos_no_cancelados": 2,
+        "facturacion": "44250000.00",
+        "ranking": 2,
+        "participacion_pct": "24.72",
+        "acumulado_pct": "84.18",
+        "segmento_pareto": "A (80%)"
+      },
+      {
+        "cliente_id": 1,
+        "nombre": "Tech Corp S.A.",
+        "eventos_no_cancelados": 12,
+        "facturacion": "20010000.00",
+        "ranking": 3,
+        "participacion_pct": "11.18",
+        "acumulado_pct": "95.36",
+        "segmento_pareto": "B (resto)"
+      },
+      {
+        "cliente_id": 6,
+        "nombre": "Lucía Fernández",
+        "eventos_no_cancelados": 2,
+        "facturacion": "5505000.00",
+        "ranking": 4,
+        "participacion_pct": "3.08",
+        "acumulado_pct": "98.44",
+        "segmento_pareto": "B (resto)"
+      },
+      {
+        "cliente_id": 3,
+        "nombre": "Fundación Educar",
+        "eventos_no_cancelados": 1,
+        "facturacion": "2797500.00",
+        "ranking": 5,
+        "participacion_pct": "1.56",
+        "acumulado_pct": "100.00",
+        "segmento_pareto": "B (resto)"
+      },
+      {
+        "cliente_id": 5,
+        "nombre": "Carlos Mendoza",
+        "eventos_no_cancelados": 0,
+        "facturacion": "0",
+        "ranking": 6,
+        "participacion_pct": "0.00",
+        "acumulado_pct": "100.00",
+        "segmento_pareto": "B (resto)"
+      },
+      {
+        "cliente_id": 7,
+        "nombre": "Andrés Vargas",
+        "eventos_no_cancelados": 0,
+        "facturacion": "0",
+        "ranking": 6,
+        "participacion_pct": "0.00",
+        "acumulado_pct": "100.00",
+        "segmento_pareto": "B (resto)"
+      },
+      {
+        "cliente_id": 8,
+        "nombre": "Marta Rojas",
+        "eventos_no_cancelados": 0,
+        "facturacion": "0",
+        "ranking": 6,
+        "participacion_pct": "0.00",
+        "acumulado_pct": "100.00",
+        "segmento_pareto": "B (resto)"
+      },
+      {
+        "cliente_id": 9,
+        "nombre": "Cliente de documentación",
+        "eventos_no_cancelados": 0,
+        "facturacion": "0",
+        "ranking": 6,
+        "participacion_pct": "0.00",
+        "acumulado_pct": "100.00",
+        "segmento_pareto": "B (resto)"
+      }
+    ]
+  },
+  {
+    "metodo": "GET",
+    "plantilla": "/reportes/ocupacion-salones",
+    "ruta": "/reportes/ocupacion-salones",
+    "parametros": null,
+    "cuerpo": null,
+    "status": 200,
+    "respuesta": [
+      {
+        "salon_id": 1,
+        "salon": "Salón Orquídea",
+        "evento_id": 3,
+        "evento": "Club de Lectura Páramo",
+        "estado": "Finalizado",
+        "inicio": "2026-09-20T15:00:00",
+        "fin": "2026-09-21T01:00:00",
+        "num_evento_salon": 1,
+        "evento_anterior_id": null,
+        "evento_anterior": null,
+        "dias_libres": null,
+        "horas_reservadas": "10.00",
+        "horas_acumuladas": "10.00"
+      },
+      {
+        "salon_id": 1,
+        "salon": "Salón Orquídea",
+        "evento_id": 6,
+        "evento": "Encuentro Interno Nexo",
+        "estado": "Finalizado",
+        "inicio": "2026-09-30T14:00:00",
+        "fin": "2026-09-30T16:00:00",
+        "num_evento_salon": 2,
+        "evento_anterior_id": 3,
+        "evento_anterior": "Club de Lectura Páramo",
+        "dias_libres": "9.54",
+        "horas_reservadas": "2.00",
+        "horas_acumuladas": "12.00"
+      },
+      {
+        "salon_id": 2,
+        "salon": "Salón Heliconia",
+        "evento_id": 20,
+        "evento": "Prueba A4 permitido 95792b",
+        "estado": "Finalizado",
+        "inicio": "2026-06-27T09:00:00",
+        "fin": "2026-06-27T11:00:00",
+        "num_evento_salon": 1,
+        "evento_anterior_id": null,
+        "evento_anterior": null,
+        "dias_libres": null,
+        "horas_reservadas": "2.00",
+        "horas_acumuladas": "2.00"
+      },
+      {
+        "salon_id": 2,
+        "salon": "Salón Heliconia",
+        "evento_id": 19,
+        "evento": "Prueba A3 bloqueado ca86eb",
+        "estado": "Finalizado",
+        "inicio": "2026-06-28T09:00:00",
+        "fin": "2026-06-28T11:00:00",
+        "num_evento_salon": 2,
+        "evento_anterior_id": 20,
+        "evento_anterior": "Prueba A4 permitido 95792b",
+        "dias_libres": "0.92",
+        "horas_reservadas": "2.00",
+        "horas_acumuladas": "4.00"
+      },
+      {
+        "salon_id": 2,
+        "salon": "Salón Heliconia",
+        "evento_id": 5,
+        "evento": "Simposio de Educación",
+        "estado": "Finalizado",
+        "inicio": "2026-09-28T08:00:00",
+        "fin": "2026-09-28T11:00:00",
+        "num_evento_salon": 3,
+        "evento_anterior_id": 19,
+        "evento_anterior": "Prueba A3 bloqueado ca86eb",
+        "dias_libres": "91.88",
+        "horas_reservadas": "3.00",
+        "horas_acumuladas": "7.00"
+      },
+      {
+        "salon_id": 2,
+        "salon": "Salón Heliconia",
+        "evento_id": 13,
+        "evento": "Prueba A1 permitido 3c023b",
+        "estado": "Cotizado",
+        "inicio": "2027-01-14T09:00:00",
+        "fin": "2027-01-14T11:00:00",
+        "num_evento_salon": 4,
+        "evento_anterior_id": 5,
+        "evento_anterior": "Simposio de Educación",
+        "dias_libres": "107.92",
+        "horas_reservadas": "2.00",
+        "horas_acumuladas": "9.00"
+      },
+      {
+        "salon_id": 2,
+        "salon": "Salón Heliconia",
+        "evento_id": 14,
+        "evento": "Prueba A1 bloqueado 300f95",
+        "estado": "Cotizado",
+        "inicio": "2027-01-15T09:00:00",
+        "fin": "2027-01-15T11:00:00",
+        "num_evento_salon": 5,
+        "evento_anterior_id": 13,
+        "evento_anterior": "Prueba A1 permitido 3c023b",
+        "dias_libres": "0.92",
+        "horas_reservadas": "2.00",
+        "horas_acumuladas": "11.00"
+      },
+      {
+        "salon_id": 2,
+        "salon": "Salón Heliconia",
+        "evento_id": 16,
+        "evento": "Prueba A2 permitido e43c59",
+        "estado": "Cotizado",
+        "inicio": "2027-01-16T09:00:00",
+        "fin": "2027-01-16T11:00:00",
+        "num_evento_salon": 6,
+        "evento_anterior_id": 14,
+        "evento_anterior": "Prueba A1 bloqueado 300f95",
+        "dias_libres": "0.92",
+        "horas_reservadas": "2.00",
+        "horas_acumuladas": "13.00"
+      },
+      {
+        "salon_id": 2,
+        "salon": "Salón Heliconia",
+        "evento_id": 17,
+        "evento": "Prueba A2 bloqueado 9d4fc9",
+        "estado": "Cotizado",
+        "inicio": "2027-01-17T09:00:00",
+        "fin": "2027-01-17T11:00:00",
+        "num_evento_salon": 7,
+        "evento_anterior_id": 16,
+        "evento_anterior": "Prueba A2 permitido e43c59",
+        "dias_libres": "0.92",
+        "horas_reservadas": "2.00",
+        "horas_acumuladas": "15.00"
+      },
+      {
+        "salon_id": 2,
+        "salon": "Salón Heliconia",
+        "evento_id": 18,
+        "evento": "Prueba A3 permitido e56c62",
+        "estado": "Cotizado",
+        "inicio": "2027-01-18T09:00:00",
+        "fin": "2027-01-18T10:30:00",
+        "num_evento_salon": 8,
+        "evento_anterior_id": 17,
+        "evento_anterior": "Prueba A2 bloqueado 9d4fc9",
+        "dias_libres": "0.92",
+        "horas_reservadas": "1.50",
+        "horas_acumuladas": "16.50"
+      },
+      {
+        "salon_id": 2,
+        "salon": "Salón Heliconia",
+        "evento_id": 21,
+        "evento": "Prueba A4 bloqueado 9096e4",
+        "estado": "Confirmado",
+        "inicio": "2027-01-19T09:00:00",
+        "fin": "2027-01-19T11:00:00",
+        "num_evento_salon": 9,
+        "evento_anterior_id": 18,
+        "evento_anterior": "Prueba A3 permitido e56c62",
+        "dias_libres": "0.94",
+        "horas_reservadas": "2.00",
+        "horas_acumuladas": "18.50"
+      },
+      {
+        "salon_id": 2,
+        "salon": "Salón Heliconia",
+        "evento_id": 22,
+        "evento": "Prueba A1 permitido 2fd41e",
+        "estado": "Confirmado",
+        "inicio": "2027-01-20T09:00:00",
+        "fin": "2027-01-20T11:30:00",
+        "num_evento_salon": 10,
+        "evento_anterior_id": 21,
+        "evento_anterior": "Prueba A4 bloqueado 9096e4",
+        "dias_libres": "0.92",
+        "horas_reservadas": "2.50",
+        "horas_acumuladas": "21.00"
+      },
+      {
+        "salon_id": 3,
+        "salon": "Salón Guayacán",
+        "evento_id": 1,
+        "evento": "Jornada Científica Solvida",
+        "estado": "Finalizado",
+        "inicio": "2026-09-08T08:00:00",
+        "fin": "2026-09-08T12:00:00",
+        "num_evento_salon": 1,
+        "evento_anterior_id": null,
+        "evento_anterior": null,
+        "dias_libres": null,
+        "horas_reservadas": "4.00",
+        "horas_acumuladas": "4.00"
+      },
+      {
+        "salon_id": 3,
+        "salon": "Salón Guayacán",
+        "evento_id": 11,
+        "evento": "Taller de Economía Circular",
+        "estado": "Cotizado",
+        "inicio": "2026-12-02T14:00:00",
+        "fin": "2026-12-02T17:00:00",
+        "num_evento_salon": 2,
+        "evento_anterior_id": 1,
+        "evento_anterior": "Jornada Científica Solvida",
+        "dias_libres": "85.08",
+        "horas_reservadas": "3.00",
+        "horas_acumuladas": "7.00"
+      },
+      {
+        "salon_id": 4,
+        "salon": "Salón Ceiba",
+        "evento_id": 2,
+        "evento": "Capacitación en Ciberseguridad",
+        "estado": "Finalizado",
+        "inicio": "2026-09-15T09:00:00",
+        "fin": "2026-09-15T14:00:00",
+        "num_evento_salon": 1,
+        "evento_anterior_id": null,
+        "evento_anterior": null,
+        "dias_libres": null,
+        "horas_reservadas": "5.00",
+        "horas_acumuladas": "5.00"
+      },
+      {
+        "salon_id": 4,
+        "salon": "Salón Ceiba",
+        "evento_id": 10,
+        "evento": "Seminario Corporativo Q4",
+        "estado": "Confirmado",
+        "inicio": "2026-11-20T09:00:00",
+        "fin": "2026-11-20T13:00:00",
+        "num_evento_salon": 2,
+        "evento_anterior_id": 2,
+        "evento_anterior": "Capacitación en Ciberseguridad",
+        "dias_libres": "65.79",
+        "horas_reservadas": "4.00",
+        "horas_acumuladas": "9.00"
+      },
+      {
+        "salon_id": 5,
+        "salon": "Gran Salón Cóndor",
+        "evento_id": 4,
+        "evento": "Feria de Innovación Nexo",
+        "estado": "Finalizado",
+        "inicio": "2026-09-25T09:00:00",
+        "fin": "2026-09-25T18:00:00",
+        "num_evento_salon": 1,
+        "evento_anterior_id": null,
+        "evento_anterior": null,
+        "dias_libres": null,
+        "horas_reservadas": "9.00",
+        "horas_acumuladas": "9.00"
+      },
+      {
+        "salon_id": 5,
+        "salon": "Gran Salón Cóndor",
+        "evento_id": 9,
+        "evento": "Congreso Nacional de Salud",
+        "estado": "Confirmado",
+        "inicio": "2026-11-18T08:00:00",
+        "fin": "2026-11-18T17:00:00",
+        "num_evento_salon": 2,
+        "evento_anterior_id": 4,
+        "evento_anterior": "Feria de Innovación Nexo",
+        "dias_libres": "53.58",
+        "horas_reservadas": "9.00",
+        "horas_acumuladas": "18.00"
+      },
+      {
+        "salon_id": 6,
+        "salon": "Auditorio Principal",
+        "evento_id": 12,
+        "evento": "Feria Navideña",
+        "estado": "Cotizado",
+        "inicio": "2026-12-15T10:00:00",
+        "fin": "2026-12-15T20:00:00",
+        "num_evento_salon": 1,
+        "evento_anterior_id": null,
+        "evento_anterior": null,
+        "dias_libres": null,
+        "horas_reservadas": "10.00",
+        "horas_acumuladas": "10.00"
+      }
+    ]
+  },
+  {
+    "metodo": "GET",
+    "plantilla": "/",
+    "ruta": "/",
+    "parametros": null,
+    "cuerpo": null,
+    "status": 200,
+    "respuesta": {
+      "servicio": "NexoEventos",
+      "docs": "/docs"
+    }
+  }
+]

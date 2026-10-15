@@ -1,0 +1,1632 @@
+{
+  "fecha": "2026-10-06T20:49:35.229453-05:00",
+  "api": "http://localhost:18000",
+  "usuario": "grupo_shalem_dayro_juan_jesus",
+  "B": {
+    "conteos_iniciales": {
+      "clientes": 8,
+      "staff": 15,
+      "eventos": 12,
+      "asistentes": 60,
+      "salones": 6,
+      "servicios": 9
+    },
+    "B1": {
+      "coincide": true,
+      "manual": [
+        {
+          "id": 1,
+          "nivel": 1,
+          "ruta_ids": [
+            1
+          ],
+          "ruta_mando": "Elena Suárez",
+          "a_cargo_directos": 2,
+          "total_a_cargo": 14
+        },
+        {
+          "id": 2,
+          "nivel": 2,
+          "ruta_ids": [
+            1,
+            2
+          ],
+          "ruta_mando": "Elena Suárez > Roberto Gómez",
+          "a_cargo_directos": 3,
+          "total_a_cargo": 9
+        },
+        {
+          "id": 4,
+          "nivel": 3,
+          "ruta_ids": [
+            1,
+            2,
+            4
+          ],
+          "ruta_mando": "Elena Suárez > Roberto Gómez > Mario Luna",
+          "a_cargo_directos": 2,
+          "total_a_cargo": 2
+        },
+        {
+          "id": 8,
+          "nivel": 4,
+          "ruta_ids": [
+            1,
+            2,
+            4,
+            8
+          ],
+          "ruta_mando": "Elena Suárez > Roberto Gómez > Mario Luna > Pedro Díaz",
+          "a_cargo_directos": 0,
+          "total_a_cargo": 0
+        },
+        {
+          "id": 9,
+          "nivel": 4,
+          "ruta_ids": [
+            1,
+            2,
+            4,
+            9
+          ],
+          "ruta_mando": "Elena Suárez > Roberto Gómez > Mario Luna > Sara Peña",
+          "a_cargo_directos": 0,
+          "total_a_cargo": 0
+        },
+        {
+          "id": 5,
+          "nivel": 3,
+          "ruta_ids": [
+            1,
+            2,
+            5
+          ],
+          "ruta_mando": "Elena Suárez > Roberto Gómez > Carmen Ruiz",
+          "a_cargo_directos": 2,
+          "total_a_cargo": 2
+        },
+        {
+          "id": 10,
+          "nivel": 4,
+          "ruta_ids": [
+            1,
+            2,
+            5,
+            10
+          ],
+          "ruta_mando": "Elena Suárez > Roberto Gómez > Carmen Ruiz > Juan Melo",
+          "a_cargo_directos": 0,
+          "total_a_cargo": 0
+        },
+        {
+          "id": 11,
+          "nivel": 4,
+          "ruta_ids": [
+            1,
+            2,
+            5,
+            11
+          ],
+          "ruta_mando": "Elena Suárez > Roberto Gómez > Carmen Ruiz > Rosa Gil",
+          "a_cargo_directos": 0,
+          "total_a_cargo": 0
+        },
+        {
+          "id": 6,
+          "nivel": 3,
+          "ruta_ids": [
+            1,
+            2,
+            6
+          ],
+          "ruta_mando": "Elena Suárez > Roberto Gómez > Luis Toro",
+          "a_cargo_directos": 2,
+          "total_a_cargo": 2
+        },
+        {
+          "id": 12,
+          "nivel": 4,
+          "ruta_ids": [
+            1,
+            2,
+            6,
+            12
+          ],
+          "ruta_mando": "Elena Suárez > Roberto Gómez > Luis Toro > Diego Paz",
+          "a_cargo_directos": 0,
+          "total_a_cargo": 0
+        },
+        {
+          "id": 13,
+          "nivel": 4,
+          "ruta_ids": [
+            1,
+            2,
+            6,
+            13
+          ],
+          "ruta_mando": "Elena Suárez > Roberto Gómez > Luis Toro > Hugo Rey",
+          "a_cargo_directos": 0,
+          "total_a_cargo": 0
+        },
+        {
+          "id": 3,
+          "nivel": 2,
+          "ruta_ids": [
+            1,
+            3
+          ],
+          "ruta_mando": "Elena Suárez > Diana Castro",
+          "a_cargo_directos": 1,
+          "total_a_cargo": 3
+        },
+        {
+          "id": 7,
+          "nivel": 3,
+          "ruta_ids": [
+            1,
+            3,
+            7
+          ],
+          "ruta_mando": "Elena Suárez > Diana Castro > Ana Vega",
+          "a_cargo_directos": 2,
+          "total_a_cargo": 2
+        },
+        {
+          "id": 14,
+          "nivel": 4,
+          "ruta_ids": [
+            1,
+            3,
+            7,
+            14
+          ],
+          "ruta_mando": "Elena Suárez > Diana Castro > Ana Vega > Mía Cruz",
+          "a_cargo_directos": 0,
+          "total_a_cargo": 0
+        },
+        {
+          "id": 15,
+          "nivel": 4,
+          "ruta_ids": [
+            1,
+            3,
+            7,
+            15
+          ],
+          "ruta_mando": "Elena Suárez > Diana Castro > Ana Vega > Leo Ríos",
+          "a_cargo_directos": 0,
+          "total_a_cargo": 0
+        }
+      ],
+      "plataforma": [
+        {
+          "id": 1,
+          "nombre": "Elena Suárez",
+          "cargo": "Directora General",
+          "area": "Dirección",
+          "jefe_id": null,
+          "nivel": 1,
+          "ruta_mando": "Elena Suárez",
+          "ruta_ids": [
+            1
+          ],
+          "a_cargo_directos": 2,
+          "total_a_cargo": 14
+        },
+        {
+          "id": 2,
+          "nombre": "Roberto Gómez",
+          "cargo": "Gerente de Operaciones",
+          "area": "Operaciones",
+          "jefe_id": 1,
+          "nivel": 2,
+          "ruta_mando": "Elena Suárez > Roberto Gómez",
+          "ruta_ids": [
+            1,
+            2
+          ],
+          "a_cargo_directos": 3,
+          "total_a_cargo": 9
+        },
+        {
+          "id": 4,
+          "nombre": "Mario Luna",
+          "cargo": "Jefe de Logística",
+          "area": "Logística",
+          "jefe_id": 2,
+          "nivel": 3,
+          "ruta_mando": "Elena Suárez > Roberto Gómez > Mario Luna",
+          "ruta_ids": [
+            1,
+            2,
+            4
+          ],
+          "a_cargo_directos": 2,
+          "total_a_cargo": 2
+        },
+        {
+          "id": 8,
+          "nombre": "Pedro Díaz",
+          "cargo": "Auxiliar de Montaje",
+          "area": "Logística",
+          "jefe_id": 4,
+          "nivel": 4,
+          "ruta_mando": "Elena Suárez > Roberto Gómez > Mario Luna > Pedro Díaz",
+          "ruta_ids": [
+            1,
+            2,
+            4,
+            8
+          ],
+          "a_cargo_directos": 0,
+          "total_a_cargo": 0
+        },
+        {
+          "id": 9,
+          "nombre": "Sara Peña",
+          "cargo": "Auxiliar de Limpieza",
+          "area": "Logística",
+          "jefe_id": 4,
+          "nivel": 4,
+          "ruta_mando": "Elena Suárez > Roberto Gómez > Mario Luna > Sara Peña",
+          "ruta_ids": [
+            1,
+            2,
+            4,
+            9
+          ],
+          "a_cargo_directos": 0,
+          "total_a_cargo": 0
+        },
+        {
+          "id": 5,
+          "nombre": "Carmen Ruiz",
+          "cargo": "Jefa de Alimentos",
+          "area": "Alimentos y Bebidas",
+          "jefe_id": 2,
+          "nivel": 3,
+          "ruta_mando": "Elena Suárez > Roberto Gómez > Carmen Ruiz",
+          "ruta_ids": [
+            1,
+            2,
+            5
+          ],
+          "a_cargo_directos": 2,
+          "total_a_cargo": 2
+        },
+        {
+          "id": 10,
+          "nombre": "Juan Melo",
+          "cargo": "Cocinero",
+          "area": "Alimentos y Bebidas",
+          "jefe_id": 5,
+          "nivel": 4,
+          "ruta_mando": "Elena Suárez > Roberto Gómez > Carmen Ruiz > Juan Melo",
+          "ruta_ids": [
+            1,
+            2,
+            5,
+            10
+          ],
+          "a_cargo_directos": 0,
+          "total_a_cargo": 0
+        },
+        {
+          "id": 11,
+          "nombre": "Rosa Gil",
+          "cargo": "Mesera",
+          "area": "Alimentos y Bebidas",
+          "jefe_id": 5,
+          "nivel": 4,
+          "ruta_mando": "Elena Suárez > Roberto Gómez > Carmen Ruiz > Rosa Gil",
+          "ruta_ids": [
+            1,
+            2,
+            5,
+            11
+          ],
+          "a_cargo_directos": 0,
+          "total_a_cargo": 0
+        },
+        {
+          "id": 6,
+          "nombre": "Luis Toro",
+          "cargo": "Jefe Audiovisual",
+          "area": "Audiovisuales",
+          "jefe_id": 2,
+          "nivel": 3,
+          "ruta_mando": "Elena Suárez > Roberto Gómez > Luis Toro",
+          "ruta_ids": [
+            1,
+            2,
+            6
+          ],
+          "a_cargo_directos": 2,
+          "total_a_cargo": 2
+        },
+        {
+          "id": 12,
+          "nombre": "Diego Paz",
+          "cargo": "Técnico de Sonido",
+          "area": "Audiovisuales",
+          "jefe_id": 6,
+          "nivel": 4,
+          "ruta_mando": "Elena Suárez > Roberto Gómez > Luis Toro > Diego Paz",
+          "ruta_ids": [
+            1,
+            2,
+            6,
+            12
+          ],
+          "a_cargo_directos": 0,
+          "total_a_cargo": 0
+        },
+        {
+          "id": 13,
+          "nombre": "Hugo Rey",
+          "cargo": "Técnico de Video",
+          "area": "Audiovisuales",
+          "jefe_id": 6,
+          "nivel": 4,
+          "ruta_mando": "Elena Suárez > Roberto Gómez > Luis Toro > Hugo Rey",
+          "ruta_ids": [
+            1,
+            2,
+            6,
+            13
+          ],
+          "a_cargo_directos": 0,
+          "total_a_cargo": 0
+        },
+        {
+          "id": 3,
+          "nombre": "Diana Castro",
+          "cargo": "Gerente Comercial",
+          "area": "Comercial",
+          "jefe_id": 1,
+          "nivel": 2,
+          "ruta_mando": "Elena Suárez > Diana Castro",
+          "ruta_ids": [
+            1,
+            3
+          ],
+          "a_cargo_directos": 1,
+          "total_a_cargo": 3
+        },
+        {
+          "id": 7,
+          "nombre": "Ana Vega",
+          "cargo": "Jefa de Ventas",
+          "area": "Comercial",
+          "jefe_id": 3,
+          "nivel": 3,
+          "ruta_mando": "Elena Suárez > Diana Castro > Ana Vega",
+          "ruta_ids": [
+            1,
+            3,
+            7
+          ],
+          "a_cargo_directos": 2,
+          "total_a_cargo": 2
+        },
+        {
+          "id": 14,
+          "nombre": "Mía Cruz",
+          "cargo": "Asesora Comercial",
+          "area": "Comercial",
+          "jefe_id": 7,
+          "nivel": 4,
+          "ruta_mando": "Elena Suárez > Diana Castro > Ana Vega > Mía Cruz",
+          "ruta_ids": [
+            1,
+            3,
+            7,
+            14
+          ],
+          "a_cargo_directos": 0,
+          "total_a_cargo": 0
+        },
+        {
+          "id": 15,
+          "nombre": "Leo Ríos",
+          "cargo": "Asesor Comercial",
+          "area": "Comercial",
+          "jefe_id": 7,
+          "nivel": 4,
+          "ruta_mando": "Elena Suárez > Diana Castro > Ana Vega > Leo Ríos",
+          "ruta_ids": [
+            1,
+            3,
+            7,
+            15
+          ],
+          "a_cargo_directos": 0,
+          "total_a_cargo": 0
+        }
+      ]
+    },
+    "B2": {
+      "coincide": true,
+      "comparaciones": [
+        {
+          "empleado_id": 1,
+          "empleado": "Elena Suárez",
+          "manual": [],
+          "plataforma": []
+        },
+        {
+          "empleado_id": 2,
+          "empleado": "Roberto Gómez",
+          "manual": [
+            1
+          ],
+          "plataforma": [
+            {
+              "orden": 1,
+              "id": 1,
+              "nombre": "Elena Suárez",
+              "cargo": "Directora General",
+              "area": "Dirección"
+            }
+          ]
+        },
+        {
+          "empleado_id": 3,
+          "empleado": "Diana Castro",
+          "manual": [
+            1
+          ],
+          "plataforma": [
+            {
+              "orden": 1,
+              "id": 1,
+              "nombre": "Elena Suárez",
+              "cargo": "Directora General",
+              "area": "Dirección"
+            }
+          ]
+        },
+        {
+          "empleado_id": 4,
+          "empleado": "Mario Luna",
+          "manual": [
+            2,
+            1
+          ],
+          "plataforma": [
+            {
+              "orden": 1,
+              "id": 2,
+              "nombre": "Roberto Gómez",
+              "cargo": "Gerente de Operaciones",
+              "area": "Operaciones"
+            },
+            {
+              "orden": 2,
+              "id": 1,
+              "nombre": "Elena Suárez",
+              "cargo": "Directora General",
+              "area": "Dirección"
+            }
+          ]
+        },
+        {
+          "empleado_id": 5,
+          "empleado": "Carmen Ruiz",
+          "manual": [
+            2,
+            1
+          ],
+          "plataforma": [
+            {
+              "orden": 1,
+              "id": 2,
+              "nombre": "Roberto Gómez",
+              "cargo": "Gerente de Operaciones",
+              "area": "Operaciones"
+            },
+            {
+              "orden": 2,
+              "id": 1,
+              "nombre": "Elena Suárez",
+              "cargo": "Directora General",
+              "area": "Dirección"
+            }
+          ]
+        },
+        {
+          "empleado_id": 6,
+          "empleado": "Luis Toro",
+          "manual": [
+            2,
+            1
+          ],
+          "plataforma": [
+            {
+              "orden": 1,
+              "id": 2,
+              "nombre": "Roberto Gómez",
+              "cargo": "Gerente de Operaciones",
+              "area": "Operaciones"
+            },
+            {
+              "orden": 2,
+              "id": 1,
+              "nombre": "Elena Suárez",
+              "cargo": "Directora General",
+              "area": "Dirección"
+            }
+          ]
+        },
+        {
+          "empleado_id": 7,
+          "empleado": "Ana Vega",
+          "manual": [
+            3,
+            1
+          ],
+          "plataforma": [
+            {
+              "orden": 1,
+              "id": 3,
+              "nombre": "Diana Castro",
+              "cargo": "Gerente Comercial",
+              "area": "Comercial"
+            },
+            {
+              "orden": 2,
+              "id": 1,
+              "nombre": "Elena Suárez",
+              "cargo": "Directora General",
+              "area": "Dirección"
+            }
+          ]
+        },
+        {
+          "empleado_id": 8,
+          "empleado": "Pedro Díaz",
+          "manual": [
+            4,
+            2,
+            1
+          ],
+          "plataforma": [
+            {
+              "orden": 1,
+              "id": 4,
+              "nombre": "Mario Luna",
+              "cargo": "Jefe de Logística",
+              "area": "Logística"
+            },
+            {
+              "orden": 2,
+              "id": 2,
+              "nombre": "Roberto Gómez",
+              "cargo": "Gerente de Operaciones",
+              "area": "Operaciones"
+            },
+            {
+              "orden": 3,
+              "id": 1,
+              "nombre": "Elena Suárez",
+              "cargo": "Directora General",
+              "area": "Dirección"
+            }
+          ]
+        },
+        {
+          "empleado_id": 9,
+          "empleado": "Sara Peña",
+          "manual": [
+            4,
+            2,
+            1
+          ],
+          "plataforma": [
+            {
+              "orden": 1,
+              "id": 4,
+              "nombre": "Mario Luna",
+              "cargo": "Jefe de Logística",
+              "area": "Logística"
+            },
+            {
+              "orden": 2,
+              "id": 2,
+              "nombre": "Roberto Gómez",
+              "cargo": "Gerente de Operaciones",
+              "area": "Operaciones"
+            },
+            {
+              "orden": 3,
+              "id": 1,
+              "nombre": "Elena Suárez",
+              "cargo": "Directora General",
+              "area": "Dirección"
+            }
+          ]
+        },
+        {
+          "empleado_id": 10,
+          "empleado": "Juan Melo",
+          "manual": [
+            5,
+            2,
+            1
+          ],
+          "plataforma": [
+            {
+              "orden": 1,
+              "id": 5,
+              "nombre": "Carmen Ruiz",
+              "cargo": "Jefa de Alimentos",
+              "area": "Alimentos y Bebidas"
+            },
+            {
+              "orden": 2,
+              "id": 2,
+              "nombre": "Roberto Gómez",
+              "cargo": "Gerente de Operaciones",
+              "area": "Operaciones"
+            },
+            {
+              "orden": 3,
+              "id": 1,
+              "nombre": "Elena Suárez",
+              "cargo": "Directora General",
+              "area": "Dirección"
+            }
+          ]
+        },
+        {
+          "empleado_id": 11,
+          "empleado": "Rosa Gil",
+          "manual": [
+            5,
+            2,
+            1
+          ],
+          "plataforma": [
+            {
+              "orden": 1,
+              "id": 5,
+              "nombre": "Carmen Ruiz",
+              "cargo": "Jefa de Alimentos",
+              "area": "Alimentos y Bebidas"
+            },
+            {
+              "orden": 2,
+              "id": 2,
+              "nombre": "Roberto Gómez",
+              "cargo": "Gerente de Operaciones",
+              "area": "Operaciones"
+            },
+            {
+              "orden": 3,
+              "id": 1,
+              "nombre": "Elena Suárez",
+              "cargo": "Directora General",
+              "area": "Dirección"
+            }
+          ]
+        },
+        {
+          "empleado_id": 12,
+          "empleado": "Diego Paz",
+          "manual": [
+            6,
+            2,
+            1
+          ],
+          "plataforma": [
+            {
+              "orden": 1,
+              "id": 6,
+              "nombre": "Luis Toro",
+              "cargo": "Jefe Audiovisual",
+              "area": "Audiovisuales"
+            },
+            {
+              "orden": 2,
+              "id": 2,
+              "nombre": "Roberto Gómez",
+              "cargo": "Gerente de Operaciones",
+              "area": "Operaciones"
+            },
+            {
+              "orden": 3,
+              "id": 1,
+              "nombre": "Elena Suárez",
+              "cargo": "Directora General",
+              "area": "Dirección"
+            }
+          ]
+        },
+        {
+          "empleado_id": 13,
+          "empleado": "Hugo Rey",
+          "manual": [
+            6,
+            2,
+            1
+          ],
+          "plataforma": [
+            {
+              "orden": 1,
+              "id": 6,
+              "nombre": "Luis Toro",
+              "cargo": "Jefe Audiovisual",
+              "area": "Audiovisuales"
+            },
+            {
+              "orden": 2,
+              "id": 2,
+              "nombre": "Roberto Gómez",
+              "cargo": "Gerente de Operaciones",
+              "area": "Operaciones"
+            },
+            {
+              "orden": 3,
+              "id": 1,
+              "nombre": "Elena Suárez",
+              "cargo": "Directora General",
+              "area": "Dirección"
+            }
+          ]
+        },
+        {
+          "empleado_id": 14,
+          "empleado": "Mía Cruz",
+          "manual": [
+            7,
+            3,
+            1
+          ],
+          "plataforma": [
+            {
+              "orden": 1,
+              "id": 7,
+              "nombre": "Ana Vega",
+              "cargo": "Jefa de Ventas",
+              "area": "Comercial"
+            },
+            {
+              "orden": 2,
+              "id": 3,
+              "nombre": "Diana Castro",
+              "cargo": "Gerente Comercial",
+              "area": "Comercial"
+            },
+            {
+              "orden": 3,
+              "id": 1,
+              "nombre": "Elena Suárez",
+              "cargo": "Directora General",
+              "area": "Dirección"
+            }
+          ]
+        },
+        {
+          "empleado_id": 15,
+          "empleado": "Leo Ríos",
+          "manual": [
+            7,
+            3,
+            1
+          ],
+          "plataforma": [
+            {
+              "orden": 1,
+              "id": 7,
+              "nombre": "Ana Vega",
+              "cargo": "Jefa de Ventas",
+              "area": "Comercial"
+            },
+            {
+              "orden": 2,
+              "id": 3,
+              "nombre": "Diana Castro",
+              "cargo": "Gerente Comercial",
+              "area": "Comercial"
+            },
+            {
+              "orden": 3,
+              "id": 1,
+              "nombre": "Elena Suárez",
+              "cargo": "Directora General",
+              "area": "Dirección"
+            }
+          ]
+        }
+      ]
+    },
+    "B3": {
+      "coincide": true,
+      "total_general": "172887500.00",
+      "liquidaciones": [
+        {
+          "evento": "Jornada Científica Solvida",
+          "cliente_id": 1,
+          "horas": "4.0",
+          "salon": "2600000.000",
+          "servicios": "2540000.0000",
+          "total": "5140000.00"
+        },
+        {
+          "evento": "Capacitación en Ciberseguridad",
+          "cliente_id": 4,
+          "horas": "5.0",
+          "salon": "4000000.000",
+          "servicios": "4350000.0000",
+          "total": "8350000.00"
+        },
+        {
+          "evento": "Club de Lectura Páramo",
+          "cliente_id": 6,
+          "horas": "10.0",
+          "salon": "2500000.000",
+          "servicios": "370000.0000",
+          "total": "2870000.00"
+        },
+        {
+          "evento": "Feria de Innovación Nexo",
+          "cliente_id": 2,
+          "horas": "9.0",
+          "salon": "16200000.000",
+          "servicios": "20310000.0000",
+          "total": "36510000.00"
+        },
+        {
+          "evento": "Simposio de Educación",
+          "cliente_id": 3,
+          "horas": "3.0",
+          "salon": "960000.000",
+          "servicios": "1837500.0000",
+          "total": "2797500.00"
+        },
+        {
+          "evento": "Encuentro Interno Nexo",
+          "cliente_id": 1,
+          "horas": "2.0",
+          "salon": "500000.000",
+          "servicios": "450000.0000",
+          "total": "950000.00"
+        },
+        {
+          "evento": "Congreso Nacional de Salud",
+          "cliente_id": 4,
+          "horas": "9.0",
+          "salon": "16200000.000",
+          "servicios": "19700000.0000",
+          "total": "35900000.00"
+        },
+        {
+          "evento": "Seminario Corporativo Q4",
+          "cliente_id": 1,
+          "horas": "4.0",
+          "salon": "3200000.000",
+          "servicios": "4635000.0000",
+          "total": "7835000.00"
+        },
+        {
+          "evento": "Taller de Economía Circular",
+          "cliente_id": 6,
+          "horas": "3.0",
+          "salon": "1950000.000",
+          "servicios": "685000.0000",
+          "total": "2635000.00"
+        },
+        {
+          "evento": "Feria Navideña",
+          "cliente_id": 2,
+          "horas": "10.0",
+          "salon": "25000000.000",
+          "servicios": "44900000.0000",
+          "total": "69900000.00"
+        }
+      ],
+      "manual": [
+        {
+          "cliente_id": 2,
+          "nombre": "Innova Market",
+          "eventos_no_cancelados": 2,
+          "facturacion": "106410000.00",
+          "ranking": 1,
+          "participacion_pct": "61.55",
+          "acumulado_pct": "61.55",
+          "segmento_pareto": "A (80%)"
+        },
+        {
+          "cliente_id": 4,
+          "nombre": "Salud Vital EPS",
+          "eventos_no_cancelados": 2,
+          "facturacion": "44250000.00",
+          "ranking": 2,
+          "participacion_pct": "25.59",
+          "acumulado_pct": "87.14",
+          "segmento_pareto": "A (80%)"
+        },
+        {
+          "cliente_id": 1,
+          "nombre": "Tech Corp S.A.",
+          "eventos_no_cancelados": 3,
+          "facturacion": "13925000.00",
+          "ranking": 3,
+          "participacion_pct": "8.05",
+          "acumulado_pct": "95.20",
+          "segmento_pareto": "B (resto)"
+        },
+        {
+          "cliente_id": 6,
+          "nombre": "Lucía Fernández",
+          "eventos_no_cancelados": 2,
+          "facturacion": "5505000.00",
+          "ranking": 4,
+          "participacion_pct": "3.18",
+          "acumulado_pct": "98.38",
+          "segmento_pareto": "B (resto)"
+        },
+        {
+          "cliente_id": 3,
+          "nombre": "Fundación Educar",
+          "eventos_no_cancelados": 1,
+          "facturacion": "2797500.00",
+          "ranking": 5,
+          "participacion_pct": "1.62",
+          "acumulado_pct": "100.00",
+          "segmento_pareto": "B (resto)"
+        },
+        {
+          "cliente_id": 5,
+          "nombre": "Carlos Mendoza",
+          "eventos_no_cancelados": 0,
+          "facturacion": "0",
+          "ranking": 6,
+          "participacion_pct": "0.00",
+          "acumulado_pct": "100.00",
+          "segmento_pareto": "B (resto)"
+        },
+        {
+          "cliente_id": 7,
+          "nombre": "Andrés Vargas",
+          "eventos_no_cancelados": 0,
+          "facturacion": "0",
+          "ranking": 6,
+          "participacion_pct": "0.00",
+          "acumulado_pct": "100.00",
+          "segmento_pareto": "B (resto)"
+        },
+        {
+          "cliente_id": 8,
+          "nombre": "Marta Rojas",
+          "eventos_no_cancelados": 0,
+          "facturacion": "0",
+          "ranking": 6,
+          "participacion_pct": "0.00",
+          "acumulado_pct": "100.00",
+          "segmento_pareto": "B (resto)"
+        }
+      ],
+      "plataforma": [
+        {
+          "cliente_id": 2,
+          "nombre": "Innova Market",
+          "eventos_no_cancelados": 2,
+          "facturacion": "106410000.00",
+          "ranking": 1,
+          "participacion_pct": "61.55",
+          "acumulado_pct": "61.55",
+          "segmento_pareto": "A (80%)"
+        },
+        {
+          "cliente_id": 4,
+          "nombre": "Salud Vital EPS",
+          "eventos_no_cancelados": 2,
+          "facturacion": "44250000.00",
+          "ranking": 2,
+          "participacion_pct": "25.59",
+          "acumulado_pct": "87.14",
+          "segmento_pareto": "A (80%)"
+        },
+        {
+          "cliente_id": 1,
+          "nombre": "Tech Corp S.A.",
+          "eventos_no_cancelados": 3,
+          "facturacion": "13925000.00",
+          "ranking": 3,
+          "participacion_pct": "8.05",
+          "acumulado_pct": "95.20",
+          "segmento_pareto": "B (resto)"
+        },
+        {
+          "cliente_id": 6,
+          "nombre": "Lucía Fernández",
+          "eventos_no_cancelados": 2,
+          "facturacion": "5505000.00",
+          "ranking": 4,
+          "participacion_pct": "3.18",
+          "acumulado_pct": "98.38",
+          "segmento_pareto": "B (resto)"
+        },
+        {
+          "cliente_id": 3,
+          "nombre": "Fundación Educar",
+          "eventos_no_cancelados": 1,
+          "facturacion": "2797500.00",
+          "ranking": 5,
+          "participacion_pct": "1.62",
+          "acumulado_pct": "100.00",
+          "segmento_pareto": "B (resto)"
+        },
+        {
+          "cliente_id": 5,
+          "nombre": "Carlos Mendoza",
+          "eventos_no_cancelados": 0,
+          "facturacion": "0",
+          "ranking": 6,
+          "participacion_pct": "0.00",
+          "acumulado_pct": "100.00",
+          "segmento_pareto": "B (resto)"
+        },
+        {
+          "cliente_id": 7,
+          "nombre": "Andrés Vargas",
+          "eventos_no_cancelados": 0,
+          "facturacion": "0",
+          "ranking": 6,
+          "participacion_pct": "0.00",
+          "acumulado_pct": "100.00",
+          "segmento_pareto": "B (resto)"
+        },
+        {
+          "cliente_id": 8,
+          "nombre": "Marta Rojas",
+          "eventos_no_cancelados": 0,
+          "facturacion": "0",
+          "ranking": 6,
+          "participacion_pct": "0.00",
+          "acumulado_pct": "100.00",
+          "segmento_pareto": "B (resto)"
+        }
+      ]
+    },
+    "B4": {
+      "coincide": true,
+      "manual": [
+        {
+          "salon_id": 1,
+          "evento_id": 3,
+          "evento": "Club de Lectura Páramo",
+          "num_evento_salon": 1,
+          "evento_anterior_id": null,
+          "evento_anterior": null,
+          "dias_libres": null,
+          "horas_reservadas": "10.00",
+          "horas_acumuladas": "10.00"
+        },
+        {
+          "salon_id": 1,
+          "evento_id": 6,
+          "evento": "Encuentro Interno Nexo",
+          "num_evento_salon": 2,
+          "evento_anterior_id": 3,
+          "evento_anterior": "Club de Lectura Páramo",
+          "dias_libres": "9.54",
+          "horas_reservadas": "2.00",
+          "horas_acumuladas": "12.00"
+        },
+        {
+          "salon_id": 2,
+          "evento_id": 5,
+          "evento": "Simposio de Educación",
+          "num_evento_salon": 1,
+          "evento_anterior_id": null,
+          "evento_anterior": null,
+          "dias_libres": null,
+          "horas_reservadas": "3.00",
+          "horas_acumuladas": "3.00"
+        },
+        {
+          "salon_id": 3,
+          "evento_id": 1,
+          "evento": "Jornada Científica Solvida",
+          "num_evento_salon": 1,
+          "evento_anterior_id": null,
+          "evento_anterior": null,
+          "dias_libres": null,
+          "horas_reservadas": "4.00",
+          "horas_acumuladas": "4.00"
+        },
+        {
+          "salon_id": 3,
+          "evento_id": 11,
+          "evento": "Taller de Economía Circular",
+          "num_evento_salon": 2,
+          "evento_anterior_id": 1,
+          "evento_anterior": "Jornada Científica Solvida",
+          "dias_libres": "85.08",
+          "horas_reservadas": "3.00",
+          "horas_acumuladas": "7.00"
+        },
+        {
+          "salon_id": 4,
+          "evento_id": 2,
+          "evento": "Capacitación en Ciberseguridad",
+          "num_evento_salon": 1,
+          "evento_anterior_id": null,
+          "evento_anterior": null,
+          "dias_libres": null,
+          "horas_reservadas": "5.00",
+          "horas_acumuladas": "5.00"
+        },
+        {
+          "salon_id": 4,
+          "evento_id": 10,
+          "evento": "Seminario Corporativo Q4",
+          "num_evento_salon": 2,
+          "evento_anterior_id": 2,
+          "evento_anterior": "Capacitación en Ciberseguridad",
+          "dias_libres": "65.79",
+          "horas_reservadas": "4.00",
+          "horas_acumuladas": "9.00"
+        },
+        {
+          "salon_id": 5,
+          "evento_id": 4,
+          "evento": "Feria de Innovación Nexo",
+          "num_evento_salon": 1,
+          "evento_anterior_id": null,
+          "evento_anterior": null,
+          "dias_libres": null,
+          "horas_reservadas": "9.00",
+          "horas_acumuladas": "9.00"
+        },
+        {
+          "salon_id": 5,
+          "evento_id": 9,
+          "evento": "Congreso Nacional de Salud",
+          "num_evento_salon": 2,
+          "evento_anterior_id": 4,
+          "evento_anterior": "Feria de Innovación Nexo",
+          "dias_libres": "53.58",
+          "horas_reservadas": "9.00",
+          "horas_acumuladas": "18.00"
+        },
+        {
+          "salon_id": 6,
+          "evento_id": 12,
+          "evento": "Feria Navideña",
+          "num_evento_salon": 1,
+          "evento_anterior_id": null,
+          "evento_anterior": null,
+          "dias_libres": null,
+          "horas_reservadas": "10.00",
+          "horas_acumuladas": "10.00"
+        }
+      ],
+      "plataforma": [
+        {
+          "salon_id": 1,
+          "salon": "Salón Orquídea",
+          "evento_id": 3,
+          "evento": "Club de Lectura Páramo",
+          "estado": "Finalizado",
+          "inicio": "2026-09-20T15:00:00",
+          "fin": "2026-09-21T01:00:00",
+          "num_evento_salon": 1,
+          "evento_anterior_id": null,
+          "evento_anterior": null,
+          "dias_libres": null,
+          "horas_reservadas": "10.00",
+          "horas_acumuladas": "10.00"
+        },
+        {
+          "salon_id": 1,
+          "salon": "Salón Orquídea",
+          "evento_id": 6,
+          "evento": "Encuentro Interno Nexo",
+          "estado": "Finalizado",
+          "inicio": "2026-09-30T14:00:00",
+          "fin": "2026-09-30T16:00:00",
+          "num_evento_salon": 2,
+          "evento_anterior_id": 3,
+          "evento_anterior": "Club de Lectura Páramo",
+          "dias_libres": "9.54",
+          "horas_reservadas": "2.00",
+          "horas_acumuladas": "12.00"
+        },
+        {
+          "salon_id": 2,
+          "salon": "Salón Heliconia",
+          "evento_id": 5,
+          "evento": "Simposio de Educación",
+          "estado": "Finalizado",
+          "inicio": "2026-09-28T08:00:00",
+          "fin": "2026-09-28T11:00:00",
+          "num_evento_salon": 1,
+          "evento_anterior_id": null,
+          "evento_anterior": null,
+          "dias_libres": null,
+          "horas_reservadas": "3.00",
+          "horas_acumuladas": "3.00"
+        },
+        {
+          "salon_id": 3,
+          "salon": "Salón Guayacán",
+          "evento_id": 1,
+          "evento": "Jornada Científica Solvida",
+          "estado": "Finalizado",
+          "inicio": "2026-09-08T08:00:00",
+          "fin": "2026-09-08T12:00:00",
+          "num_evento_salon": 1,
+          "evento_anterior_id": null,
+          "evento_anterior": null,
+          "dias_libres": null,
+          "horas_reservadas": "4.00",
+          "horas_acumuladas": "4.00"
+        },
+        {
+          "salon_id": 3,
+          "salon": "Salón Guayacán",
+          "evento_id": 11,
+          "evento": "Taller de Economía Circular",
+          "estado": "Cotizado",
+          "inicio": "2026-12-02T14:00:00",
+          "fin": "2026-12-02T17:00:00",
+          "num_evento_salon": 2,
+          "evento_anterior_id": 1,
+          "evento_anterior": "Jornada Científica Solvida",
+          "dias_libres": "85.08",
+          "horas_reservadas": "3.00",
+          "horas_acumuladas": "7.00"
+        },
+        {
+          "salon_id": 4,
+          "salon": "Salón Ceiba",
+          "evento_id": 2,
+          "evento": "Capacitación en Ciberseguridad",
+          "estado": "Finalizado",
+          "inicio": "2026-09-15T09:00:00",
+          "fin": "2026-09-15T14:00:00",
+          "num_evento_salon": 1,
+          "evento_anterior_id": null,
+          "evento_anterior": null,
+          "dias_libres": null,
+          "horas_reservadas": "5.00",
+          "horas_acumuladas": "5.00"
+        },
+        {
+          "salon_id": 4,
+          "salon": "Salón Ceiba",
+          "evento_id": 10,
+          "evento": "Seminario Corporativo Q4",
+          "estado": "Confirmado",
+          "inicio": "2026-11-20T09:00:00",
+          "fin": "2026-11-20T13:00:00",
+          "num_evento_salon": 2,
+          "evento_anterior_id": 2,
+          "evento_anterior": "Capacitación en Ciberseguridad",
+          "dias_libres": "65.79",
+          "horas_reservadas": "4.00",
+          "horas_acumuladas": "9.00"
+        },
+        {
+          "salon_id": 5,
+          "salon": "Gran Salón Cóndor",
+          "evento_id": 4,
+          "evento": "Feria de Innovación Nexo",
+          "estado": "Finalizado",
+          "inicio": "2026-09-25T09:00:00",
+          "fin": "2026-09-25T18:00:00",
+          "num_evento_salon": 1,
+          "evento_anterior_id": null,
+          "evento_anterior": null,
+          "dias_libres": null,
+          "horas_reservadas": "9.00",
+          "horas_acumuladas": "9.00"
+        },
+        {
+          "salon_id": 5,
+          "salon": "Gran Salón Cóndor",
+          "evento_id": 9,
+          "evento": "Congreso Nacional de Salud",
+          "estado": "Confirmado",
+          "inicio": "2026-11-18T08:00:00",
+          "fin": "2026-11-18T17:00:00",
+          "num_evento_salon": 2,
+          "evento_anterior_id": 4,
+          "evento_anterior": "Feria de Innovación Nexo",
+          "dias_libres": "53.58",
+          "horas_reservadas": "9.00",
+          "horas_acumuladas": "18.00"
+        },
+        {
+          "salon_id": 6,
+          "salon": "Auditorio Principal",
+          "evento_id": 12,
+          "evento": "Feria Navideña",
+          "estado": "Cotizado",
+          "inicio": "2026-12-15T10:00:00",
+          "fin": "2026-12-15T20:00:00",
+          "num_evento_salon": 1,
+          "evento_anterior_id": null,
+          "evento_anterior": null,
+          "dias_libres": null,
+          "horas_reservadas": "10.00",
+          "horas_acumuladas": "10.00"
+        }
+      ]
+    }
+  },
+  "A": {
+    "A1 permitido": {
+      "metodo": "POST",
+      "ruta": "/eventos",
+      "datos": {
+        "cliente_id": 1,
+        "salon_id": 2,
+        "coordinador_id": 1,
+        "nombre": "Prueba A1 permitido 3c023b",
+        "tipo": "Seminario",
+        "aforo_esperado": 50,
+        "inicio": "2027-01-14T09:00:00",
+        "fin": "2027-01-14T11:00:00"
+      },
+      "parametros": null,
+      "status": 201,
+      "respuesta": {
+        "id": 13,
+        "cliente_id": 1,
+        "salon_id": 2,
+        "coordinador_id": 1,
+        "nombre": "Prueba A1 permitido 3c023b",
+        "tipo": "Seminario",
+        "aforo_esperado": 50,
+        "inicio": "2027-01-14T09:00:00",
+        "fin": "2027-01-14T11:00:00",
+        "estado": "Cotizado",
+        "valor_total": "640000.00",
+        "precio_salon_congelado": "320000.00",
+        "tasa_asistencia": null
+      }
+    },
+    "A1 bloqueado": {
+      "metodo": "POST",
+      "ruta": "/eventos",
+      "datos": {
+        "cliente_id": 1,
+        "salon_id": 2,
+        "coordinador_id": 1,
+        "nombre": "Intento con media hora de separación",
+        "tipo": "Seminario",
+        "aforo_esperado": 50,
+        "inicio": "2027-01-15T11:30:00",
+        "fin": "2027-01-15T12:30:00"
+      },
+      "parametros": null,
+      "status": 409,
+      "respuesta": {
+        "detail": "DISPONIBILIDAD: Cruce con el evento #14 \"Prueba A1 bloqueado 300f95\" (2027-01-15 09:00:00 a 2027-01-15 11:00:00). Se requiere una hora entre eventos."
+      }
+    },
+    "A2 permitido": {
+      "metodo": "POST",
+      "ruta": "/eventos/16/inscripciones",
+      "datos": {
+        "asistente_id": 2
+      },
+      "parametros": null,
+      "status": 201,
+      "respuesta": {
+        "id": 271,
+        "evento_id": 16,
+        "asistente_id": 2,
+        "fecha_inscripcion": "2026-10-06T20:49:36.583862",
+        "hora_checkin": null
+      }
+    },
+    "A2 bloqueado": {
+      "metodo": "POST",
+      "ruta": "/eventos/17/inscripciones",
+      "datos": {
+        "asistente_id": 2
+      },
+      "parametros": null,
+      "status": 409,
+      "respuesta": {
+        "detail": "CUPO: El evento alcanzó su aforo contratado (1)."
+      }
+    },
+    "A3 permitido": {
+      "metodo": "POST",
+      "ruta": "/eventos/18/servicios",
+      "datos": {
+        "servicio_id": 2
+      },
+      "parametros": null,
+      "status": 201,
+      "respuesta": {
+        "id": 37,
+        "evento_id": 18,
+        "servicio_id": 2,
+        "cantidad": "50.00",
+        "precio_congelado": "6500.00"
+      },
+      "comprobacion": {
+        "evento_id": 18,
+        "nombre": "Prueba A3 permitido e56c62",
+        "estado": "Cotizado",
+        "salon": "Salón Heliconia",
+        "horas": "1.5000000000000000",
+        "precio_hora": "320000.00",
+        "costo_salon": "480000.00",
+        "servicios": [
+          {
+            "id": 37,
+            "servicio_id": 2,
+            "nombre": "Estación de café",
+            "unidad_cobro": "Por persona",
+            "cantidad": "50.00",
+            "precio_congelado": "6500.00",
+            "subtotal": "325000.0000"
+          }
+        ],
+        "subtotal_servicios": "325000.00",
+        "total": "805000.00"
+      }
+    },
+    "A3 bloqueado": {
+      "metodo": "POST",
+      "ruta": "/eventos/19/servicios",
+      "datos": {
+        "servicio_id": 2
+      },
+      "parametros": null,
+      "status": 409,
+      "respuesta": {
+        "detail": "SERVICIOS: No se pueden modificar servicios de un evento Finalizado."
+      }
+    },
+    "A4 permitido": {
+      "metodo": "PATCH",
+      "ruta": "/eventos/20/estado",
+      "datos": {
+        "estado": "Finalizado"
+      },
+      "parametros": null,
+      "status": 200,
+      "respuesta": {
+        "id": 20,
+        "cliente_id": 1,
+        "salon_id": 2,
+        "coordinador_id": 1,
+        "nombre": "Prueba A4 permitido 95792b",
+        "tipo": "Seminario",
+        "aforo_esperado": 50,
+        "inicio": "2026-06-27T09:00:00",
+        "fin": "2026-06-27T11:00:00",
+        "estado": "Finalizado",
+        "valor_total": "640000.00",
+        "precio_salon_congelado": "320000.00",
+        "tasa_asistencia": "75.00"
+      },
+      "comprobacion": [
+        {
+          "id": 21,
+          "evento_id": 20,
+          "campo": "estado",
+          "valor_anterior": "Cotizado",
+          "valor_nuevo": "Confirmado",
+          "usuario_app": "grupo_shalem_dayro_juan_jesus",
+          "fecha": "2026-10-06T20:49:37.018086"
+        },
+        {
+          "id": 22,
+          "evento_id": 20,
+          "campo": "estado",
+          "valor_anterior": "Confirmado",
+          "valor_nuevo": "Finalizado",
+          "usuario_app": "grupo_shalem_dayro_juan_jesus",
+          "fecha": "2026-10-06T20:49:37.112441"
+        }
+      ]
+    },
+    "A4 bloqueado": {
+      "metodo": "PATCH",
+      "ruta": "/eventos/21/estado",
+      "datos": {
+        "estado": "Finalizado"
+      },
+      "parametros": null,
+      "status": 409,
+      "respuesta": {
+        "detail": "CIERRE: El evento todavía no ha terminado (2027-01-19 11:00:00)."
+      },
+      "comprobacion": [
+        {
+          "id": 23,
+          "evento_id": 21,
+          "campo": "estado",
+          "valor_anterior": "Cotizado",
+          "valor_nuevo": "Confirmado",
+          "usuario_app": "grupo_shalem_dayro_juan_jesus",
+          "fecha": "2026-10-06T20:49:37.207981"
+        }
+      ]
+    },
+    "A5 permitido": {
+      "metodo": "GET",
+      "ruta": "/salones/disponibles",
+      "datos": null,
+      "parametros": {
+        "inicio": "2027-04-24T09:00:00",
+        "fin": "2027-04-24T10:30:00",
+        "aforo": 50
+      },
+      "status": 200,
+      "respuesta": [
+        {
+          "salon_id": 2,
+          "nombre": "Salón Heliconia",
+          "tamano": "Pequeño",
+          "capacidad": 60,
+          "precio_hora": "320000.00",
+          "costo_estimado": "480000.00"
+        },
+        {
+          "salon_id": 3,
+          "nombre": "Salón Guayacán",
+          "tamano": "Mediano",
+          "capacidad": 150,
+          "precio_hora": "650000.00",
+          "costo_estimado": "975000.00"
+        },
+        {
+          "salon_id": 4,
+          "nombre": "Salón Ceiba",
+          "tamano": "Mediano",
+          "capacidad": 200,
+          "precio_hora": "800000.00",
+          "costo_estimado": "1200000.00"
+        },
+        {
+          "salon_id": 5,
+          "nombre": "Gran Salón Cóndor",
+          "tamano": "Grande",
+          "capacidad": 600,
+          "precio_hora": "1800000.00",
+          "costo_estimado": "2700000.00"
+        },
+        {
+          "salon_id": 6,
+          "nombre": "Auditorio Principal",
+          "tamano": "Grande",
+          "capacidad": 1000,
+          "precio_hora": "2500000.00",
+          "costo_estimado": "3750000.00"
+        }
+      ]
+    },
+    "A5 sin opciones": {
+      "metodo": "GET",
+      "ruta": "/salones/disponibles",
+      "datos": null,
+      "parametros": {
+        "inicio": "2027-04-24T09:00:00",
+        "fin": "2027-04-24T10:30:00",
+        "aforo": 2000
+      },
+      "status": 200,
+      "respuesta": []
+    }
+  },
+  "pruebas_integracion": {
+    "aprobadas": 39,
+    "fallidas": 0,
+    "motor": "PostgreSQL 17",
+    "python": "3.12.14",
+    "dependencias_compatibles": true,
+    "registro": "pruebas.txt"
+  }
+}
