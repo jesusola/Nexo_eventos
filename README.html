@@ -1,0 +1,95 @@
+<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>README · NexoEventos</title><style>body{font:16px/1.6 Segoe UI,Arial,sans-serif;color:#17303d;background:#f4f6f8;margin:0}main{background:white;max-width:1200px;margin:32px auto;padding:38px}h1{font-size:30px}h2{margin-top:36px;border-bottom:1px solid #d0dce3}table{border-collapse:collapse;display:block;overflow:auto;margin:20px 0;font-size:14px}td,th{padding:9px 12px;border:1px solid #ccd8df;text-align:left}th{background:#edf3f6}pre{background:#edf3f6;padding:18px;overflow:auto;font-size:14px}img{max-width:100%;height:auto;border:1px solid #ccd8df}a{color:#126791}nav{display:flex;gap:18px;flex-wrap:wrap}code{font-family:Consolas,monospace}@media print{body{background:white}main{margin:0;padding:0}h2,h3{break-after:avoid}img{max-height:23cm;object-fit:contain}pre{white-space:pre-wrap;word-break:break-word}table{font-size:11px}}</style><main><nav><a href="docs/decisiones.html">Decisiones</a><a href="docs/reporte_evidencias.html">Evidencias</a></nav><h1>NexoEventos: entrega 1</h1>
+<p>Grupo: Shalem, Dayro, Juan y Jesús.</p>
+<p>Este proyecto contiene la API, las entidades, los scripts SQL, los datos de prueba y una interfaz de Streamlit para demostrar las reglas. PostgreSQL controla las reservas, los cupos, los servicios, el cierre y la auditoría. Streamlit consulta la API y no abre conexiones a la base.</p>
+<p>Puedes abrir <code>README.html</code> y los documentos HTML de <code>docs/</code> directamente en el navegador, sin encender la API. La carpeta incluye 25 capturas y el reporte con las cuentas de B1–B4. La validación en PostgreSQL 17 aprobó 39 pruebas; el registro está en <code>docs/pruebas.txt</code>.</p>
+<h2>Ejecutar en Windows</h2>
+<p>Necesitas Python 3.12 y PostgreSQL 14 o superior. La verificación de esta entrega usa PostgreSQL 17. Abre PowerShell en esta carpeta.</p>
+<pre><code class="language-powershell">py -3.12 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+Copy-Item .env.example .env
+</code></pre>
+<p><code>requirements.txt</code> fija las dependencias principales. <code>requirements-lock.txt</code> conserva todas las versiones del entorno comprobado, incluidas las herramientas de pruebas y captura; puedes usarlo en lugar de <code>requirements.txt</code> si deseas reproducir ese entorno completo.</p>
+<p>Edita <code>.env</code>: en <code>NEXO_DB_URL</code> cambia el usuario, la clave, el puerto y el nombre de la base. El nombre sugerido es <code>nexoeventos</code>. Si la contraseña contiene caracteres como <code>@</code> o <code>#</code>, codifícalos para una URL. El archivo <code>.env</code> es local y no forma parte del ZIP.</p>
+<p>Crea una base vacía desde pgAdmin o con:</p>
+<pre><code class="language-powershell">createdb -U postgres nexoeventos
+.\.venv\Scripts\python.exe init_db.py --con-datos
+.\.venv\Scripts\python.exe -m uvicorn main:app --reload
+</code></pre>
+<p>Si <code>createdb</code> no aparece como comando, usa su ruta, por ejemplo <code>C:\Program Files\PostgreSQL\17\bin\createdb.exe</code>, o crea la base en pgAdmin. PostgreSQL debe estar encendido.</p>
+<p>La API queda en <a href="http://localhost:8000">localhost:8000</a> y Swagger en <a href="http://localhost:8000/docs">localhost:8000/docs</a>. Deja esa terminal abierta. En una segunda terminal, desde esta misma carpeta:</p>
+<pre><code class="language-powershell">.\.venv\Scripts\python.exe -m streamlit run frontend/app.py
+</code></pre>
+<p>Streamlit abre <a href="http://localhost:8501">localhost:8501</a>. Su dirección de API aparece en la barra lateral. Para detener cada proceso, pulsa <code>Ctrl+C</code> en su terminal.</p>
+<h2>Qué hace la carga</h2>
+<p><code>init_db.py</code> crea las tablas con SQLAlchemy y aplica A1–A5 y B1–B4. Con <code>--con-datos</code> carga seis salones, nueve servicios, ocho clientes, quince empleados, doce eventos y sesenta asistentes. Los servicios, las inscripciones y los cambios de estado pasan por los triggers. Hay un evento que termina después de medianoche.</p>
+<p>Las fechas se desplazan respecto al día de carga para conservar eventos pasados y futuros. Los nombres, las duraciones y los precios permanecen iguales. Los eventos pasados tienen tasas 84 %, 71,11 %, 90 %, 50 %, 0 % y una tasa vacía.</p>
+<p>Si la base ya tiene clientes, el programa detiene la carga para evitar duplicados. Nunca borra datos. Puedes ejecutar <code>python init_db.py</code> sin <code>--con-datos</code> para volver a aplicar los scripts. <code>create_all</code> no cambia tablas existentes: usa una base nueva para la primera instalación de este esquema.</p>
+<h2>Usar el sistema</h2>
+<ol>
+<li>En <strong>Disponibilidad</strong>, indica inicio, fin y aforo. Las fechas usan hora de Bogotá; también se aceptan fechas ISO con zona horaria.</li>
+<li>En <strong>Eventos</strong>, selecciona cliente y coordinador, consulta salones libres y crea el evento. Nace Cotizado. Contrata servicios, consulta el desglose y confirma cuando corresponda.</li>
+<li>En <strong>Asistentes</strong>, registra la persona, inscríbela y usa su documento al llegar. El check-in admite desde una hora antes del inicio hasta la hora de fin.</li>
+<li>En <strong>Eventos</strong>, reprograma un evento abierto o revisa su historial. Para finalizar, primero debe estar Confirmado y su hora de fin debe haber pasado. Finalizado y Cancelado son definitivos.</li>
+<li>En <strong>Reportes</strong>, consulta el organigrama, los jefes, el Pareto y la ocupación. El ranking incluye todos los eventos no cancelados, también los cotizados.</li>
+<li>En <strong>Pruebas de entrega</strong>, ejecuta casos permitidos y bloqueados. Cada caso crea sus propios datos; úsalo en una base de demostración. Las consultas analíticas del reporte se comparan antes de añadir esos casos.</li>
+</ol>
+<p>El campo <strong>Usuario</strong> identifica a quien hace los cambios. La API lo recibe en <code>X-Usuario</code> y la auditoría lo conserva. Es una identificación del operador para la práctica; no constituye autenticación.</p>
+<h2>Probar la entrega</h2>
+<p>Las pruebas necesitan otra base. Nunca apuntes las pruebas a la base que usa el grupo.</p>
+<pre><code class="language-powershell">.\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
+createdb -U postgres nexoeventos_pruebas
+$env:NEXO_TEST_DB_URL = 'postgresql+psycopg2://postgres:TU_CLAVE@localhost:5432/nexoeventos_pruebas'
+.\.venv\Scripts\python.exe -m pytest -q
+</code></pre>
+<p>La mayoría de las pruebas revierte sus cambios. Las pruebas de cupo y reserva concurrentes crean eventos temporales y los eliminan al terminar. La carga inicial permanece en la base de pruebas.</p>
+<h2>Archivos para revisar</h2>
+<table>
+<thead>
+<tr>
+<th>Archivo</th>
+<th>Contenido</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>docs/decisiones.md</code></td>
+<td>Motivo de cada decisión y explicación para la sustentación</td>
+</tr>
+<tr>
+<td><code>docs/diagrama_relacional.md</code></td>
+<td>Tablas y cardinalidades</td>
+</tr>
+<tr>
+<td><code>docs/diccionario_datos.md</code></td>
+<td>Campos, tipos y restricciones</td>
+</tr>
+<tr>
+<td><code>docs/endpoints.md</code></td>
+<td>Rutas con ejemplos de petición y respuesta</td>
+</tr>
+<tr>
+<td><code>docs/reporte_evidencias.md</code></td>
+<td>Casos A1–A5 y comparación independiente de B1–B4</td>
+</tr>
+<tr>
+<td><code>docs/capturas/</code></td>
+<td>Pantallas de la API y de Streamlit</td>
+</tr>
+<tr>
+<td><code>docs/verificacion.json</code></td>
+<td>Resultado de la verificación realizada</td>
+</tr>
+</tbody>
+</table>
+<p>Para la entrega, el ZIP debe contener esta carpeta, sin <code>.env</code>, <code>.venv</code>, cachés ni bases de datos locales. P2 pide nombrarlo con los apellidos del grupo. Los apellidos no están completos en los datos recibidos, por lo que el ZIP usa los nombres y debe renombrarse antes de enviarlo.</p>
+<h2>Problemas frecuentes</h2>
+<ul>
+<li><strong>Falta NEXO_DB_URL:</strong> copia la plantilla como <code>.env</code> y configura la conexión.</li>
+<li><strong>Conexión rechazada:</strong> revisa PostgreSQL, el puerto y la base indicada.</li>
+<li><strong>Password authentication failed:</strong> corrige usuario o contraseña en <code>.env</code>.</li>
+<li><strong>HTTP 409:</strong> una regla del negocio o una restricción rechazó la operación. Lee el mensaje; la transacción se revierte.</li>
+<li><strong>HTTP 422:</strong> revisa campos, fechas, cantidades y valores permitidos.</li>
+<li><strong>No hay salones:</strong> el aforo o el horario solicitado no tienen opciones. Prueba otra franja.</li>
+<li><strong>La base ya contiene clientes:</strong> no repitas la carga de datos. Sigue usando esa base o crea otra vacía.</li>
+</ul>
+</main></html>
